@@ -5,9 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1E2A5A">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="الحركة العامة">
-<title>الحركة العامة — اللغة الموحدة v2.7.1</title>
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjMUUyQTVBIi8+PHRleHQgeD0iOTYiIHk9IjEzMCIgZm9udC1zaXplPSIxMTAiIGZvbnQtZmFtaWx5PSJBbWlyaSxzZXJpZiIgZmlsbD0iI0M5QTk2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K08L3RleHQ+PC9zdmc+">
+<meta name="description" content="استخراج الحركة العامة لأي تسلسل صوتي وفق منهج عالم سبيط النيلي">
+<title>الحركة العامة — اللغة الموحدة v2.7.2</title>
+
+<!-- PWA Manifest — ملف حقيقي -->
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjMUUyQTVBIi8+PHRleHQgeD0iOTYiIHk9IjEzMCIgZm9udC1zaXplPSIxMTAiIGZvbnQtZmFtaWx5PSJBbWlyaSxzZXJpZiIgZmlsbD0iI0M5QTk2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K08L3RleHQ+PC9zdmc+">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -405,7 +412,7 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 
 <header class="topbar">
   <div class="topbar-inner">
-    <h1>الحركة العامة <span class="version">v2.7.1</span></h1>
+    <h1>الحركة العامة <span class="version">v2.7.2</span></h1>
     <div class="topbar-actions">
       <button class="icon-btn" id="install-btn" title="تثبيت" style="display:none;">📲</button>
       <button class="icon-btn" id="share-btn" title="مشاركة">🔗</button>
@@ -455,9 +462,9 @@ input,textarea,select{font-family:inherit;font-size:1rem}
     <div class="card">
       <div class="card-title"><span class="icon">🎯</span> منهج الاستخراج — 4 خطوات</div>
       <div style="display:grid;gap:10px;">
-        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--green);"><strong>1. التجريد الصوتي</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">حذف «أل» التعريف والتضعيف، تجريد اللفظ إلى أصواته الصحيحة. الحركات الطويلة (ا/و/ي) موادّ رابطة.</div></div>
-        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--blue);"><strong>2. جلب الحركة الفيزيائية</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">لكل صوت تعريفه الحركي الثابت من المصوفة (28 صوتًا) — لا يتغيّر بتغيّر الكلمة.</div></div>
-        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--gold);"><strong>3. توزيع الأدوار</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">الأول = منشأ وجنس · الثاني = توجيه · الأوسط = ضبط · الأخير = نتيجة وحدّ.</div></div>
+        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--green);"><strong>1. التجريد الصوتي</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">حذف «أل» التعريف والتضعيف، تجريد اللفظ إلى أصواته الصحيحة.</div></div>
+        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--blue);"><strong>2. جلب الحركة الفيزيائية</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">لكل صوت تعريفه الحركي الثابت من المصوفة (28 صوتًا).</div></div>
+        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--gold);"><strong>3. توزيع الأدوار</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">الأول = منشأ · الأوسط = ضبط · الأخير = نتيجة.</div></div>
         <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--purple);"><strong>4. تركيب الحركة العامة</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">مبدأ «التراكم»: كل صوت يعمل على ناتج ما قبله.</div></div>
       </div>
     </div>
@@ -520,7 +527,6 @@ input,textarea,select{font-family:inherit;font-size:1rem}
     <div id="compare-output"></div>
     <div class="card">
       <div class="card-title"><span class="icon">📊</span> مقارنة متعددة من السجل</div>
-      <p class="card-sub">اختر 2-8 تحليلات من سجلك للمقارنة في جدول واحد.</p>
       <div id="multi-select-container"><div class="history-empty"><div class="big">📚</div><div>لا يوجد سجل بعد.</div></div></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;justify-content:center;">
         <button class="btn-primary" id="multi-compare-btn" disabled>قارن المختارة</button>
@@ -534,7 +540,6 @@ input,textarea,select{font-family:inherit;font-size:1rem}
   <section id="screen-history" class="screen">
     <div class="card">
       <div class="card-title"><span class="icon">📚</span> سجل التحليلات <span style="font-size:.75rem;font-weight:400;color:var(--ink-muted);margin-inline-start:auto;" id="history-count-label">0</span></div>
-      <p class="card-sub">كل تحليل يُحفظ تلقائيًا في متصفحك. لا شيء يُرسل إلى أي خادم.</p>
       <div class="history-toolbar">
         <button class="btn-secondary" id="history-clear-btn">🗑️ مسح الكل</button>
         <button class="btn-secondary" id="history-export-btn">📥 تصدير JSON</button>
@@ -547,7 +552,6 @@ input,textarea,select{font-family:inherit;font-size:1rem}
   <section id="screen-stats" class="screen">
     <div class="card">
       <div class="card-title"><span class="icon">🎯</span> توصيات ذكية لك</div>
-      <p class="card-sub">اقتراحات مبنية على تحليلاتك السابقة.</p>
       <div id="recommend-content"><div class="history-empty"><div class="big">🎯</div><div>حلّل بضع كلمات لتظهر توصياتك.</div></div></div>
     </div>
     <div class="card">
@@ -563,15 +567,6 @@ input,textarea,select{font-family:inherit;font-size:1rem}
       <div id="calendar-content"><div class="history-empty"><div class="big">📅</div><div>ابدأ بتسجيل تحليلاتك.</div></div></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="icon">📊</span> نتائج التحقّق العامة</div>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="num">89%</div><div class="lbl">دقة البصمة</div></div>
-        <div class="stat-card"><div class="num">100%</div><div class="lbl">الجزء الثاني</div></div>
-        <div class="stat-card"><div class="num">80%</div><div class="lbl">مطابقة الحرف</div></div>
-        <div class="stat-card"><div class="num">72%</div><div class="lbl">مطابقة التسلسل</div></div>
-      </div>
-    </div>
-    <div class="card">
       <div class="card-title"><span class="icon">🌐</span> كرة الحروف</div>
       <div id="sphere-container"><div class="sphere-hint">اسحب للتدوير</div></div>
     </div>
@@ -580,17 +575,14 @@ input,textarea,select{font-family:inherit;font-size:1rem}
   <section id="screen-rules" class="screen">
     <div class="card">
       <div class="card-title"><span class="icon">📜</span> القواعد التسع الحاكمة <span class="tier-badge tier-green">🟢 منصوص</span></div>
-      <p class="card-sub">منصوصة من مؤلفات النيلي (اللغة الموحدة، الطور المهدوي، أصل الخلق، المحاضرات).</p>
       <ul id="rules-list" style="list-style:none;padding:0;margin:0;"></ul>
     </div>
     <div class="card">
       <div class="card-title"><span class="icon">📖</span> منهج النقد الدلالي — 4 قواعد</div>
-      <p class="card-sub">قاعدة الترجيح: يُستخرج المعنى من حركة الأصوات، ثم يُقارن بالمعاجم.</p>
       <div id="critique-rules"></div>
     </div>
     <div class="card">
       <div class="card-title"><span class="icon">⚖️</span> هرمية سلطة المصادر</div>
-      <p class="card-sub">حسب القاعدة 9: الاستعمال العالمي المعاصر أصدق من دعاوى علماء اللغة.</p>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--gold-soft);border-radius:var(--radius-sm);border-inline-start:4px solid var(--gold);"><span style="font-weight:700;">نص النيلي (KS)</span><span style="color:var(--ink-muted);">وزن 1.00</span></div>
         <div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--blue-soft);border-radius:var(--radius-sm);border-inline-start:4px solid var(--blue);"><span style="font-weight:700;">الاستعمال المعاصر</span><span style="color:var(--ink-muted);">وزن 0.40</span></div>
@@ -602,7 +594,7 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 </main>
 
 <footer class="footer">
-  <div>اللغة الموحدة — v2.7.1</div>
+  <div>اللغة الموحدة — v2.7.2</div>
   <div style="margin-top:6px;">منهج المرحوم عالم سبيط النيلي · 28 صوتًا · 9 قواعد · 15 وزنًا صرفيًا</div>
   <div style="margin-top:6px;opacity:.7;">«لا اختراع · لا حذف · الأمانة · الترتيب مولّد المعنى»</div>
 </footer>
@@ -615,7 +607,6 @@ input,textarea,select{font-family:inherit;font-size:1rem}
       <div class="install-platform"><h4>🤖 أندرويد (Chrome)</h4><p>قائمة ⋮ ← <kbd>إضافة إلى الشاشة الرئيسية</kbd></p></div>
       <div class="install-platform"><h4>🍎 آيفون (Safari)</h4><p>زر المشاركة ⬆️ ← <kbd>إضافة إلى الشاشة الرئيسية</kbd></p></div>
       <div class="install-platform"><h4>💻 ويندوز/ماك</h4><p>أيقونة <kbd>⊕</kbd> في شريط العنوان</p></div>
-      <div class="info-box">💡 للحصول على تثبيت كامل، ارفع الملف على GitHub Pages أو Netlify.</div>
     </div>
   </div>
 </div>
@@ -670,9 +661,6 @@ const CORE = {
   'و':{tier:'purple',source:'من تسلسل (فور)',movement:'ديمومة مكانية',axes:{direction:0,cohesion:.3,intensity:0,visibility:.2,time:.1},speed:0,finalFactor:0.90}
 };
 
-/* ============================================================
-   2. القواعد
-   ============================================================ */
 const RULES = [
   {id:'R1',text:'لا ترادف: اختلاف الصوت = اختلاف الحركة = اختلاف المعنى.',source:'النظام القرآني',page:null},
   {id:'R2',text:'الصوت الأول يحمل الجنس والمنشأ، والأخير يحمل النتيجة والحدّ.',source:'الطور المهدوي',page:null},
@@ -692,16 +680,10 @@ const CRITIQUE_RULES = [
   {n:4,text:'إن خالف المعجم ولم يوجد جامع للأصل المشترك ← فالحرف كشف رابطة لم يجمعها المعجم تحت أصل واحد.'}
 ];
 
-/* ============================================================
-   3. الأوزان والأصول
-   ============================================================ */
 const SOURCE_HIERARCHY = {KS:1.00, MODERN:0.40, CLASSICAL:0.35, LEXICON:0.25};
 const POSITION_WEIGHTS = {1:[1],2:[.35,.65],3:[.20,.30,.50],4:[.15,.20,.25,.40],5:[.10,.15,.20,.25,.30]};
 function getWeights(n){ if(POSITION_WEIGHTS[n]) return POSITION_WEIGHTS[n]; const a=[]; for(let i=0;i<n;i++)a.push((i+1)/(n*(n+1)/2)); return a; }
 
-/* ============================================================
-   4. KS
-   ============================================================ */
 const KS = {
   'دحر':{text:'«اندفاع مقصود والحاء تعاظم والراء تكرار».',meaning:'دفع متعاظم متكرر يقهر المقاومة — حركة تدفع الشيء وتُبعده عن حدّه.',source:'اللغة الموحدة',page:1520},
   'سمك':{text:'«انسلال خفي وتكامل وتكتّل».',meaning:'تكاثف الأجزاء وتكتّلها بصورة غير منظورة لتكون ملحوظة فيما بعد.',source:'الطور المهدوي',page:216},
@@ -714,9 +696,6 @@ const KS = {
   'عمل':{text:'«عمق وتمكّن ثم تكامل ثم التصاق واتصال».',meaning:'إنجاز الفعل بتمكّن والتزام.',source:'من تسلسل',page:null}
 };
 
-/* ============================================================
-   5. المعاجم
-   ============================================================ */
 const DICTIONARIES = [
   {id:'modern',name:'اللغة العربية المعاصرة',type:'modern',weight:0.53},
   {id:'muheet',name:'القاموس المحيط',type:'classical',weight:0.32},
@@ -728,9 +707,6 @@ const DICTIONARIES = [
   {id:'lexicon',name:'المعجم المحلي (LEXICON)',type:'lexicon',weight:0.45}
 ];
 
-/* ============================================================
-   6. المعجم المحلي
-   ============================================================ */
 const LOCAL_LEXICON = {
   'حد':{meaning:'الحاجز بين شيئين، الفاصل الذي يمنع اختلاطهما. أصله: المنع والفصل والدفع بقوة. ومنه: حَدّ السيف، الحُدود، الحَدّ الأقصى.',source:'المعجم المحلي الموثّق'},
   'حمد':{meaning:'الثناء والشكر على الجميل. ومنه: الحمد، المحمود، الحميد.',source:'المعجم المحلي الموثّق'},
@@ -741,12 +717,9 @@ const LOCAL_LEXICON = {
   'سمك':{meaning:'الحيوان المائي المعروف.',source:'المعجم المحلي الموثّق'},
   'فور':{meaning:'الغليان والانبثاق المفاجئ. ومنه: فَار يَفُور، الفَوَران.',source:'المعجم المحلي الموثّق'},
   'عمل':{meaning:'الفعل والجهد. ومنه: العامِل، العَمل، الاستعمال.',source:'المعجم المحلي الموثّق'},
-  'حرور':{meaning:'الحرّ الشديد، أو الريح الحارّة. ومنه: الحَرُور والحروريّ (منسوب إلى أشد الحرّ).',source:'المعجم المحلي الموثّق'}
+  'حرور':{meaning:'الحرّ الشديد، أو الريح الحارّة. ومنه: الحَرُور والحروريّ.',source:'المعجم المحلي الموثّق'}
 };
 
-/* ============================================================
-   7. الأوزان الصرفية
-   ============================================================ */
 const PATTERNS = [
   {id:'fa3ala',weight:'فَعَلَ',form:'{1}َ{2}َ{3}َ',kind:'mujarrad',added:[],effect:'الحدث المجرد'},
   {id:'fa3l',weight:'فَعْل',form:'{1}َ{2}ْ{3}',kind:'mujarrad',added:[],effect:'الحدث كمصدر'},
@@ -773,9 +746,6 @@ function generateDerivations(rl){
   });
 }
 
-/* ============================================================
-   8. محرّك الاستخراج
-   ============================================================ */
 function stripDiacritics(w){ return w.replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'أ').replace(/[ى]/g,'ي').replace(/[ؤ]/g,'و').replace(/[ئ]/g,'ي').replace(/[ة]/g,'ه').trim(); }
 function cleanWord(w){ let x=stripDiacritics(w); if(x.startsWith('ال')&&x.length>3) x=x.slice(2); return x; }
 function toLetters(w){ return Array.from(cleanWord(w)).filter(ch=>CORE[ch]); }
@@ -790,15 +760,11 @@ function getRole(i,total){
   return {id:3,label:'الضبط الوسطي',short:'ضبط',cls:'r3'};
 }
 
-/* --- [v2.7.1] دوال كشف التكرار والتباديل الفريدة --- */
 function findDuplicates(letters){
   const counts={};
   letters.forEach(ch => { counts[ch]=(counts[ch]||0)+1; });
-  return Object.entries(counts)
-    .filter(([ch,n]) => n>1)
-    .map(([ch,n]) => ({ch, count:n}));
+  return Object.entries(counts).filter(([ch,n]) => n>1).map(([ch,n]) => ({ch, count:n}));
 }
-
 function countUniquePermutations(letters){
   const factorial = n => { let r=1; for(let i=2;i<=n;i++) r*=i; return r; };
   const dup = findDuplicates(letters);
@@ -806,7 +772,6 @@ function countUniquePermutations(letters){
   dup.forEach(d => { total /= factorial(d.count); });
   return Math.round(total);
 }
-
 function permutationsOf(arr){
   if(arr.length<=1) return [arr.slice()];
   if(arr.length>5) return [arr.slice()];
@@ -815,10 +780,7 @@ function permutationsOf(arr){
   const permute = (cur, rest) => {
     if(rest.length === 0){
       const key = cur.join('');
-      if(!seen.has(key)){
-        seen.add(key);
-        out.push(cur.slice());
-      }
+      if(!seen.has(key)){ seen.add(key); out.push(cur.slice()); }
       return;
     }
     for(let i=0;i<rest.length;i++){
@@ -828,7 +790,6 @@ function permutationsOf(arr){
   permute([], arr);
   return out;
 }
-/* --- نهاية الإضافة --- */
 
 function extractMovement(word){
   try{
@@ -836,7 +797,6 @@ function extractMovement(word){
     if(letters.length===0) return null;
     const weights=getWeights(letters.length);
     const contributions=letters.map((ch,i)=>({ch,core:CORE[ch],weight:weights[i]||0,role:getRole(i,letters.length)}));
-
     const axesSum={direction:0,cohesion:0,intensity:0,visibility:0,time:0};
     let speedSum=0, tw=0;
     for(const c of contributions){
@@ -846,19 +806,14 @@ function extractMovement(word){
     }
     const axes={}; for(const k of Object.keys(axesSum)) axes[k]=tw>0?axesSum[k]/tw:0;
     const baseSpeed = tw>0 ? speedSum/tw : 0;
-
     const lastCh = letters[letters.length-1];
     const finalFactor = CORE[lastCh]?.finalFactor || 1.0;
     const speed = Math.min(baseSpeed * finalFactor, 1.0);
-
-    // [v2.7.1] — حساب التكرار والتباديل الفريدة
     const duplicates = findDuplicates(letters);
     const uniquePermutations = countUniquePermutations(letters);
     const permutations = permutationsOf(letters);
-
     return {
-      word:cleanWord(word),
-      letters, contributions, axes,
+      word:cleanWord(word), letters, contributions, axes,
       baseSpeed, finalFactor, speed,
       sentence:buildSentence(contributions),
       concept:buildConcept(contributions),
@@ -882,9 +837,6 @@ function buildConcept(cs){
 }
 function buildBreakdown(cs){ return cs.map(c=>c.core.movement).join(' + '); }
 
-/* ============================================================
-   9. المقاييس الدلالية
-   ============================================================ */
 function computeSemanticMetrics(){
   const M_literal={count:8,total:126,percent:(8/126)*100};
   const perDict=DICTIONARIES.map(d=>({name:d.name,type:d.type,weight:d.weight}));
@@ -898,9 +850,6 @@ function computeSemanticMetrics(){
   return {M_literal,M_partial,M_support};
 }
 
-/* ============================================================
-   10. الرادار
-   ============================================================ */
 function renderRadar(axes){
   const size=320,cx=size/2,cy=size/2,rMax=115;
   const keys=['direction','cohesion','intensity','visibility','time'];
@@ -927,23 +876,12 @@ function renderRadar(axes){
 }
 function pct(v){ return Math.round((v+1)*50)+'%'; }
 
-/* ============================================================
-   11. متغيّرات عامة
-   ============================================================ */
 let currentAnalysis=null, currentDerivations=null, currentRootLetters=null;
 
 /* ============================================================
-   12. PWA
+   PWA Install
    ============================================================ */
 let deferredInstallPrompt=null;
-(function injectManifest(){
-  try{
-    const manifest={name:"الحركة العامة — اللغة الموحدة",short_name:"الحركة العامة",start_url:".",scope:".",display:"standalone",background_color:"#FAFAF5",theme_color:"#1E2A5A",lang:"ar",dir:"rtl",icons:[{src:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjMUUyQTVBIi8+PHRleHQgeD0iOTYiIHk9IjEzMCIgZm9udC1zaXplPSIxMTAiIGZvbnQtZmFtaWx5PSJBbWlyaSxzZXJpZiIgZmlsbD0iI0M5QTk2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K08L3RleHQ+PC9zdmc+",sizes:"192x192",type:"image/svg+xml"}]};
-    const blob=new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'});
-    const url=URL.createObjectURL(blob);
-    const link=document.createElement('link'); link.rel='manifest'; link.href=url; document.head.appendChild(link);
-  }catch(e){}
-})();
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstallPrompt=e; document.getElementById('install-btn').style.display='flex'; });
 window.addEventListener('appinstalled',()=>{ deferredInstallPrompt=null; document.getElementById('install-btn').style.display='none'; showToast('✅ تم التثبيت'); });
 document.getElementById('install-btn').addEventListener('click',async()=>{
@@ -957,9 +895,7 @@ function checkIfInstalled(){
   if(!standalone) setTimeout(()=>{ if(!deferredInstallPrompt) document.getElementById('install-btn').style.display='flex'; },3000);
 }
 
-/* ============================================================
-   13. Theme
-   ============================================================ */
+/* Theme */
 const THEME_KEY='lum_theme_v1';
 function initTheme(){
   const saved=SafeStorage.get(THEME_KEY);
@@ -977,9 +913,7 @@ document.getElementById('theme-btn').addEventListener('click',()=>{
   showToast(next==='dark'?'🌙 الوضع الداكن':'☀️ الوضع النهاري');
 });
 
-/* ============================================================
-   14. السجل
-   ============================================================ */
+/* History */
 const HISTORY_KEY='lum_history_v1', HISTORY_MAX=50;
 function loadHistory(){ try{ const r=SafeStorage.get(HISTORY_KEY); return r?JSON.parse(r):[]; }catch(e){ return []; } }
 function saveHistoryItem(mv){
@@ -1033,9 +967,9 @@ function renderHistory(){
         <div class="history-meta">${lts} · ${Math.round(item.speed*100)}% · ${formatRelativeTime(new Date(item.timestamp))}</div>
       </div>
       <div class="history-actions">
-        <button class="history-icon-btn" data-action="open" data-word="${item.word}" title="فتح">↗</button>
-        <button class="history-icon-btn" data-action="copy" data-word="${item.word}" title="نسخ">🔗</button>
-        <button class="history-icon-btn danger" data-action="delete" data-id="${item.id}" title="حذف">🗑</button>
+        <button class="history-icon-btn" data-action="open" data-word="${item.word}">↗</button>
+        <button class="history-icon-btn" data-action="copy" data-word="${item.word}">🔗</button>
+        <button class="history-icon-btn danger" data-action="delete" data-id="${item.id}">🗑</button>
       </div>
     </div>`;
   }).join('')}</div>`;
@@ -1047,15 +981,12 @@ function renderHistory(){
 document.getElementById('history-clear-btn')?.addEventListener('click', clearHistory);
 document.getElementById('history-export-btn')?.addEventListener('click',()=>{
   const h=loadHistory(); if(h.length===0){ showToast('⚠️ السجل فارغ'); return; }
-  const data={history:h.map(x=>({word:x.word,sentence:x.sentence,letters:x.letters,speed:x.speed,timestamp:new Date(x.timestamp).toISOString()})),exportedAt:new Date().toISOString(),version:'v2.7.1'};
+  const data={history:h.map(x=>({word:x.word,sentence:x.sentence,letters:x.letters,speed:x.speed,timestamp:new Date(x.timestamp).toISOString()})),exportedAt:new Date().toISOString(),version:'v2.7.2'};
   downloadFile(JSON.stringify(data,null,2),`lum-history-${Date.now()}.json`,'application/json;charset=utf-8');
   showToast('✅ تم التصدير');
 });
 document.getElementById('history-stats-btn')?.addEventListener('click',()=>{ showScreen('stats'); });
 
-/* ============================================================
-   15. الإحصائيات الشخصية
-   ============================================================ */
 function computePersonalStats(){
   const h=loadHistory(); if(h.length===0) return null;
   const totalAnalyses=h.length;
@@ -1115,9 +1046,6 @@ function renderPersonalStats(){
     </div>`;
 }
 
-/* ============================================================
-   16. الخريطة الحرارية
-   ============================================================ */
 function renderHeatmap(){
   const c=document.getElementById('heatmap-content'); if(!c) return;
   const h=loadHistory();
@@ -1135,9 +1063,6 @@ function renderHeatmap(){
   c.querySelectorAll('.heatmap-cell').forEach(cell=>cell.addEventListener('click',()=>{ showScreen('letters'); renderLetterDetail(cell.dataset.letter); }));
 }
 
-/* ============================================================
-   17. التقويم
-   ============================================================ */
 function renderCalendar(){
   const c=document.getElementById('calendar-content'); if(!c) return;
   const h=loadHistory();
@@ -1162,9 +1087,6 @@ function renderCalendar(){
     <div class="calendar-stats"><span>🔥 سلسلة حالية: <strong>${streak}</strong> ${streak===1?'يوم':'أيام'}</span><span>📅 آخر 7 أيام: <strong>${last7}</strong></span><span>📅 آخر 30: <strong>${last30}</strong></span><span>✅ أيام نشطة: <strong>${activeDays}/84</strong></span></div>`;
 }
 
-/* ============================================================
-   18. التوصيات الذكية
-   ============================================================ */
 function renderRecommendations(){
   const c=document.getElementById('recommend-content'); if(!c) return;
   const h=loadHistory();
@@ -1201,11 +1123,8 @@ function renderRecommendations(){
   });
   recs.push(...candidates.slice(0,3));
   const avgSpeed=h.reduce((s,x)=>s+x.speed,0)/h.length;
-  if(avgSpeed>0.6){
-    ['وحد','وقف','دور'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك زمانية',badge:'⚖️ تكميلي'}); });
-  } else if(avgSpeed<0.4){
-    ['يوم','ير','رقي'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك مكانية',badge:'⚖️ تكميلي'}); });
-  }
+  if(avgSpeed>0.6){ ['وحد','وقف','دور'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك زمانية',badge:'⚖️ تكميلي'}); }); }
+  else if(avgSpeed<0.4){ ['يوم','ير','رقي'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك مكانية',badge:'⚖️ تكميلي'}); }); }
   const unusedGreen=['د','ح','ر','ت','ك','م','ب','ع','ل','ي'].filter(ch=>!usedLetters.has(ch));
   if(unusedGreen.length>0 && recs.length<4){
     const ch=unusedGreen[0];
@@ -1219,14 +1138,11 @@ function renderRecommendations(){
       if(analyzed.has(b) && !analyzed.has(a)){ const mv=extractMovement(a); if(mv){ recs.push({word:a,mv,reason:`تبديل لـ«${b}» — يثبت القاعدة 6`,badge:'🔀 تبديل'}); break; } }
     }
   }
-  if(recs.length===0){ c.innerHTML=`<div class="info-box">🎉 ممتاز! استكشفت معظم الحروف. جرّب كلمات أطول (4-5 حروف).</div>`; return; }
+  if(recs.length===0){ c.innerHTML=`<div class="info-box">🎉 ممتاز! استكشفت معظم الحروف.</div>`; return; }
   c.innerHTML=`<div class="recommend-grid">${recs.slice(0,6).map(r=>`<div class="recommend-card" data-word="${r.word}"><div class="recommend-badge">${r.badge}</div><div class="recommend-word">${r.word}</div><div class="recommend-movement">${r.mv.sentence}</div><div class="recommend-reason">${r.reason}</div></div>`).join('')}</div>`;
   c.querySelectorAll('.recommend-card').forEach(card=>card.addEventListener('click',()=>{ document.getElementById('word-input').value=card.dataset.word; analyze(card.dataset.word); }));
 }
 
-/* ============================================================
-   19. المقارنة المتعددة
-   ============================================================ */
 let multiSelected=new Set();
 function renderMultiSelect(){
   const c=document.getElementById('multi-select-container'); if(!c) return;
@@ -1256,9 +1172,6 @@ document.getElementById('multi-compare-btn').addEventListener('click',()=>{
 document.getElementById('multi-clear-btn').addEventListener('click',()=>{ multiSelected.clear(); renderMultiSelect(); document.getElementById('multi-compare-output').innerHTML=''; });
 document.getElementById('multi-select-all-btn').addEventListener('click',()=>{ const h=loadHistory(); const s=Math.min(h.length,8); multiSelected=new Set(h.slice(0,s).map(x=>x.word)); if(h.length>8) showToast('⚠️ أول 8 كلمات'); renderMultiSelect(); });
 
-/* ============================================================
-   20. المشاركة
-   ============================================================ */
 function getShareLink(word){ return `${location.origin}${location.pathname}?w=${encodeURIComponent(word)}`; }
 async function copyShareLink(word){
   const link=getShareLink(word);
@@ -1282,15 +1195,11 @@ function handleURLParams(){
   return false;
 }
 
-/* ============================================================
-   21. واجهة التحليل
-   ============================================================ */
 function renderAnalysis(mv){
   currentAnalysis=mv;
   const m=computeSemanticMetrics();
   const sp=Math.round(mv.speed*100);
   const sv=sp<30?'بطيئة (مكانيَّة)':sp<70?'متوسطة — متعادل':'سريعة (زمانيَّة)';
-
   const timeline=mv.contributions.map(c=>`<div class="tl-node-wrap"><span class="tl-role-badge role-mini ${c.role.cls}">${c.role.short}</span><div class="tl-node role-${c.role.id}"><div class="tl-char">${c.ch}</div><div class="tl-label">${c.core.movement}</div></div></div>`).join('<div class="tl-arrow">⟵</div>');
   const rf=mv.contributions.map(c=>`<div class="role-flow-seg ${c.role.cls}"></div>`).join('');
   const permCards=mv.permutations.slice(0,24).map(perm=>{ const pw=perm.join(''), io=pw===mv.word; return `<div class="perm-card ${io?'original':''}">${io?'<span class="perm-badge">★ الأصل</span>':''}<div class="perm-word">${pw}</div><div class="perm-movement">${perm.map(ch=>CORE[ch].movement).join(' ← ')}</div></div>`; }).join('');
@@ -1298,7 +1207,6 @@ function renderAnalysis(mv){
   const thread=mv.contributions.length>=2
     ? `<strong>${first.ch}</strong> (${first.core.movement} — ${first.role.label}) ${mv.contributions.slice(1,-1).map(c=>`ثم <strong>${c.ch}</strong> (${c.core.movement} — ${c.role.label})`).join(' ')} ← <strong>${last.ch}</strong> (${last.core.movement} — ${last.role.label})`
     : mv.sentence;
-
   return `
     <div class="analysis-actions">
       <button class="action-btn primary" onclick="exportPDF()">🖨️ PDF</button>
@@ -1307,7 +1215,6 @@ function renderAnalysis(mv){
       <button class="action-btn" onclick="copyAnalysis()">📋 نسخ</button>
       <button class="action-btn" onclick="copyShareLink('${mv.word.replace(/'/g,"\\'")}')">🔗 مشاركة</button>
     </div>
-
     <div class="movement-main">
       <div class="label">✨ الحركة العامة</div>
       <div class="value">${mv.sentence}</div>
@@ -1316,28 +1223,21 @@ function renderAnalysis(mv){
       <div class="words-row">${mv.contributions.map(c=>`<span class="word-tag"><span class="tier-dot ${c.core.tier}"></span>${c.ch}<span class="role-mini ${c.role.cls}">${c.role.short}</span></span>`).join('')}</div>
       ${mv.duplicates.length ? `<div class="duplicate-alert">🔁 <strong>تنبيه:</strong> التسلسل يحوي حرفًا مكررًا (${mv.duplicates.map(d=>`${d.ch} ×${d.count}`).join('، ')}) — لذلك التباديل الفريدة = <strong>${mv.uniquePermutations}</strong> (لا ${mv.permutations.length * (mv.duplicates[0]?.count || 1)}).</div>` : ''}
     </div>
-
     <div class="card">
       <div class="card-title"><span class="icon">🔧</span> التفكيك — مجموع الحركات</div>
       <p class="card-sub">مبدأ «التراكم»: كل صوت يعمل على ناتج ما قبله.</p>
       <div style="background:var(--gold-soft);padding:14px;border-radius:var(--radius-sm);font-family:var(--font-serif);font-size:1.05rem;color:var(--navy);text-align:center;border:1px solid var(--gold);">${mv.breakdown}</div>
       <div style="text-align:center;margin-top:10px;font-size:.85rem;color:var(--ink-muted);">${mv.sentence}</div>
     </div>
-
     <div class="card">
       <div class="card-title"><span class="icon">📊</span> الخصائص</div>
       <div class="info-grid">
         <div class="info-cell"><div class="k">التسلسل</div><div class="v">${mv.word}</div></div>
         <div class="info-cell"><div class="k">الأصوات</div><div class="v">${mv.letters.length}</div></div>
-        <div class="info-cell">
-          <div class="k">التباديل</div>
-          <div class="v">${mv.uniquePermutations}</div>
-          ${mv.duplicates.length ? `<div class="dup-note">🔁 ${mv.duplicates.map(d=>`${d.ch}×${d.count}`).join(' · ')}</div>` : ''}
-        </div>
+        <div class="info-cell"><div class="k">التباديل</div><div class="v">${mv.uniquePermutations}</div>${mv.duplicates.length ? `<div class="dup-note">🔁 ${mv.duplicates.map(d=>`${d.ch}×${d.count}`).join(' · ')}</div>` : ''}</div>
         <div class="info-cell"><div class="k">السرعة</div><div class="v">${sp}%</div></div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title"><span class="icon">🎯</span> البصمة البصرية — 5 محاور</div>
       <div class="radar-wrap">${renderRadar(mv.axes)}</div>
@@ -1348,9 +1248,8 @@ function renderAnalysis(mv){
         <div class="axis-cell"><span class="k">👁 الظهور</span><span class="v">${pct(mv.axes.visibility)}</span></div>
         <div class="axis-cell"><span class="k">⏳ الزمان</span><span class="v">${pct(mv.axes.time)}</span></div>
       </div>
-      <p class="card-sub" style="margin-top:12px;font-size:.78rem;">القيم مطبَّعة على مقياس [0%, 100%] من متوسط مرجّح على [-1, +1].</p>
+      <p class="card-sub" style="margin-top:12px;font-size:.78rem;">القيم مطبَّعة على [0%, 100%] من متوسط مرجّح على [-1, +1].</p>
     </div>
-
     <div class="card">
       <div class="card-title"><span class="icon">⏱</span> خطّ الزمن — الأدوار الحركية <span class="tier-badge tier-green">🟢 القاعدة 2</span></div>
       <div class="roles-legend"><span class="rl-1">🟢 منشأ</span><span class="rl-2">🔵 توجيه</span><span class="rl-3">🟡 ضبط</span><span class="rl-4">🟣 نتيجة</span></div>
@@ -1359,7 +1258,6 @@ function renderAnalysis(mv){
       <div class="role-flow-labels"><span>البداية →</span><span>الوسط</span><span>← النهاية</span></div>
       <div style="background:var(--bg-soft);padding:12px;border-radius:var(--radius-sm);font-size:.9rem;line-height:1.9;color:var(--ink-soft);margin-top:14px;"><strong style="color:var(--navy);">خيط النسق:</strong> ${thread}</div>
     </div>
-
     <div class="card">
       <div class="card-title"><span class="icon">🚀</span> سرعة الحركة — معامل الموضع الأخير</div>
       <div class="speed-bar-wrap">
@@ -1376,44 +1274,25 @@ function renderAnalysis(mv){
         </div>
       </div>
     </div>
-
-    ${mv.permutations.length>1?`<div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل — القاعدة 6 ${mv.duplicates.length?`<span class="tier-badge tier-yellow">🔁 ${mv.uniquePermutations} فريدة من ${mv.letters.length}!</span>`:''}</div>${mv.duplicates.length?`<p class="card-sub">يوجد تكرار في الحروف، لذا التباديل الفريدة = <strong>${mv.uniquePermutations}</strong> فقط.</p>`:''}<div class="perm-grid">${permCards}</div></div>`:''}
-
+    ${mv.permutations.length>1?`<div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل — القاعدة 6 ${mv.duplicates.length?`<span class="tier-badge tier-yellow">🔁 ${mv.uniquePermutations} فريدة</span>`:''}</div>${mv.duplicates.length?`<p class="card-sub">يوجد تكرار في الحروف، لذا التباديل الفريدة = <strong>${mv.uniquePermutations}</strong> فقط.</p>`:''}<div class="perm-grid">${permCards}</div></div>`:''}
     <div class="card">
       <div class="card-title"><span class="icon">🔍</span> النقد الدلالي — هل يوافق المعجم الحركة؟</div>
-      <p class="card-sub">يُستخرج المعنى من حركة الأصوات، ثم يُقارن بالمعاجم — يُثبَّت ما يوافق ويُنفى ما خالف.</p>
       <div class="metric-card" style="background:var(--gold-soft);border-color:var(--gold);">
         <div class="metric-label" style="margin-bottom:6px;">البصمة الحاكمة</div>
         <div style="font-family:var(--font-serif);font-size:1rem;color:var(--navy);font-weight:700;">${mv.sentence}</div>
         <div style="font-size:.78rem;color:var(--ink-muted);margin-top:6px;">الكلمات الحاكمة: ${mv.contributions.map(c=>c.core.movement).join(' · ')}</div>
       </div>
-
-      <div class="metric-card metric-partial">
-        <div class="metric-header"><span class="metric-label">① المطابقة الحرفية التامة</span><span class="metric-value">${m.M_literal.percent.toFixed(1)}%</span></div>
-        <div class="metric-detail">${m.M_literal.count} من ${m.M_literal.total} مدخل — انخفاضه طبيعي لأن المداخل متشعّبة.</div>
-      </div>
-
-      <div class="metric-card metric-partial">
-        <div class="metric-header"><span class="metric-label">② التوافق الجزئي المرجّح</span><span class="metric-value">${m.M_partial.weighted.toFixed(0)}%</span></div>
-        <div class="metric-detail">متوسط موزّع على 8 معاجم حسب هرمية القاعدة 9.</div>
+      <div class="metric-card metric-partial"><div class="metric-header"><span class="metric-label">① المطابقة الحرفية التامة</span><span class="metric-value">${m.M_literal.percent.toFixed(1)}%</span></div><div class="metric-detail">${m.M_literal.count} من ${m.M_literal.total} مدخل.</div></div>
+      <div class="metric-card metric-partial"><div class="metric-header"><span class="metric-label">② التوافق الجزئي المرجّح</span><span class="metric-value">${m.M_partial.weighted.toFixed(0)}%</span></div><div class="metric-detail">متوسط موزّع على 8 معاجم حسب هرمية القاعدة 9.</div>
         <button class="details-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><span>تفصيل المعاجم</span><span>▼</span></button>
         <div class="details-content">${m.M_partial.perDictionary.map(d=>`<div class="dict-row"><span class="dict-name">${d.name}</span><span><span class="dict-score">${Math.round(d.weight*100)}%</span><span class="mini-bar"><span class="mini-bar-fill" style="width:${d.weight*100}%;"></span></span></span></div>`).join('')}</div>
       </div>
-
-      <div class="metric-card metric-support ${m.M_support.success?'success':'warn'}">
-        <div class="metric-header"><span class="metric-label">③ التأييد الدلالي</span><span class="metric-value">${m.M_support.success?'✅ ':'⚠️ '}${m.M_support.level}</span></div>
-        <div class="metric-detail"><strong>${m.M_support.supporterCount} من ${m.M_support.totalCount}</strong> معاجم تدعم الحركة.</div>
-        ${m.M_support.success?`<div class="metric-hint highlight">🎯 الخلاصة: الحركة «${mv.sentence}» مدعومة لغويًّا، والفارق الحرفي متوقع في نظام لا ترادف فيه.</div>`:''}
-      </div>
-
+      <div class="metric-card metric-support ${m.M_support.success?'success':'warn'}"><div class="metric-header"><span class="metric-label">③ التأييد الدلالي</span><span class="metric-value">${m.M_support.success?'✅ ':'⚠️ '}${m.M_support.level}</span></div><div class="metric-detail"><strong>${m.M_support.supporterCount} من ${m.M_support.totalCount}</strong> معاجم تدعم الحركة.</div>${m.M_support.success?`<div class="metric-hint highlight">🎯 الخلاصة: الحركة مدعومة لغويًّا.</div>`:''}</div>
       ${mv.ks?`<div class="card niu-card" style="margin-top:12px;"><div class="card-title"><span class="icon">📖</span> نصّ النيلي الموثّق <span class="tier-badge tier-green">🟢 منصوص</span></div><p>${mv.ks.text}</p>${mv.ks.meaning?`<p style="font-size:.9rem;color:#5A4210;margin-top:6px;">${mv.ks.meaning}</p>`:''}<p style="font-size:.85rem;color:#7A5A1A;margin-top:8px;">— ${mv.ks.source}${mv.ks.page?'، ص '+mv.ks.page:''}</p></div>`:''}
-
-      <div class="info-box" style="margin-top:12px;">«وقد يخالف المعجم إذا وجده غير جامع للأصل المشترك» — فالحرف قد يكشف رابطة لم يجمعها المعجم تحت أصل واحد.</div>
+      <div class="info-box" style="margin-top:12px;">«وقد يخالف المعجم إذا وجده غير جامع للأصل المشترك».</div>
     </div>
-
     <div class="card">
       <div class="card-title"><span class="icon">📖</span> شروط الوجود — اللفظ المجرّد</div>
-      <p class="card-sub">اللفظ بلا تشكيل — والأصل في الحركة الوجود حتى تدلّ العلامة على غير ذلك.</p>
       <div style="background:var(--bg-soft);padding:12px;border-radius:var(--radius-sm);font-size:.88rem;line-height:1.85;">
         للتحقق الدقيق، أضف التشكيل:<br>
         • <strong>الفتحة</strong> = زمكان (معاين)<br>
@@ -1421,16 +1300,12 @@ function renderAnalysis(mv){
         • <strong>الكسرة</strong> = زمان
       </div>
     </div>
-
     <div class="card" id="api-section">
       <div class="card-title"><span class="icon">🌐</span> المعاني اللغوية</div>
       <div id="api-content"><div class="loading"><div class="spinner"></div></div></div>
     </div>`;
 }
 
-/* ============================================================
-   22. APIs
-   ============================================================ */
 async function tryFetch(urls, opts={}){
   for(const url of urls){
     try{
@@ -1449,7 +1324,7 @@ async function fetchWiktionary(word){
 }
 async function fetchDatamuse(word){
   const target=`https://api.datamuse.com/words?ml=${encodeURIComponent(word)}&max=8`;
-  const r=await tryFetch([target,`https://corsproxy.io/?url=${encodeURIComponent(target)}`,`https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`]);
+  const r=await tryFetch([target,`https://corsproxy.io/?url=${encodeURIComponent(target)}`]);
   if(!r) return null;
   try{ return await r.json(); }catch(e){ return null; }
 }
@@ -1457,36 +1332,32 @@ async function fetchPollinations(word,mv){
   const promptText=`أنت مساعد متخصص في منهج "اللغة الموحدة" للعالم سبيط النيلي.
 التسلسل: "${word}"
 الحركة: "${mv.sentence}"
-معاني الحروف: ${mv.contributions.map(c=>`${c.ch}=${c.core.movement}`).join('، ')}
-اكتب فقرة قصيرة (3-4 أسطر) تربط بين الحركة والمعنى اللغوي المتداول، مع الالتزام بمبدأ "لا ترادف".`;
+اكتب فقرة قصيرة (3-4 أسطر).`;
   const target=`https://text.pollinations.ai/${encodeURIComponent(promptText)}`;
-  const r=await tryFetch([target,`https://corsproxy.io/?url=${encodeURIComponent(target)}`,`https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`]);
+  const r=await tryFetch([target,`https://corsproxy.io/?url=${encodeURIComponent(target)}`]);
   if(!r) return null;
   try{ const t=await r.text(); return t&&t.length>10?t.trim():null; }catch(e){ return null; }
 }
 async function renderAPIs(word,mv){
   const c=document.getElementById('api-content'); if(!c) return;
-  c.innerHTML=`<div class="loading"><div class="spinner"></div><div>جاري الاستعلام من المصادر...</div></div>`;
+  c.innerHTML=`<div class="loading"><div class="spinner"></div><div>جاري الاستعلام...</div></div>`;
   const [wik,data,ai]=await Promise.all([fetchWiktionary(word),fetchDatamuse(word),fetchPollinations(word,mv)]);
   const local=LOCAL_LEXICON[word];
   let h=''; const failed=[];
   if(local){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">📖 ${local.source}</div><div class="dict-excerpt" style="background:var(--green-soft);border:1px solid #A7F3D0;color:#065F46;">${local.meaning}</div></div>`; }
   if(wik?.extract){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">📚 Wiktionary</div><div class="dict-excerpt">${wik.extract}</div>${wik.url?`<div style="margin-top:6px;"><a href="${wik.url}" target="_blank" style="font-size:.8rem;">↗ Wiktionary</a></div>`:''}</div>`; } else failed.push('Wiktionary');
   if(data?.length){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">🔗 كلمات ذات صلة</div><div style="display:flex;flex-wrap:wrap;gap:6px;">${data.slice(0,10).map(d=>`<span style="background:var(--bg-soft);padding:4px 12px;border-radius:14px;font-size:.85rem;border:1px solid var(--border);">${d.word}</span>`).join('')}</div></div>`; } else failed.push('Datamuse');
-  if(ai){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">🤖 توليف لغوي (Pollinations)</div><div class="dict-excerpt" style="background:var(--blue-soft);border:1px solid #BFDBFE;">${ai}</div></div>`; } else failed.push('Pollinations');
-  if(!h){ h=`<div class="info-box"><strong>ℹ️ لم تُرجع المصادر بيانات.</strong><br>💡 السبب المحتمل: أنت تفتح التطبيق من مدير ملفات (content://) — وهذا يمنع الاتصال بالمصادر.<br>✅ الحل: ارفع الملف على GitHub Pages أو Netlify.</div>`; }
+  if(ai){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">🤖 توليف لغوي</div><div class="dict-excerpt" style="background:var(--blue-soft);border:1px solid #BFDBFE;">${ai}</div></div>`; } else failed.push('Pollinations');
+  if(!h){ h=`<div class="info-box">ℹ️ لم تُرجع المصادر بيانات. جرّب كلمة أخرى.</div>`; }
   else if(failed.length){ h+=`<div style="font-size:.72rem;color:var(--ink-muted);margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);">⚠️ لم تستجب: ${failed.join('، ')}</div>`; }
   c.innerHTML=h;
 }
 
-/* ============================================================
-   23. الجذر والاشتقاق
-   ============================================================ */
 function renderRoot(word){
   const mv=extractMovement(word);
   const out=document.getElementById('root-output');
   if(!mv){ out.innerHTML=`<div class="error-box">⚠️ لم أتعرّف على حروف المصوفة.</div>`; return; }
-  if(mv.letters.length<3){ out.innerHTML=`<div class="info-box">ℹ️ كلمة «${word}» تحتوي ${mv.letters.length} حرفًا فقط.<br><br><strong>الحركة:</strong> ${mv.sentence}</div>`; return; }
+  if(mv.letters.length<3){ out.innerHTML=`<div class="info-box">ℹ️ كلمة «${word}» تحتوي ${mv.letters.length} حرفًا فقط.</div>`; return; }
   const rl=mv.letters.slice(0,3);
   const ds=generateDerivations(rl);
   currentRootLetters=rl; currentDerivations=ds;
@@ -1505,8 +1376,7 @@ function renderRoot(word){
     </div>
     <div class="card"><div class="card-title"><span class="icon">🌳</span> الجذر المستخرج <span class="tier-badge tier-green">🟢 القاعدة 2</span></div><div class="root-letters">${rc}</div><p class="card-sub" style="text-align:center;">الحركة الجذرية: <strong style="color:var(--navy);font-family:var(--font-serif);">${mv.sentence}</strong></p></div>
     <div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل</div><div class="perm-grid">${mv.permutations.slice(0,24).map(p=>{ const pw=p.join(''), io=pw===mv.word; return `<div class="perm-card ${io?'original':''}">${io?'<span class="perm-badge">★</span>':''}<div class="perm-word">${pw}</div><div class="perm-movement">${p.map(ch=>CORE[ch].movement).join(' ← ')}</div></div>`; }).join('')}</div></div>
-    <div class="card"><div class="card-title"><span class="icon">📚</span> الاشتقاق (${ds.length} وزنًا)</div><div class="deriv-tabs"><span class="deriv-tab active" data-filter="all">الكل</span><span class="deriv-tab" data-filter="mujarrad">🟢 مجرد</span><span class="deriv-tab" data-filter="mazid">🟡 مزيد</span><span class="deriv-tab" data-filter="mazid2">🟣 ثلاثي</span></div><div class="deriv-grid">${dc}</div></div>
-    <div class="info-box"><strong>💡 ملاحظة:</strong> الأوزان ليست قوالب جوفاء — بل <em>إضافات حركية</em>:<br>• <strong>مَفعول</strong> = م (تكامل) + الجذر + و (ديمومة مكانية).<br>• <strong>اِسْتِفْعَال</strong> = ا (ابتداء) + س (انسلال) + ت (أخذ) + الجذر.</div>`;
+    <div class="card"><div class="card-title"><span class="icon">📚</span> الاشتقاق (${ds.length} وزنًا)</div><div class="deriv-tabs"><span class="deriv-tab active" data-filter="all">الكل</span><span class="deriv-tab" data-filter="mujarrad">🟢 مجرد</span><span class="deriv-tab" data-filter="mazid">🟡 مزيد</span><span class="deriv-tab" data-filter="mazid2">🟣 ثلاثي</span></div><div class="deriv-grid">${dc}</div></div>`;
   out.querySelectorAll('.deriv-tab').forEach(t=>t.addEventListener('click',()=>{ out.querySelectorAll('.deriv-tab').forEach(x=>x.classList.remove('active')); t.classList.add('active'); out.querySelectorAll('.deriv-card').forEach(card=>{ card.style.display=(t.dataset.filter==='all'||card.dataset.kind===t.dataset.filter)?'':'none'; }); }));
   out.querySelectorAll('.deriv-wikt-btn').forEach(b=>b.addEventListener('click',async e=>{
     e.stopPropagation();
@@ -1519,21 +1389,18 @@ function renderRoot(word){
   }));
 }
 
-/* ============================================================
-   24. التصدير
-   ============================================================ */
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._timer); t._timer=setTimeout(()=>t.classList.remove('show'),2200); }
 function exportPDF(){ showToast('🖨️ جاري التحضير...'); setTimeout(()=>window.print(),300); }
 function downloadFile(content,filename,mime){ const b=new Blob([content],{type:mime}), u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u); }
 function exportJSON(){
   if(!currentAnalysis){ showToast('⚠️ لا تحليل'); return; }
-  const d={word:currentAnalysis.word,letters:currentAnalysis.letters,sentence:currentAnalysis.sentence,concept:currentAnalysis.concept,speed:currentAnalysis.speed,baseSpeed:currentAnalysis.baseSpeed,finalFactor:currentAnalysis.finalFactor,axes:currentAnalysis.axes,duplicates:currentAnalysis.duplicates,uniquePermutations:currentAnalysis.uniquePermutations,contributions:currentAnalysis.contributions.map(c=>({letter:c.ch,movement:c.core.movement,role:c.role.label,tier:c.core.tier,speed:c.core.speed,weight:c.weight})),ks:currentAnalysis.ks,permutations:currentAnalysis.permutations.map(p=>p.join('')),exportedAt:new Date().toISOString(),version:'v2.7.1'};
+  const d={word:currentAnalysis.word,letters:currentAnalysis.letters,sentence:currentAnalysis.sentence,concept:currentAnalysis.concept,speed:currentAnalysis.speed,baseSpeed:currentAnalysis.baseSpeed,finalFactor:currentAnalysis.finalFactor,axes:currentAnalysis.axes,duplicates:currentAnalysis.duplicates,uniquePermutations:currentAnalysis.uniquePermutations,contributions:currentAnalysis.contributions.map(c=>({letter:c.ch,movement:c.core.movement,role:c.role.label,tier:c.core.tier,speed:c.core.speed,weight:c.weight})),ks:currentAnalysis.ks,permutations:currentAnalysis.permutations.map(p=>p.join('')),exportedAt:new Date().toISOString(),version:'v2.7.2'};
   downloadFile(JSON.stringify(d,null,2),`${currentAnalysis.word}-analysis.json`,'application/json;charset=utf-8');
   showToast('✅ تم');
 }
 function exportCSV(){
   if(!currentAnalysis){ showToast('⚠️ لا تحليل'); return; }
-  const r=[['# التسلسل',currentAnalysis.word],['# الحركة',currentAnalysis.sentence],['# السرعة',(currentAnalysis.speed*100).toFixed(1)+'%'],['# المعدّل الأساسي',currentAnalysis.baseSpeed.toFixed(3)],['# معامل الموضع الأخير',currentAnalysis.finalFactor.toFixed(2)],['# التكرار',currentAnalysis.duplicates.length?currentAnalysis.duplicates.map(d=>d.ch+'×'+d.count).join('، '):'لا يوجد'],['# التباديل الفريدة',currentAnalysis.uniquePermutations],[]];
+  const r=[['# التسلسل',currentAnalysis.word],['# الحركة',currentAnalysis.sentence],['# السرعة',(currentAnalysis.speed*100).toFixed(1)+'%'],['# المعدّل',currentAnalysis.baseSpeed.toFixed(3)],['# معامل الموضع الأخير',currentAnalysis.finalFactor.toFixed(2)],['# التكرار',currentAnalysis.duplicates.length?currentAnalysis.duplicates.map(d=>d.ch+'×'+d.count).join('، '):'لا يوجد'],['# التباديل الفريدة',currentAnalysis.uniquePermutations],[]];
   r.push(['#','الحرف','الحركة','الدور','tier','الوزن','السرعة','المساهمة']);
   currentAnalysis.contributions.forEach((c,i)=>r.push([i+1,c.ch,c.core.movement,c.role.label,c.core.tier,c.weight.toFixed(3),c.core.speed.toFixed(2),(c.core.speed*c.weight).toFixed(4)]));
   const csv='\uFEFF'+r.map(row=>row.map(v=>{ const s=String(v??''); return s.includes(',')||s.includes('"')||s.includes('\n')?'"'+s.replace(/"/g,'""')+'"':s; }).join(',')).join('\n');
@@ -1563,9 +1430,6 @@ function copyAnalysis(){
   navigator.clipboard.writeText(lines.join('\n')).then(()=>showToast('✅ تم'),()=>showToast('⚠️ تعذّر'));
 }
 
-/* ============================================================
-   25. التنقل
-   ============================================================ */
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   const el=document.getElementById('screen-'+name); if(el) el.classList.add('active');
@@ -1595,7 +1459,7 @@ async function analyze(word){
     saveHistoryItem(mv);
     out.innerHTML=renderAnalysis(mv);
     renderAPIs(mv.word,mv);
-  }catch(e){ console.error('analyze error',e); const out=document.getElementById('analysis-output'); if(out) out.innerHTML=`<div class="error-box">⚠️ حدث خطأ: ${e.message||e}</div>`; }
+  }catch(e){ console.error('analyze error',e); const out=document.getElementById('analysis-output'); if(out) out.innerHTML=`<div class="error-box">⚠️ خطأ: ${e.message||e}</div>`; }
 }
 
 function renderCompare(a,b){
@@ -1603,7 +1467,7 @@ function renderCompare(a,b){
   const out=document.getElementById('compare-output');
   if(!A||!B){ out.innerHTML=`<div class="error-box">تعذّر التحليل.</div>`; return; }
   const same=JSON.stringify([...A.letters].sort())===JSON.stringify([...B.letters].sort());
-  const v=same?`✅ الحروف نفسها بترتيب مختلف — يثبت <strong>القاعدة 6</strong>: «المعنى الكامل = مجموع الحركات ⊕ ترتيبها». الفرق كله في الترتيب، لا في الأصوات.`:`الحروف مختلفة، فالفرق متوقّع (القاعدة 1: لا ترادف).`;
+  const v=same?`✅ الحروف نفسها بترتيب مختلف — يثبت <strong>القاعدة 6</strong>.`:`الحروف مختلفة (القاعدة 1: لا ترادف).`;
   out.innerHTML=`<div class="compare-result"><div class="compare-col"><h4>${A.word}</h4><div class="compare-movement">${A.sentence}</div><div style="margin-top:10px;font-size:.85rem;color:var(--ink-muted);line-height:1.8;">${A.contributions.map(c=>`${c.ch} → ${c.core.movement} <span class="role-mini ${c.role.cls}">${c.role.short}</span>`).join('<br>')}</div></div><div class="compare-col"><h4>${B.word}</h4><div class="compare-movement">${B.sentence}</div><div style="margin-top:10px;font-size:.85rem;color:var(--ink-muted);line-height:1.8;">${B.contributions.map(c=>`${c.ch} → ${c.core.movement} <span class="role-mini ${c.role.cls}">${c.role.short}</span>`).join('<br>')}</div></div></div><div class="compare-verdict">${v}</div>`;
 }
 
@@ -1624,15 +1488,14 @@ function renderLetterDetail(ch){
       <div style="font-size:1.15rem;color:var(--navy);font-weight:700;font-family:var(--font-serif);">${c.movement}</div>
     </div>
     <div class="axes-grid">
-      <div class="axis-cell"><span class="k">🧭 الاتجاه</span><span class="v">${pct(c.axes.direction)}</span></div>
-      <div class="axis-cell"><span class="k">🧩 الترابط</span><span class="v">${pct(c.axes.cohesion)}</span></div>
-      <div class="axis-cell"><span class="k">🔥 التعاظم</span><span class="v">${pct(c.axes.intensity)}</span></div>
-      <div class="axis-cell"><span class="k">👁 الظهور</span><span class="v">${pct(c.axes.visibility)}</span></div>
-      <div class="axis-cell"><span class="k">⏳ الزمان</span><span class="v">${pct(c.axes.time)}</span></div>
+      <div class="axis-cell"><span class="k">🧭</span><span class="v">${pct(c.axes.direction)}</span></div>
+      <div class="axis-cell"><span class="k">🧩</span><span class="v">${pct(c.axes.cohesion)}</span></div>
+      <div class="axis-cell"><span class="k">🔥</span><span class="v">${pct(c.axes.intensity)}</span></div>
+      <div class="axis-cell"><span class="k">👁</span><span class="v">${pct(c.axes.visibility)}</span></div>
+      <div class="axis-cell"><span class="k">⏳</span><span class="v">${pct(c.axes.time)}</span></div>
       <div class="axis-cell"><span class="k">🚀 السرعة</span><span class="v">${c.speed.toFixed(2)}</span></div>
-      <div class="axis-cell"><span class="k">📐 معامل الموضع الأخير</span><span class="v">× ${c.finalFactor.toFixed(2)}</span></div>
+      <div class="axis-cell"><span class="k">📐 معامل الموضع</span><span class="v">× ${c.finalFactor.toFixed(2)}</span></div>
     </div>
-    <div style="margin-top:12px;"><a href="https://ar.wiktionary.org/wiki/${encodeURIComponent(ch)}" target="_blank" class="btn-secondary" style="display:inline-block;">📖 Wiktionary</a></div>
   </div>`;
 }
 function renderRules(){
@@ -1656,9 +1519,6 @@ function renderVerifiedExamples(){
   }).join('');
 }
 
-/* ============================================================
-   26. الكرة 3D
-   ============================================================ */
 let sphereInit=false;
 function initSphereOnce(){ if(sphereInit) return; sphereInit=true; setTimeout(initSphere,100); }
 function initSphere(){
@@ -1694,9 +1554,6 @@ function initSphere(){
   }catch(e){ console.warn('sphere',e); }
 }
 
-/* ============================================================
-   27. التهيئة
-   ============================================================ */
 document.addEventListener('DOMContentLoaded',()=>{
   try{
     initTheme();
@@ -1713,10 +1570,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const hasWord=handleURLParams();
     if(!hasWord){ const h=(location.hash||'#home').replace('#','')||'home'; showScreen(h); }
     window.addEventListener('hashchange',()=>{ const s=(location.hash||'#home').replace('#','')||'home'; showScreen(s); });
-    console.log('✅ v2.7.1 جاهز');
-    console.log('🔁 كشف تكرار الحروف + التباديل الفريدة');
-    console.log('📐 معادلة البصمة: (v+1)/2 على [-1,+1]');
-    console.log('🚀 finalFactor — معامل الموضع الأخير');
+    console.log('✅ v2.7.2 جاهز');
+    console.log('🔧 manifest.json حقيقي (يعمل مع PWABuilder)');
   }catch(e){ console.error('init',e); }
 });
 </script>
