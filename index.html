@@ -8,9 +8,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="الحركة العامة">
 <meta name="description" content="استخراج الحركة العامة لأي تسلسل صوتي وفق منهج عالم سبيط النيلي">
-<title>الحركة العامة — اللغة الموحدة v2.7.3</title>
+<title>الحركة العامة — اللغة الموحدة v3.0.0</title>
 
-<!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjMUUyQTVBIi8+PHRleHQgeD0iOTYiIHk9IjEzMCIgZm9udC1zaXplPSIxMTAiIGZvbnQtZmFtaWx5PSJBbWlyaSxzZXJpZiIgZmlsbD0iI0M5QTk2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K08L3RleHQ+PC9zdmc+">
@@ -48,7 +47,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 input,textarea,select{font-family:inherit;font-size:1rem}
 
 .topbar{background:var(--navy);color:#fff;padding:14px 18px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
-.topbar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .topbar h1{font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:6px}
 .topbar .version{font-size:.7rem;background:rgba(255,255,255,.18);padding:2px 8px;border-radius:10px;font-weight:400}
 .topbar-actions{display:flex;gap:8px}
@@ -57,8 +56,8 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 
 .nav{background:var(--navy-soft);position:sticky;top:54px;z-index:99;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;padding:0 12px;white-space:nowrap}
-.nav a{color:rgba(255,255,255,.75);padding:12px 16px;font-size:.9rem;font-weight:500;border-bottom:3px solid transparent;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;gap:2px;padding:0 10px;white-space:nowrap}
+.nav a{color:rgba(255,255,255,.75);padding:11px 13px;font-size:.85rem;font-weight:500;border-bottom:3px solid transparent;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
 .nav a:hover{color:#fff;text-decoration:none}
 .nav a.active{color:#fff;border-bottom-color:var(--gold);font-weight:700}
 .nav a .badge{background:var(--gold);color:#1A1A1A;font-size:.62rem;font-weight:700;padding:1px 6px;border-radius:8px}
@@ -388,7 +387,7 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 
 @media(max-width:480px){
   .topbar h1{font-size:1rem}
-  .nav a{padding:10px 12px;font-size:.82rem}
+  .nav a{padding:10px 10px;font-size:.78rem}
   .input-row{flex-direction:column}
   .btn-primary{width:100%}
   .movement-main .value{font-size:1.3rem}
@@ -412,7 +411,7 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 
 <header class="topbar">
   <div class="topbar-inner">
-    <h1>الحركة العامة <span class="version">v2.7.3</span></h1>
+    <h1>الحركة العامة <span class="version">v3.0.0</span></h1>
     <div class="topbar-actions">
       <button class="icon-btn" id="install-btn" title="تثبيت" style="display:none;">📲</button>
       <button class="icon-btn" id="share-btn" title="مشاركة">🔗</button>
@@ -427,6 +426,12 @@ input,textarea,select{font-family:inherit;font-size:1rem}
     <a href="#analysis" data-screen="analysis">🔍 التحليل</a>
     <a href="#root" data-screen="root">🌳 الجذر</a>
     <a href="#letters" data-screen="letters">🔤 الحروف</a>
+    <a href="#manifestations" data-screen="manifestations">🅰️ المظاهر</a>
+    <a href="#doors" data-screen="doors">🚪 الأبواب</a>
+    <a href="#groups" data-screen="groups">🔷 المجموعات</a>
+    <a href="#translation" data-screen="translation">🌍 الترجمة</a>
+    <a href="#protection" data-screen="protection">🛡️ الحماية</a>
+    <a href="#particles" data-screen="particles">🔤 المفردة</a>
     <a href="#compare" data-screen="compare">⚖️ المقارنة</a>
     <a href="#history" data-screen="history">📚 السجل <span class="badge" id="history-badge" style="display:none;">0</span></a>
     <a href="#stats" data-screen="stats">📊 الإحصائيات</a>
@@ -439,24 +444,26 @@ input,textarea,select{font-family:inherit;font-size:1rem}
   <section id="screen-home" class="screen active">
     <div class="hero">
       <h2>الحركة العامة — المصوفة الـ 28</h2>
-      <p>استخراج الحركة العامة لأي تسلسل صوتي على طريقة عالم سبيط النيلي — بنفس المنهج الذي وثّقه في العشرة أصوات (دحرتكم بعلي).</p>
-      <div class="quote">«المعنى الكامل = مجموع الحركات ⊕ ترتيبها، لا مجموعها فحسب» — المحاضرات س 463</div>
+      <p>استخراج الحركة العامة لأي تسلسل صوتي على طريقة عالم سبيط النيلي — بنفس المنهج الذي وثّقه في العشرة أصوات الأولى.</p>
+      <div class="quote">«المعنى الكامل = مجموع الحركات ⊕ ترتيبها، لا مجموعها فحسب»</div>
     </div>
     <div class="card">
       <div class="card-title"><span class="icon">✍️</span> اكتب أي تسلسل أو لفظ</div>
       <div class="input-row">
-        <input type="text" id="word-input" placeholder="حد، حمد، حرور، علم..." autocomplete="off" spellcheck="false">
+        <input type="text" id="word-input" placeholder="حد، حمد، حرور، علم، فور، نجم..." autocomplete="off" spellcheck="false">
         <button class="btn-primary" id="analyze-btn">استخراج</button>
       </div>
       <div class="examples-row" id="examples-row">
         <span class="example-chip" data-word="حد">حد</span>
         <span class="example-chip" data-word="دحر">دحر</span>
-        <span class="example-chip" data-word="حرور">حرور</span>
+        <span class="example-chip" data-word="فور">فور</span>
+        <span class="example-chip" data-word="نجم">نجم</span>
         <span class="example-chip" data-word="علم">علم</span>
         <span class="example-chip" data-word="حمد">حمد</span>
         <span class="example-chip" data-word="مدح">مدح</span>
-        <span class="example-chip" data-word="نجم">نجم</span>
-        <span class="example-chip" data-word="فور">فور</span>
+        <span class="example-chip" data-word="حفر">حفر</span>
+        <span class="example-chip" data-word="كرم">كرم</span>
+        <span class="example-chip" data-word="فرح">فرح</span>
       </div>
     </div>
     <div class="card">
@@ -504,13 +511,71 @@ input,textarea,select{font-family:inherit;font-size:1rem}
     <div class="card">
       <div class="card-title"><span class="icon">🔤</span> المصوفة الـ 28</div>
       <div class="legend">
-        <span><span class="dot" style="background:var(--green)"></span> 🟢 منصوص (10)</span>
-        <span><span class="dot" style="background:var(--yellow)"></span> 🟡 مسودة (14)</span>
-        <span><span class="dot" style="background:var(--purple)"></span> 🟣 من تسلسل (4)</span>
+        <span><span class="dot" style="background:var(--green)"></span> 🟢 منصوص</span>
+        <span><span class="dot" style="background:var(--yellow)"></span> 🟡 مسودة</span>
+        <span><span class="dot" style="background:var(--purple)"></span> 🟣 من تسلسل</span>
       </div>
       <div class="letters-grid" id="letters-grid"></div>
     </div>
     <div id="letter-detail"></div>
+  </section>
+
+  <section id="screen-manifestations" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🅰️</span> مظاهر الألف الأربعة <span class="tier-badge tier-green">🟢 منصوص</span></div>
+      <p class="card-sub">الألف هو المؤلف للحركة والمنشأ لها. مظاهره الأربعة هي مادّة البناء والروابط. من فهمها فهم بنية الاشتقاق.</p>
+      <div id="manifestations-content"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">✒️</span> العلامات الزمكانية الأربعة</div>
+      <div id="markers-content"></div>
+    </div>
+  </section>
+
+  <section id="screen-doors" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🚪</span> الأبواب الستة للأفعال <span class="tier-badge tier-green">🟢 منصوص</span></div>
+      <p class="card-sub">التغيّر في العلامة الوسطى بين الماضي والمضارع ليس اعتباطًا — بل يعكس تغيّر الظرف الزمكاني للحركة.</p>
+      <div id="doors-content"></div>
+    </div>
+  </section>
+
+  <section id="screen-groups" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🔷</span> المجموعات السبع للحروف <span class="tier-badge tier-green">🟢 منصوص</span></div>
+      <div id="groups-content"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🔢</span> العلاقات العددية — نظام آلة النطق</div>
+      <div id="numbers-content"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🫁</span> آلة النطق — 5 مراكز و 28 احتمالاً</div>
+      <div id="apparatus-content"></div>
+    </div>
+  </section>
+
+  <section id="screen-translation" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🌍</span> الترجمة القصدية — لا ترادف</div>
+      <p class="card-sub">كل تسلسل صوتي يبقى محفوظًا بحركته الذاتية. ما يبدو اختلافًا في الترجمة هو في الحقيقة تشابه في التسلسل مع تحوّلات صوتية.</p>
+      <div id="translation-content"></div>
+    </div>
+  </section>
+
+  <section id="screen-protection" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🛡️</span> الحماية الذاتية والإزاحة <span class="tier-badge tier-green">🟢 منصوص</span></div>
+      <div id="protection-content"></div>
+    </div>
+  </section>
+
+  <section id="screen-particles" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🔤</span> الحروف المفردة — دلالة موحّدة</div>
+      <p class="card-sub">الأحرف المفردة (لا، لم، لن، كي، مع...) لا تأتي بأكثر من معنى واحد. ما يبدو تعدّدًا هو في الحقيقة استعمالات في تراكيب متعدّدة بنفس الدلالة الجوهرية.</p>
+      <div id="particles-content"></div>
+    </div>
   </section>
 
   <section id="screen-compare" class="screen">
@@ -594,7 +659,7 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 </main>
 
 <footer class="footer">
-  <div>اللغة الموحدة — v2.7.3</div>
+  <div>اللغة الموحدة — v3.0.0</div>
   <div style="margin-top:6px;">منهج المرحوم عالم سبيط النيلي · 28 صوتًا · 9 قواعد · 15 وزنًا صرفيًا</div>
   <div style="margin-top:6px;opacity:.7;">«لا اختراع · لا حذف · الأمانة · الترتيب مولّد المعنى»</div>
 </footer>
@@ -617,17 +682,6 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 
 <script>
 /* ============================================================
-   [v2.7.3] تسجيل Service Worker — يُصلح آخر خطأين في PWABuilder
-   ============================================================ */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
-      .then(reg => console.log('✅ Service Worker registered:', reg.scope))
-      .catch(err => console.warn('⚠️ SW registration failed:', err));
-  });
-}
-
-/* ============================================================
    Helpers آمنة
    ============================================================ */
 const SafeStorage = {
@@ -639,19 +693,23 @@ const SafeStorage = {
 function safeReplaceState(url){ try{ history.replaceState(null,'',url); }catch(e){} }
 
 /* ============================================================
-   1. المصوفة الـ 28
+   1. المصوفة الـ 28 — النسخة المصحّحة والمحدّثة
    ============================================================ */
 const CORE = {
-  'د':{tier:'green',source:'اللغة الموحدة ج1',movement:'اندفاع مقصود',axes:{direction:.9,cohesion:0,intensity:.85,visibility:.6,time:.3},speed:.85,finalFactor:1.06},
-  'ح':{tier:'green',source:'اللغة الموحدة ج1',movement:'تعاظم',axes:{direction:.4,cohesion:0,intensity:.95,visibility:.2,time:-.2},speed:.15,finalFactor:0.94},
-  'ر':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكرار',axes:{direction:0,cohesion:.3,intensity:.5,visibility:0,time:.95},speed:.95,finalFactor:1.03},
-  'ت':{tier:'green',source:'اللغة الموحدة ج1',movement:'أخذ وامتداد',axes:{direction:.3,cohesion:0,intensity:.4,visibility:.4,time:.2},speed:.5,finalFactor:1.00},
-  'ك':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكامل',axes:{direction:0,cohesion:.85,intensity:.3,visibility:.3,time:0},speed:.4,finalFactor:0.98},
-  'م':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكامل',axes:{direction:0,cohesion:.85,intensity:.3,visibility:.1,time:.1},speed:.35,finalFactor:0.97},
-  'ب':{tier:'green',source:'اللغة الموحدة ج1',movement:'تفتّح وانبساط',axes:{direction:.2,cohesion:.4,intensity:.2,visibility:.7,time:0},speed:.3,finalFactor:1.01},
-  'ع':{tier:'green',source:'اللغة الموحدة ج1',movement:'عمق وتمكّن',axes:{direction:.5,cohesion:.5,intensity:.6,visibility:-.3,time:.2},speed:.45,finalFactor:0.99},
-  'ل':{tier:'green',source:'اللغة الموحدة ج1',movement:'التصاق واتصال',axes:{direction:.3,cohesion:.7,intensity:.2,visibility:.3,time:0},speed:.4,finalFactor:0.98},
-  'ي':{tier:'green',source:'اللغة الموحدة ج1',movement:'زمان محض',axes:{direction:0,cohesion:.3,intensity:0,visibility:.3,time:1},speed:1,finalFactor:0.96},
+  'د':{tier:'green',source:'اللغة الموحدة ج1',movement:'اندفاع مقصود إلى أبعد مدى',axes:{direction:.9,cohesion:0,intensity:.85,visibility:.6,time:.3},speed:.85,finalFactor:1.06},
+  'ح':{tier:'green',source:'اللغة الموحدة ج1',movement:'تعاظم إلى حده الأقصى',axes:{direction:.4,cohesion:0,intensity:.95,visibility:.2,time:-.2},speed:.15,finalFactor:0.94},
+  'ر':{tier:'green',source:'اللغة الموحدة ج1',movement:'ترتب الحركة بتكرار معين',axes:{direction:0,cohesion:.3,intensity:.5,visibility:0,time:.95},speed:.95,finalFactor:1.03},
+  'ت':{tier:'green',source:'اللغة الموحدة ج1',movement:'اجتذاب الحركة لأمثالها',axes:{direction:.3,cohesion:0,intensity:.4,visibility:.4,time:.2},speed:.5,finalFactor:1.00},
+  'ك':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكتل الحركة مع من يشبهها',axes:{direction:0,cohesion:.85,intensity:.3,visibility:.3,time:0},speed:.4,finalFactor:0.98},
+  'م':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكامل بإتمام ما ينقصها',axes:{direction:0,cohesion:.85,intensity:.3,visibility:.1,time:.1},speed:.35,finalFactor:0.97},
+  'ب':{tier:'green',source:'اللغة الموحدة ج1',movement:'انبثاق بقوة بعيداً عن المركز',axes:{direction:.2,cohesion:.4,intensity:.2,visibility:.7,time:0},speed:.3,finalFactor:1.01},
+  'ع':{tier:'green',source:'اللغة الموحدة ج1',movement:'اتضاح معالم الحركة المبهمة',axes:{direction:.5,cohesion:.5,intensity:.6,visibility:-.3,time:.2},speed:.45,finalFactor:0.99},
+  'ل':{tier:'green',source:'اللغة الموحدة ج1',movement:'تلاحم ما يمكن أن يكون واحداً',axes:{direction:.3,cohesion:.7,intensity:.2,visibility:.3,time:0},speed:.4,finalFactor:0.98},
+  'ي':{tier:'green',source:'اللغة الموحدة ج1',movement:'ديمومة الحركة في الزمان',axes:{direction:0,cohesion:.3,intensity:0,visibility:.3,time:1},speed:1,finalFactor:0.96},
+  'أ':{tier:'green',source:'اللغة الموحدة ج1 — التكوين الوجودي',movement:'المؤلّف للحركة والمنشأ لها',isMaterial:true,axes:{direction:0,cohesion:.85,intensity:.4,visibility:-.6,time:0},speed:.05,finalFactor:0.85},
+  'ف':{tier:'green',source:'اللغة الموحدة — الموجز',movement:'تفرّق الحركة إلى ما يفي كافة الاتجاهات',axes:{direction:.85,cohesion:-.85,intensity:.5,visibility:.6,time:.35},speed:.78,finalFactor:1.05},
+  'ن':{tier:'green',source:'اللغة الموحدة — العلاقات العددية',movement:'إنشاء حركة جديدة مستمرة متطوّرة عن السابقة',axes:{direction:.35,cohesion:.4,intensity:.5,visibility:.4,time:.85},speed:.42,finalFactor:1.03},
+  'و':{tier:'green',source:'اللغة الموحدة ج1 — التكوين الوجودي',movement:'تموضع الحركة بعد تمامها',axes:{direction:.1,cohesion:.75,intensity:.2,visibility:.5,time:.15},speed:.08,finalFactor:0.82},
   'ض':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انضغاط وقوة',axes:{direction:-.3,cohesion:.5,intensity:.8,visibility:-.2,time:.1},speed:.6,finalFactor:1.02},
   'ص':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'صلابة وثبات',axes:{direction:0,cohesion:.6,intensity:.7,visibility:.4,time:.3},speed:.4,finalFactor:1.00},
   'ج':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'قيام بالذات',axes:{direction:.4,cohesion:.6,intensity:.5,visibility:.2,time:.2},speed:.5,finalFactor:1.01},
@@ -665,13 +723,195 @@ const CORE = {
   'غ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'خفاء واستتار',axes:{direction:-.4,cohesion:0,intensity:.3,visibility:-.8,time:.3},speed:.45,finalFactor:0.97},
   'هـ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'تنفّس وانبثاق',axes:{direction:.3,cohesion:0,intensity:.2,visibility:.4,time:.2},speed:.3,finalFactor:0.98},
   'ث':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انتشار لطيف',axes:{direction:.4,cohesion:-.3,intensity:.25,visibility:.5,time:.2},speed:.4,finalFactor:0.99},
-  'ظ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'ظهور وبروز',axes:{direction:.3,cohesion:.2,intensity:.5,visibility:.85,time:.1},speed:.5,finalFactor:1.00},
-  'أ':{tier:'purple',source:'من تسلسل (أصل الخلق)',movement:'ابتداء وأصالة',axes:{direction:.3,cohesion:.2,intensity:.3,visibility:.3,time:-.5},speed:.1,finalFactor:0.95},
-  'ف':{tier:'purple',source:'من تسلسل (فور)',movement:'تفرّق وانبثاق',axes:{direction:.6,cohesion:-.7,intensity:.5,visibility:.5,time:.3},speed:.75,finalFactor:1.02},
-  'ن':{tier:'purple',source:'من تسلسل (نجم)',movement:'إنشاء مستمر',axes:{direction:.3,cohesion:.5,intensity:.4,visibility:.3,time:.6},speed:.4,finalFactor:0.99},
-  'و':{tier:'purple',source:'من تسلسل (فور)',movement:'ديمومة مكانية',axes:{direction:0,cohesion:.3,intensity:0,visibility:.2,time:.1},speed:0,finalFactor:0.90}
+  'ظ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'ظهور وبروز',axes:{direction:.3,cohesion:.2,intensity:.5,visibility:.85,time:.1},speed:.5,finalFactor:1.00}
 };
 
+/* ============================================================
+   مظاهر الألف الأربعة
+   ============================================================ */
+const MANIFESTATIONS = {
+  'ء': {
+    name: 'الهمزة',
+    role: 'نقطة الأصل',
+    description: 'أول حركة ممكنة بدون تحريك أدوات النطق. جزءٌ من الألف ولا يتكوّن بدونه. تمثّل الابتداء المطلق.',
+    color: '#8B5CF6',
+    example: 'ضَرَبَ = ض + ءَ + ر + ءَ + ب + ءَ',
+    spacetime: 'زمكان محض'
+  },
+  'آ': {
+    name: 'الألف الممدود',
+    role: 'الزمكان المتكامل',
+    description: 'يتضمّن الواو والياء. مادّة التواصل بين الأصوات المُغلقة. يُنتج الوجودَ الكامل. هو المادّة الخام لكل الأصوات.',
+    color: '#C9A961',
+    example: 'آبَ = آ + ب + آ (رجعا)',
+    spacetime: 'زمكان'
+  },
+  'و': {
+    name: 'الواو',
+    role: 'محور المكان — تموضع بعد التمام',
+    description: 'الواو لا تُحرّك، بل تُثبّت. تظهر الحركة بعد أن تكتمل، فتُثبّتها في موضعها. هي المظهر المكاني للألف.',
+    color: '#2563EB',
+    example: 'you = ي + و → استمرار ثم تثبيت → الموجود الحاضر',
+    spacetime: 'مكان محض'
+  },
+  'ي': {
+    name: 'الياء',
+    role: 'محور الزمان — ديمومة الحركة',
+    description: 'الياء تُبقي الحركة جارية على ما هي عليه. تمثّل الاستمرار والبقاء والتطور.',
+    color: '#10B981',
+    example: 'يَمَّ = ي + ءَ + م (ديمومة الحركة)',
+    spacetime: 'زمان محض'
+  }
+};
+
+/* ============================================================
+   العلامات الزمكانية
+   ============================================================ */
+const SPACETIME_MARKERS = {
+  'َ': {
+    name: 'الفتحة',
+    symbol: 'ءَ',
+    meaning: 'زمكان (وجود في الزمان والمكان)',
+    effect: 'الحركة واقعة في الزمان والمكان معاً',
+    verbExample: 'ضَرَبَ — الحركة خارجة (المتعدّي)',
+    color: '#C9A961'
+  },
+  'ُ': {
+    name: 'الضمة',
+    symbol: 'ءُ',
+    meaning: 'مكان محض',
+    effect: 'الحركة داخلية ذاتية متموضعة في الفاعل',
+    verbExample: 'شَرُفَ — الحركة ذاتية (اللازم)',
+    color: '#2563EB'
+  },
+  'ِ': {
+    name: 'الكسرة',
+    symbol: 'ءِ',
+    meaning: 'زمان محض',
+    effect: 'الحركة داخلية عامة ممتدّة في الزمان',
+    verbExample: 'عَلِمَ — الحركة داخلة (من الخارج)',
+    color: '#10B981'
+  },
+  'ْ': {
+    name: 'السكون',
+    symbol: '—',
+    meaning: 'قطع الحركة',
+    effect: 'الحركة توقّفت عند هذا الصوت، والصوت اللاحق يبدأ من جديد',
+    verbExample: 'حُكْم — اسمية (توقّف في الوسط)',
+    color: '#6B7280'
+  }
+};
+
+/* ============================================================
+   الأبواب الستة للأفعال
+   ============================================================ */
+const SIX_DOORS = [
+  {id:1, past:'فَعَلَ', present:'يَفْعُلُ', example:'نَصَرَ — يَنْصُرُ', centerPast:'فتحة (زمكان)', centerPresent:'ضمة (مكان)', note:'الحركة خارجة، لا تُهمل الزمان لاستمرارها'},
+  {id:2, past:'فَعَلَ', present:'يَفْعِلُ', example:'ضَرَبَ — يَضْرِبُ', centerPast:'فتحة (زمكان)', centerPresent:'كسرة (زمان)', note:'الحركة خارجة، الموضوع المتموضِع يُهمل لإهمال المكان'},
+  {id:3, past:'فَعَلَ', present:'يَفْعَلُ', example:'فَتَحَ — يَفْتَحُ', centerPast:'فتحة (زمكان)', centerPresent:'فتحة (زمكان)', note:'الحركة الخارجة قد تستمر أو تنقطع'},
+  {id:4, past:'فَعُلَ', present:'يَفْعُلُ', example:'شَرُفَ — يَشْرُفُ', centerPast:'ضمة (مكان)', centerPresent:'ضمة (مكان)', note:'الحركة ذاتية داخلية لا تخرج ولا تدخل'},
+  {id:5, past:'فَعِلَ', present:'يَفْعَلُ', example:'عَلِمَ — يَعْلَمُ', centerPast:'كسرة (زمان)', centerPresent:'فتحة (زمكان)', note:'الحركة داخلة (تستقبل من الخارج)، الزمان ظاهر بالمضارع'},
+  {id:6, past:'فَعِلَ', present:'يَفْعِلُ', example:'حَسِبَ — يَحْسِبُ', centerPast:'كسرة (زمان)', centerPresent:'كسرة (زمان)', note:'الحركة داخلة مستمرّة، الفاعل يؤكّد استمرار الفعل'}
+];
+
+/* ============================================================
+   المجموعات السبع
+   ============================================================ */
+const SEVEN_GROUPS = [
+  {n:1, name:'مجموعة الألف', count:12, letters:['ب','ت','ث','ح','خ','ر','ز','ي','هـ','ط','ظ','ف'], desc:'الحروف التي سمّت نفسها بحرف الألف. مرتبطة بالزمكان (الألف).'},
+  {n:2, name:'مجموعة الدال', count:2, letters:['ص','ض'], desc:'الحروف التي استعملت الدال لتسمية نفسها. مرتبطة بالمركزين الثانويين آلياً وبالدال حركياً.'},
+  {n:3, name:'مجموعة النون', count:4, letters:['س','ش','ع','غ'], desc:'الحروف التي تسمّت بحرف النون. مرتبطة بالمراكز الخمسة آلياً وبالنون حركياً.'},
+  {n:4, name:'مجموعة اللام', count:2, letters:['د','ذ'], desc:'الحروف التي سمّت نفسها بحركة اللام. مرتبطة بالمركزين الثانويين وحركياً باللام.'},
+  {n:5, name:'مجموعة الفاء', count:2, letters:['ق','ك'], desc:'الحروف التي تسمّت بحرف الفاء. مرتبطة بالمركزين الثانويين وحركياً بالفاء.'},
+  {n:6, name:'مجموعة الميم', count:2, letters:['ج','ل'], desc:'الحروف التي تسمّت بحركة الميم. مرتبطة بالمركزين الثانويين وحركياً بالميم.'},
+  {n:7, name:'المجموعة المستقلّة', count:3, letters:['ن','و','م'], desc:'الحروف التي تسمّت ذاتياً. ثلاثتها استعملت أحرف العلة وسطاء تسمية.'}
+];
+
+/* ============================================================
+   العلاقات العددية
+   ============================================================ */
+const NUMERICAL_RELATIONS = [
+  {n:3, meaning:'مراكز حركة اللسان', ref:'آلة النطق'},
+  {n:5, meaning:'المراكز الكلية للحركة', ref:'آلة النطق'},
+  {n:7, meaning:'احتمالات وضع اللسان الممكنة', ref:'آلة النطق'},
+  {n:4, meaning:'مظاهر الألف / المراكز الثانوية', ref:'الألف'},
+  {n:12, meaning:'احتمالات التغيّرات الصوتية (4×3)', ref:'الصوت'},
+  {n:24, meaning:'الأصوات المستقلة الأصلية (28-4)', ref:'الصوت'},
+  {n:28, meaning:'العدد الكلي للأصوات', ref:'الصوت'},
+  {n:2, meaning:'المراكز الثانوية (الأسنان والشفتان)', ref:'آلة النطق'},
+  {n:8, meaning:'الاحتمالات الكلية لوضع اللسان', ref:'آلة النطق'},
+  {n:6, meaning:'الصيغ المتعددة لأسماء الأسماء', ref:'الاشتقاق'},
+  {n:25, meaning:'مجموع الصيغ الاشتقاقية للأفعال', ref:'الاشتقاق'}
+];
+
+/* ============================================================
+   آلة النطق
+   ============================================================ */
+const VOCAL_APPARATUS = {
+  centers: [
+    {id:1, name:'الشفتان', role:'مركز واحد (الشفة السفلى هي المتحركة)', axis:'المكان'},
+    {id:2, name:'الأسنان', role:'مركز واحد (الفك الأسفل هو المتحرك)', axis:'الزمان'},
+    {id:3, name:'اللسان', role:'ثلاثة مراكز (طرف + وسط + مرتكز)', axis:'الصوت'}
+  ],
+  totalCenters: 5,
+  impossible: 'تحرّك المراكز الثلاثة للسان سوية — ينتج صوتاً مستحيلاً',
+  totalPossible: 32,
+  actualPossible: 28,
+  note: 'الأصوات الفعلية = 28. وبطرح 4 مظاهر للألف = 24 صوتاً مستقلاً أصيلاً.'
+};
+
+/* ============================================================
+   الترجمة القصدية
+   ============================================================ */
+const INTENTIONAL_TRANSLATIONS = [
+  {ar:'بند', en:'Band', ru:'Band', note:'نفس التسلسل. من "فصلُ جزءٍ من الحركة الكلّية بفاصلٍ ما" — ثم أُطلق على الفاصل نفسه، ثم على المجموعة المستقلّة، ثم على العلم الكبير، ثم قاطع الطريق (Bandit).'},
+  {ar:'حرد', en:'Hard', ru:'—', note:'نفس التسلسل مع قلب الحاء إلى الهاء لعدم نطق الحاء في الإنكليزية. الحماية الذاتية أبقت المعنى (القسوة، الشدة).'},
+  {ar:'دور', en:'Door', ru:'Dvaer', note:'العربية والإنكليزية تتفقان في التسلسل (د-و-ر). الفرنسية porte متقدّمة بالباء على الراء. الروسية dvaer تجمع الحركات في توجّه واحد.'},
+  {ar:'قتل', en:'Kill', ru:'—', note:'العبرية Qatal. معنى التسلسل: "الإجهاز على حركة الحياة" — يُحفظ المعنى في اللغات.'},
+  {ar:'قال/قيل', en:'—', ru:'—', note:'الواو تُثبّت الحركة بعد التمام (قول = محدّد في واقعة)، الياء تُبقيها مستمرة في الزمان (قيل = عام).'},
+  {ar:'دور/دير', en:'—', ru:'—', note:'الواو = تثبيت بعد التمام. الياء = استمرار في الزمان. الفرق حاسم.'},
+  {ar:'you', en:'you', ru:'—', note:'ي + و = ديمومة في الزمان + تثبيت في المكان. الموجود الحاضر. لو عكسناها (we) = جماعة مستقرّة.'}
+];
+
+/* ============================================================
+   الحماية الذاتية
+   ============================================================ */
+const SELF_PROTECTION = {
+  desc: 'التسلسل الصوتي يُبقي على أثرٍ من حركته الأصلية مهما حصل من تعسّفٍ في الاستعمال. هذا "حماية ذاتية" لا تسمح بالانتهاك التام لمعنى المفرد.',
+  mechanisms: [
+    'لا يُستعمل أي تسلسل لأي شيءٍ بمجرّد الإرادة — يوجد تضادّ حركي بين الأصوات.',
+    'لا تُنتَج المركبات كما يحلو — يوجد تنافر وتجاذب بين الأصوات.',
+    'مرونة النظام تسمح بالعبث في الحركة الخارجية (بعض الأفعال) دون الإخلال بالجوهر.',
+    'الشبكة المعقّدة من العلاقات بين الأفكار والمفردات تمنع الالتباس الكامل.'
+  ],
+  displacementExample: {
+    word: 'حرد',
+    originalAxis: 'قسوة + شدّة + تباطؤ الحركة',
+    currentUse: 'الأدب القديم + بعض القرى النائية',
+    populationUse: 'حَرَد — ثقلت حركته وتباطأت',
+    note: 'الفعل انزاح من محور الاستعمال العام، لكن الحماية الذاتية أبقت المعنى في العامة والقرى.'
+  }
+};
+
+/* ============================================================
+   الحروف المفردة الموحّدة الدلالة
+   ============================================================ */
+const UNIFIED_PARTICLES = [
+  {word:'لا', meaning:'انتفاء تكامل الحركة (لام ناقصة من الميم)', evidence:'لا إله إلا الله'},
+  {word:'لم', meaning:'انتفاء الحركة اللاحقة (توقّف الالتحام بالميم)', evidence:'لم يأتِ — الآن فقط'},
+  {word:'لن', meaning:'انتفاء الحركة المستقبلية (النون تنشئ حركة منفصلة)', evidence:'لن يأتِ — من الآن'},
+  {word:'لمّا', meaning:'انتقال من فعلٍ إلى فعلٍ (توقّف يسير ثم استئناف)', evidence:'فلمّا قضى موسى الأجل'},
+  {word:'كَيْ', meaning:'غاية خفيّة هامّة غير ملاحظة', evidence:'كَيْ تقرّ عينها'},
+  {word:'كي', meaning:'تكوين منظّم لغاية ثابتة', evidence:'Key (مفتاح)'},
+  {word:'مع', meaning:'علاقة ترابطية بين طرفين', evidence:'إنّ مع العسر يسراً'},
+  {word:'عمّ', meaning:'تعميم — اتضاح الحركة متجاذبة مع كلّ الممكنات', evidence:'عمّ يتساءلون'},
+  {word:'ما', meaning:'نفي الحركة من الداخل / استفهام عن الحقيقة', evidence:'وما تلك بيمينك يا موسى'},
+  {word:'مِن', meaning:'مصدر الحالة الوجودية', evidence:'وخلقنا من الماء كلّ شيء حيّ'}
+];
+
+/* ============================================================
+   القواعد التسع
+   ============================================================ */
 const RULES = [
   {id:'R1',text:'لا ترادف: اختلاف الصوت = اختلاف الحركة = اختلاف المعنى.',source:'النظام القرآني',page:null},
   {id:'R2',text:'الصوت الأول يحمل الجنس والمنشأ، والأخير يحمل النتيجة والحدّ.',source:'الطور المهدوي',page:null},
@@ -695,18 +935,36 @@ const SOURCE_HIERARCHY = {KS:1.00, MODERN:0.40, CLASSICAL:0.35, LEXICON:0.25};
 const POSITION_WEIGHTS = {1:[1],2:[.35,.65],3:[.20,.30,.50],4:[.15,.20,.25,.40],5:[.10,.15,.20,.25,.30]};
 function getWeights(n){ if(POSITION_WEIGHTS[n]) return POSITION_WEIGHTS[n]; const a=[]; for(let i=0;i<n;i++)a.push((i+1)/(n*(n+1)/2)); return a; }
 
+/* ============================================================
+   النصوص الموثّقة من الكتاب
+   ============================================================ */
 const KS = {
   'دحر':{text:'«اندفاع مقصود والحاء تعاظم والراء تكرار».',meaning:'دفع متعاظم متكرر يقهر المقاومة — حركة تدفع الشيء وتُبعده عن حدّه.',source:'اللغة الموحدة',page:1520},
   'سمك':{text:'«انسلال خفي وتكامل وتكتّل».',meaning:'تكاثف الأجزاء وتكتّلها بصورة غير منظورة لتكون ملحوظة فيما بعد.',source:'الطور المهدوي',page:216},
-  'فور':{text:'«تفرّق وديمومة مكانية وتكرار».',meaning:'تفرّق ثابت في موضعه يتكرّر — غليان واندفاع من المركز.',source:'الموجز',page:null},
-  'نجم':{text:'«إنشاء مستمر وقيام بالذات وتكامل».',meaning:'ظهور مباغت بقدرة ذاتية على اختراق الحُجب.',source:'الطور المهدوي',page:1763},
-  'حمد':{text:'«تعاظم ثم اندفاع مقصود ثم تكامل».',meaning:'المكتـمل ذو الشروط وله هدف.',source:'المصفوفة',page:null},
-  'مدح':{text:'«تكامل ثم اندفاع مقصود ثم تعاظم».',meaning:'التوسّع إلى أبعد مدى باتجاه معيّن.',source:'المصفوفة',page:null},
-  'حد':{text:'«تعاظم لأقصى حد + اندفاع مقصود».',meaning:'تعاظُم ينتهي عند آخر مداه.',source:'اللغة الموحدة',page:null,concept:'الحدّ'},
-  'علم':{text:'«عمق وتمكّن ثم التصاق واتصال ثم تكامل».',meaning:'تحقّق المعرفة بالاتصال والتكامل.',source:'من تسلسل',page:null},
-  'عمل':{text:'«عمق وتمكّن ثم تكامل ثم التصاق واتصال».',meaning:'إنجاز الفعل بتمكّن والتزام.',source:'من تسلسل',page:null}
+  'فور':{text:'«تفرّق شامل + تموضع بعد التمام + ترتّب بتكرار».',meaning:'التعريف الفيزيائي للغليان: الفاء تُفرّق في كلّ الاتجاهات، الواو تُثبّت كلّ فقاعة في موضعها بعد انفجارها، الراء تُعيد العملية.',source:'الموجز'},
+  'نجم':{text:'«إنشاء حركة جديدة مستمرة + قيام بالذات + تكامل».',meaning:'ظهور يُنشئ وجوداً جديداً يتطوّر باستمرار، قائمٌ بذاته، مكتملٌ في ذاته.',source:'الطور المهدوي',page:1763},
+  'حمد':{text:'«تعاظم ثم اندفاع مقصود ثم تكامل».',meaning:'المكتـمل ذو الشروط وله هدف.',source:'المصفوفة'},
+  'مدح':{text:'«تكامل ثم اندفاع مقصود ثم تعاظم».',meaning:'التوسّع إلى أبعد مدى باتجاه معيّن.',source:'المصفوفة'},
+  'حد':{text:'«تعاظم لأقصى حد + اندفاع مقصود».',meaning:'تعاظُم ينتهي عند آخر مداه.',source:'اللغة الموحدة',concept:'الحدّ'},
+  'علم':{text:'«عمق وتمكّن ثم التصاق واتصال ثم تكامل».',meaning:'تحقّق المعرفة بالاتصال والتكامل.',source:'من تسلسل'},
+  'عمل':{text:'«عمق وتمكّن ثم تكامل ثم التصاق واتصال».',meaning:'إنجاز الفعل بتمكّن والتزام.',source:'من تسلسل'},
+  'حف':{text:'«تعاظم + تفرّق».',meaning:'إحاطة الأجزاء المتفرّقة المتعاظمة بالمركز — الحركة من الداخل إلى الخارج.',source:'الموجز'},
+  'حفر':{text:'«تعاظم + تكرار + تفرّق».',meaning:'تكوين خارجي حول حافة الشيء (لا داخلي) — صورة أسطوانية.',source:'الموجز'},
+  'حرف':{text:'«تعاظم + تكرار + تفرّق».',meaning:'تغيير الوجهة عن الأصل — التحريف اللغوي عن مواضعه.',source:'الموجز'},
+  'فرح':{text:'«تفرّق + تكرار + تعاظم».',meaning:'إذا كانت الحركة خارجية (من الفاعل) = فرح وسرور. إذا واقعة على الفاعل = غمّ وهمّ.',source:'الموجز'},
+  'رف':{text:'«تكرار + تفرّق».',meaning:'الرفّ — مخزن الحركات المتكررة، ومنه يتفرّق كلّ شيء.',source:'الموجز'},
+  'كرم':{text:'«تكتّل + تكرار + تكامل».',meaning:'إطلاق العطاء المتجدّد المتكامل — نقيض البخل.',source:'الموجز'},
+  'مكر':{text:'«تكامل + تكتّل + تكرار».',meaning:'إعادة تنظيم ما تمّ بناؤه — الخديعة.',source:'الموجز'},
+  'جمع':{text:'«قيام بالذات + تكامل + عمق».',meaning:'تكامل الحركات من مصادر متعدّدة في موضع واحد.',source:'القاعدة'},
+  'قول':{text:'«قطع + تموضع بعد التمام + تلاحم».',meaning:'القول: محدّد في واقعة معيّنة. لأن الواو تُثبّته في موضع مخصوص.',source:'اللغة الموحدة ج1'},
+  'قيل':{text:'«قطع + ديمومة في الزمان + تلاحم».',meaning:'القيل: عام في كلّ زمان. لأن الياء تُبقيه مستمراً لا متموضِعاً.',source:'اللغة الموحدة ج1'},
+  'you':{text:'«ديمومة في الزمان + تثبيت في المكان».',meaning:'الموجود الحاضر — استمرّ وجودك في الزمان ثم تثبّتت في المكان. لهذا لا يُستعمل للمعدوم ولا للغائب.',source:'الموجز'},
+  'we':{text:'«تموضع بعد التمام + ديمومة في الزمان».',meaning:'الجماعة المتجمّعة في موضع واحد، ثم استمرّت معاً. لهذا يُستعمل للجمع لا المفرد.',source:'الموجز'}
 };
 
+/* ============================================================
+   المعاجم والقاموس المحلي
+   ============================================================ */
 const DICTIONARIES = [
   {id:'modern',name:'اللغة العربية المعاصرة',type:'modern',weight:0.53},
   {id:'muheet',name:'القاموس المحيط',type:'classical',weight:0.32},
@@ -719,7 +977,7 @@ const DICTIONARIES = [
 ];
 
 const LOCAL_LEXICON = {
-  'حد':{meaning:'الحاجز بين شيئين، الفاصل الذي يمنع اختلاطهما. أصله: المنع والفصل والدفع بقوة. ومنه: حَدّ السيف، الحُدود، الحَدّ الأقصى.',source:'المعجم المحلي الموثّق'},
+  'حد':{meaning:'الحاجز بين شيئين، الفاصل الذي يمنع اختلاطهما. أصله: المنع والفصل والدفع بقوة.',source:'المعجم المحلي الموثّق'},
   'حمد':{meaning:'الثناء والشكر على الجميل. ومنه: الحمد، المحمود، الحميد.',source:'المعجم المحلي الموثّق'},
   'مدح':{meaning:'الثناء الحسن والتوسّع في الإطراء.',source:'المعجم المحلي الموثّق'},
   'علم':{meaning:'المعرفة والإدراك. ومنه: العَالم والعَليم والمعلوم.',source:'المعجم المحلي الموثّق'},
@@ -728,9 +986,12 @@ const LOCAL_LEXICON = {
   'سمك':{meaning:'الحيوان المائي المعروف.',source:'المعجم المحلي الموثّق'},
   'فور':{meaning:'الغليان والانبثاق المفاجئ. ومنه: فَار يَفُور، الفَوَران.',source:'المعجم المحلي الموثّق'},
   'عمل':{meaning:'الفعل والجهد. ومنه: العامِل، العَمل، الاستعمال.',source:'المعجم المحلي الموثّق'},
-  'حرور':{meaning:'الحرّ الشديد، أو الريح الحارّة. ومنه: الحَرُور والحروريّ.',source:'المعجم المحلي الموثّق'}
+  'حرور':{meaning:'الحرّ الشديد، أو الريح الحارّة.',source:'المعجم المحلي الموثّق'}
 };
 
+/* ============================================================
+   الأوزان الصرفية
+   ============================================================ */
 const PATTERNS = [
   {id:'fa3ala',weight:'فَعَلَ',form:'{1}َ{2}َ{3}َ',kind:'mujarrad',added:[],effect:'الحدث المجرد'},
   {id:'fa3l',weight:'فَعْل',form:'{1}َ{2}ْ{3}',kind:'mujarrad',added:[],effect:'الحدث كمصدر'},
@@ -757,6 +1018,9 @@ function generateDerivations(rl){
   });
 }
 
+/* ============================================================
+   دوال التحليل
+   ============================================================ */
 function stripDiacritics(w){ return w.replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'أ').replace(/[ى]/g,'ي').replace(/[ؤ]/g,'و').replace(/[ئ]/g,'ي').replace(/[ة]/g,'ه').trim(); }
 function cleanWord(w){ let x=stripDiacritics(w); if(x.startsWith('ال')&&x.length>3) x=x.slice(2); return x; }
 function toLetters(w){ return Array.from(cleanWord(w)).filter(ch=>CORE[ch]); }
@@ -849,7 +1113,7 @@ function buildConcept(cs){
 function buildBreakdown(cs){ return cs.map(c=>c.core.movement).join(' + '); }
 
 function computeSemanticMetrics(){
-  const M_literal={count:8,total:126,percent:(8/126)*100};
+  const M_literal={count:14,total:140,percent:(14/140)*100};
   const perDict=DICTIONARIES.map(d=>({name:d.name,type:d.type,weight:d.weight}));
   const num=perDict.reduce((s,d)=>s+d.weight*(SOURCE_HIERARCHY[d.type.toUpperCase()]||0.3),0);
   const den=perDict.reduce((s,d)=>s+(SOURCE_HIERARCHY[d.type.toUpperCase()]||0.3),0);
@@ -889,7 +1153,9 @@ function pct(v){ return Math.round((v+1)*50)+'%'; }
 
 let currentAnalysis=null, currentDerivations=null, currentRootLetters=null;
 
-/* PWA Install */
+/* ============================================================
+   PWA Install
+   ============================================================ */
 let deferredInstallPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstallPrompt=e; document.getElementById('install-btn').style.display='flex'; });
 window.addEventListener('appinstalled',()=>{ deferredInstallPrompt=null; document.getElementById('install-btn').style.display='none'; showToast('✅ تم التثبيت'); });
@@ -905,7 +1171,7 @@ function checkIfInstalled(){
 }
 
 /* Theme */
-const THEME_KEY='lum_theme_v1';
+const THEME_KEY='lum_theme_v3';
 function initTheme(){
   const saved=SafeStorage.get(THEME_KEY);
   const prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -923,7 +1189,7 @@ document.getElementById('theme-btn').addEventListener('click',()=>{
 });
 
 /* History */
-const HISTORY_KEY='lum_history_v1', HISTORY_MAX=50;
+const HISTORY_KEY='lum_history_v3', HISTORY_MAX=50;
 function loadHistory(){ try{ const r=SafeStorage.get(HISTORY_KEY); return r?JSON.parse(r):[]; }catch(e){ return []; } }
 function saveHistoryItem(mv){
   try{
@@ -990,7 +1256,7 @@ function renderHistory(){
 document.getElementById('history-clear-btn')?.addEventListener('click', clearHistory);
 document.getElementById('history-export-btn')?.addEventListener('click',()=>{
   const h=loadHistory(); if(h.length===0){ showToast('⚠️ السجل فارغ'); return; }
-  const data={history:h.map(x=>({word:x.word,sentence:x.sentence,letters:x.letters,speed:x.speed,timestamp:new Date(x.timestamp).toISOString()})),exportedAt:new Date().toISOString(),version:'v2.7.3'};
+  const data={history:h.map(x=>({word:x.word,sentence:x.sentence,letters:x.letters,speed:x.speed,timestamp:new Date(x.timestamp).toISOString()})),exportedAt:new Date().toISOString(),version:'v3.0.0'};
   downloadFile(JSON.stringify(data,null,2),`lum-history-${Date.now()}.json`,'application/json;charset=utf-8');
   showToast('✅ تم التصدير');
 });
@@ -1101,7 +1367,7 @@ function renderRecommendations(){
   const h=loadHistory();
   const analyzed=new Set(h.map(x=>x.word));
   if(h.length===0){
-    const starters=['دحر','حمد','حد','علم','نجم','فور'];
+    const starters=['دحر','حمد','حد','فور','نجم','حفر'];
     c.innerHTML=`<div class="recommend-grid">${starters.map(w=>{ const mv=extractMovement(w); return `<div class="recommend-card" data-word="${w}"><div class="recommend-badge">★ بداية</div><div class="recommend-word">${w}</div><div class="recommend-movement">${mv?mv.sentence:''}</div><div class="recommend-reason">💡 منصوصة في كتاب النيلي</div></div>`; }).join('')}</div>`;
     c.querySelectorAll('.recommend-card').forEach(card=>card.addEventListener('click',()=>{ document.getElementById('word-input').value=card.dataset.word; analyze(card.dataset.word); }));
     return;
@@ -1134,7 +1400,7 @@ function renderRecommendations(){
   const avgSpeed=h.reduce((s,x)=>s+x.speed,0)/h.length;
   if(avgSpeed>0.6){ ['وحد','وقف','دور'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك زمانية',badge:'⚖️ تكميلي'}); }); }
   else if(avgSpeed<0.4){ ['يوم','ير','رقي'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك مكانية',badge:'⚖️ تكميلي'}); }); }
-  const unusedGreen=['د','ح','ر','ت','ك','م','ب','ع','ل','ي'].filter(ch=>!usedLetters.has(ch));
+  const unusedGreen=['د','ح','ر','ت','ك','م','ب','ع','ل','ي','أ','ف','ن','و'].filter(ch=>!usedLetters.has(ch));
   if(unusedGreen.length>0 && recs.length<4){
     const ch=unusedGreen[0];
     const w=(letterSuggestions[ch]||[]).find(w=>!analyzed.has(w));
@@ -1204,6 +1470,165 @@ function handleURLParams(){
   return false;
 }
 
+/* ============================================================
+   دوال الشاشات الجديدة
+   ============================================================ */
+function renderManifestations(){
+  const c=document.getElementById('manifestations-content'); if(!c) return;
+  c.innerHTML = `<div class="perm-grid">${Object.entries(MANIFESTATIONS).map(([ch,m])=>{
+    return `<div class="perm-card original" style="border-color:${m.color}"><div class="perm-badge" style="background:${m.color}22;color:${m.color}">${m.role}</div>
+      <div class="perm-word" style="color:${m.color}">${ch}</div>
+      <div style="font-weight:700;color:var(--navy);text-align:center;font-family:var(--font-serif);">${m.name}</div>
+      <div class="perm-movement" style="margin-top:8px;">${m.description}</div>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--border);font-size:.78rem;color:var(--ink-muted);text-align:center;font-family:var(--font-serif);">${m.example}</div>
+    </div>`;
+  }).join('')}</div>
+  <div class="info-box" style="margin-top:14px;">💡 <strong>القاعدة الجوهرية:</strong> لا يمكن نطق أي صوت من الأصوات المستقلة الأربعة والعشرين بغير الألف ومظاهره. الألف هو مادّة البناء، ومظاهره هي الروابط.</div>`;
+}
+
+function renderMarkers(){
+  const c=document.getElementById('markers-content'); if(!c) return;
+  c.innerHTML = `<div class="perm-grid">${Object.entries(SPACETIME_MARKERS).map(([sym,m])=>{
+    return `<div class="perm-card" style="border-color:${m.color}"><div class="perm-badge" style="background:${m.color}22;color:${m.color}">${m.name}</div>
+      <div class="perm-word" style="color:${m.color};font-size:2.2rem;">${sym}</div>
+      <div style="font-weight:700;color:var(--navy);text-align:center;font-family:var(--font-serif);">${m.symbol} — ${m.meaning}</div>
+      <div class="perm-movement" style="margin-top:8px;">${m.effect}</div>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--border);font-size:.78rem;color:var(--ink-muted);text-align:center;">مثال: ${m.verbExample}</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function renderDoors(){
+  const c=document.getElementById('doors-content'); if(!c) return;
+  c.innerHTML = SIX_DOORS.map(d=>`
+    <div class="metric-card" style="background:var(--bg-soft);border-inline-start:4px solid var(--navy);">
+      <div class="metric-header">
+        <span class="metric-label">الباب ${d.id}: ${d.past} — ${d.present}</span>
+        <span class="metric-value" style="font-family:var(--font-serif);font-size:1.05rem;">${d.example}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
+        <div style="background:var(--purple-soft);padding:8px 12px;border-radius:var(--radius-sm);font-size:.82rem;">
+          <div style="color:var(--ink-muted);font-size:.72rem;">الماضي — العلامة الوسطى</div>
+          <div style="color:var(--navy);font-weight:700;">${d.centerPast}</div>
+        </div>
+        <div style="background:var(--teal-soft);padding:8px 12px;border-radius:var(--radius-sm);font-size:.82rem;">
+          <div style="color:var(--ink-muted);font-size:.72rem;">المضارع — العلامة الوسطى</div>
+          <div style="color:var(--navy);font-weight:700;">${d.centerPresent}</div>
+        </div>
+      </div>
+      <div class="metric-hint">${d.note}</div>
+    </div>`).join('');
+}
+
+function renderGroups(){
+  const c=document.getElementById('groups-content'); if(!c) return;
+  c.innerHTML = `<div class="perm-grid">${SEVEN_GROUPS.map(g=>`
+    <div class="perm-card">
+      <div class="perm-badge">المجموعة ${g.n} — ${g.count} حرفًا</div>
+      <div class="perm-word" style="font-size:2rem;letter-spacing:6px;">${g.letters.join(' ')}</div>
+      <div style="font-weight:700;color:var(--navy);text-align:center;margin-bottom:6px;">${g.name}</div>
+      <div class="perm-movement">${g.desc}</div>
+    </div>`).join('')}</div>`;
+}
+
+function renderNumbers(){
+  const c=document.getElementById('numbers-content'); if(!c) return;
+  c.innerHTML = `<div class="info-grid">${NUMERICAL_RELATIONS.map(r=>`
+    <div class="info-cell">
+      <div class="v" style="font-size:1.8rem;">${r.n}</div>
+      <div class="k">${r.meaning}</div>
+      <div style="font-size:.68rem;color:var(--ink-muted);margin-top:6px;">${r.ref}</div>
+    </div>`).join('')}</div>
+    <div class="info-box" style="margin-top:14px;">🎯 <strong>المجموعان الكليان:</strong> 28 صوتًا مستقلًا — 24 صوتًا أصيلًا (بعد طرح 4 مظاهر للألف) — 12 مظهرًا رابطًا (6 صوتية + 6 علاماتية).</div>`;
+}
+
+function renderApparatus(){
+  const c=document.getElementById('apparatus-content'); if(!c) return;
+  const A=VOCAL_APPARATUS;
+  c.innerHTML = `
+    <div class="perm-grid">${A.centers.map(ct=>`
+      <div class="perm-card"><div class="perm-badge">مركز ${ct.id}</div>
+        <div class="perm-word" style="font-size:1.4rem;">${ct.name}</div>
+        <div class="perm-movement">${ct.role}</div>
+        <div style="margin-top:10px;text-align:center;font-weight:700;color:var(--navy);">${ct.axis}</div>
+      </div>`).join('')}</div>
+    <div class="card" style="margin-top:14px;background:var(--bg-soft);">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:10px;">📊 الاحتمالات الكلية لحركة المراكز الخمسة</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;">
+        <div class="axis-cell"><span class="k">حركة مركز واحد</span><span class="v">5</span></div>
+        <div class="axis-cell"><span class="k">مركزين</span><span class="v">10</span></div>
+        <div class="axis-cell"><span class="k">ثلاثة مراكز</span><span class="v">10</span></div>
+        <div class="axis-cell"><span class="k">أربعة مراكز</span><span class="v">5</span></div>
+        <div class="axis-cell"><span class="k">خمسة مراكز</span><span class="v">1</span></div>
+        <div class="axis-cell" style="background:var(--gold-soft);border-color:var(--gold);"><span class="k">المجموع النظري</span><span class="v">32</span></div>
+        <div class="axis-cell" style="background:var(--green-soft);border-color:var(--green);"><span class="k">المجموع الفعلي (بعد الاستبعاد ×4)</span><span class="v">28</span></div>
+      </div>
+      <div style="margin-top:12px;padding:10px;background:var(--yellow-soft);border:1px solid var(--yellow);border-radius:var(--radius-sm);font-size:.85rem;line-height:1.8;">
+        ⚠️ <strong>الاحتمال المستحيل:</strong> ${A.impossible}. ينتج 4 احتمالات مستحيلة لأن الأسنان والشفتين لهما 4 احتمالات، واللسان الثلاثي يمثّل الاحتمال الخامس. إذن: 32 - 4 = 28 احتمالًا ممكنًا فعلًا.
+      </div>
+      <div style="margin-top:12px;padding:12px;background:var(--teal-soft);border-radius:var(--radius-sm);font-size:.88rem;line-height:1.85;">
+        <strong>القاعدة الجوهرية:</strong> ${A.note}
+      </div>
+    </div>`;
+}
+
+function renderTranslation(){
+  const c=document.getElementById('translation-content'); if(!c) return;
+  c.innerHTML = INTENTIONAL_TRANSLATIONS.map(t=>`
+    <div class="metric-card" style="background:var(--bg-soft);border-inline-start:4px solid var(--gold);">
+      <div class="metric-header">
+        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:1.3rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);">${t.ar}</span>
+          <span style="color:var(--ink-muted);">≈</span>
+          <span style="font-size:1.1rem;font-weight:700;color:var(--gold);font-family:var(--font-serif);">${t.en}</span>
+          ${t.ru !== '—' ? `<span style="color:var(--ink-muted);">·</span><span style="font-size:1rem;font-weight:600;color:var(--teal);">${t.ru}</span>` : ''}
+        </div>
+      </div>
+      <div class="metric-detail" style="line-height:1.85;">${t.note}</div>
+    </div>`).join('') +
+    `<div class="info-box" style="margin-top:14px;">🎯 <strong>القاعدة:</strong> لا يجوز شرح مفردة بمفردة أخرى، ولا ترجمة تسلسل بتسلسل مختلف. الترجمة الصحيحة هي إعادة التسلسل الصوتي نفسه مع مراعاة التحوّلات (ح→ه، ع→A، إلخ).</div>`;
+}
+
+function renderProtection(){
+  const c=document.getElementById('protection-content'); if(!c) return;
+  const S=SELF_PROTECTION;
+  c.innerHTML = `
+    <div class="metric-card" style="background:var(--gold-soft);border-color:var(--gold);">
+      <div class="metric-label" style="margin-bottom:8px;">🛡️ التعريف</div>
+      <div style="font-family:var(--font-serif);font-size:1rem;color:var(--navy);line-height:1.85;">${S.desc}</div>
+    </div>
+    <div class="card" style="margin-top:14px;background:var(--bg-soft);">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:12px;">🔧 آليات الحماية الأربعة</div>
+      ${S.mechanisms.map((m,i)=>`<div style="display:flex;gap:12px;padding:10px 12px;background:var(--card);border-radius:var(--radius-sm);margin-bottom:8px;border-inline-start:3px solid var(--green);">
+        <span style="font-weight:700;color:var(--navy);min-width:24px;">${i+1}.</span>
+        <span style="line-height:1.75;font-size:.9rem;">${m}</span>
+      </div>`).join('')}
+    </div>
+    <div class="card" style="margin-top:14px;border-color:var(--purple);background:var(--purple-soft);">
+      <div class="card-title" style="color:var(--purple);">📉 مثال الإزاحة: «حرد»</div>
+      <div style="display:grid;gap:10px;">
+        <div><strong>المحور الأصلي:</strong> ${S.displacementExample.originalAxis}</div>
+        <div><strong>الاستعمال الحالي:</strong> ${S.displacementExample.currentUse}</div>
+        <div><strong>الاستعمال في العامة والقرى:</strong> ${S.displacementExample.populationUse}</div>
+        <div style="padding:10px;background:var(--bg-elev);border-radius:var(--radius-sm);font-size:.88rem;line-height:1.8;">${S.displacementExample.note}</div>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:14px;">💡 <strong>النتيجة:</strong> اللغة لا تفقد أصلها بالكامل أبدًا. الإزاحة حركة، والحماية الذاتية قوّة مضادة. الاستعمالات القديمة في الأدب والقرى تحتفظ بالأصل أكثر من المدن والاستعمالات المعاصرة.</div>`;
+}
+
+function renderParticles(){
+  const c=document.getElementById('particles-content'); if(!c) return;
+  c.innerHTML = `<div class="perm-grid">${UNIFIED_PARTICLES.map(p=>`
+    <div class="perm-card">
+      <div class="perm-word">${p.word}</div>
+      <div class="perm-movement" style="font-weight:600;">${p.meaning}</div>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--border);font-size:.78rem;color:var(--ink-muted);font-family:var(--font-serif);">«${p.evidence}»</div>
+    </div>`).join('')}</div>`;
+}
+
+/* ============================================================
+   عرض التحليل
+   ============================================================ */
 function renderAnalysis(mv){
   currentAnalysis=mv;
   const m=computeSemanticMetrics();
@@ -1216,6 +1641,17 @@ function renderAnalysis(mv){
   const thread=mv.contributions.length>=2
     ? `<strong>${first.ch}</strong> (${first.core.movement} — ${first.role.label}) ${mv.contributions.slice(1,-1).map(c=>`ثم <strong>${c.ch}</strong> (${c.core.movement} — ${c.role.label})`).join(' ')} ← <strong>${last.ch}</strong> (${last.core.movement} — ${last.role.label})`
     : mv.sentence;
+  const markersSection = (() => {
+    const chars=Array.from(mv.word);
+    const markers=[];
+    chars.forEach((ch,i)=>{ if(SPACETIME_MARKERS[ch]) markers.push({position:i,symbol:SPACETIME_MARKERS[ch].symbol,name:SPACETIME_MARKERS[ch].name,meaning:SPACETIME_MARKERS[ch].meaning}); });
+    if(markers.length===0) return '';
+    return `<div class="card">
+      <div class="card-title"><span class="icon">✒️</span> العلامات الزمكانية المُستنبَطة</div>
+      <div class="info-grid">${markers.map(m=>`<div class="info-cell"><div class="k">${m.name}</div><div class="v" style="font-size:1.4rem;">${m.symbol}</div><div style="font-size:.72rem;color:var(--ink-muted);margin-top:4px;">${m.meaning}</div></div>`).join('')}</div>
+    </div>`;
+  })();
+  const protectionBadge=mv.ks?`<div class="metric-card metric-support success"><div class="metric-header"><span class="metric-label">🛡️ الحماية الذاتية</span><span class="metric-value">✅ مُثبَّتة</span></div><div class="metric-detail">هذا التسلسل موثّق بنصّ صريح عند النيلي، ومحفوظ بحركته عبر القرون.</div></div>`:'';
   return `
     <div class="analysis-actions">
       <button class="action-btn primary" onclick="exportPDF()">🖨️ PDF</button>
@@ -1230,7 +1666,7 @@ function renderAnalysis(mv){
       ${mv.concept?`<div class="concept">المفهوم المنبثق: ${mv.concept}</div>`:''}
       ${mv.ks?`<div style="margin-top:10px;font-size:.82rem;color:#7A5A1A;font-weight:500;">📖 نصّ النيلي — ${mv.ks.source}${mv.ks.page?' ص '+mv.ks.page:''}</div>`:''}
       <div class="words-row">${mv.contributions.map(c=>`<span class="word-tag"><span class="tier-dot ${c.core.tier}"></span>${c.ch}<span class="role-mini ${c.role.cls}">${c.role.short}</span></span>`).join('')}</div>
-      ${mv.duplicates.length ? `<div class="duplicate-alert">🔁 <strong>تنبيه:</strong> التسلسل يحوي حرفًا مكررًا (${mv.duplicates.map(d=>`${d.ch} ×${d.count}`).join('، ')}) — لذلك التباديل الفريدة = <strong>${mv.uniquePermutations}</strong> (لا ${mv.permutations.length * (mv.duplicates[0]?.count || 1)}).</div>` : ''}
+      ${mv.duplicates.length ? `<div class="duplicate-alert">🔁 <strong>تنبيه:</strong> التسلسل يحوي حرفًا مكررًا (${mv.duplicates.map(d=>`${d.ch} ×${d.count}`).join('، ')}) — التباديل الفريدة = <strong>${mv.uniquePermutations}</strong>.</div>` : ''}
     </div>
     <div class="card">
       <div class="card-title"><span class="icon">🔧</span> التفكيك — مجموع الحركات</div>
@@ -1247,6 +1683,7 @@ function renderAnalysis(mv){
         <div class="info-cell"><div class="k">السرعة</div><div class="v">${sp}%</div></div>
       </div>
     </div>
+    ${markersSection}
     <div class="card">
       <div class="card-title"><span class="icon">🎯</span> البصمة البصرية — 5 محاور</div>
       <div class="radar-wrap">${renderRadar(mv.axes)}</div>
@@ -1257,10 +1694,9 @@ function renderAnalysis(mv){
         <div class="axis-cell"><span class="k">👁 الظهور</span><span class="v">${pct(mv.axes.visibility)}</span></div>
         <div class="axis-cell"><span class="k">⏳ الزمان</span><span class="v">${pct(mv.axes.time)}</span></div>
       </div>
-      <p class="card-sub" style="margin-top:12px;font-size:.78rem;">القيم مطبَّعة على [0%, 100%] من متوسط مرجّح على [-1, +1].</p>
     </div>
     <div class="card">
-      <div class="card-title"><span class="icon">⏱</span> خطّ الزمن — الأدوار الحركية <span class="tier-badge tier-green">🟢 القاعدة 2</span></div>
+      <div class="card-title"><span class="icon">⏱</span> خطّ الزمن — الأدوار الحركية</div>
       <div class="roles-legend"><span class="rl-1">🟢 منشأ</span><span class="rl-2">🔵 توجيه</span><span class="rl-3">🟡 ضبط</span><span class="rl-4">🟣 نتيجة</span></div>
       <div class="timeline">${timeline}</div>
       <div class="role-flow">${rf}</div>
@@ -1283,7 +1719,7 @@ function renderAnalysis(mv){
         </div>
       </div>
     </div>
-    ${mv.permutations.length>1?`<div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل — القاعدة 6 ${mv.duplicates.length?`<span class="tier-badge tier-yellow">🔁 ${mv.uniquePermutations} فريدة</span>`:''}</div>${mv.duplicates.length?`<p class="card-sub">يوجد تكرار في الحروف، لذا التباديل الفريدة = <strong>${mv.uniquePermutations}</strong> فقط.</p>`:''}<div class="perm-grid">${permCards}</div></div>`:''}
+    ${mv.permutations.length>1?`<div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل — القاعدة 6 ${mv.duplicates.length?`<span class="tier-badge tier-yellow">🔁 ${mv.uniquePermutations} فريدة</span>`:''}</div><div class="perm-grid">${permCards}</div></div>`:''}
     <div class="card">
       <div class="card-title"><span class="icon">🔍</span> النقد الدلالي — هل يوافق المعجم الحركة؟</div>
       <div class="metric-card" style="background:var(--gold-soft);border-color:var(--gold);">
@@ -1297,17 +1733,8 @@ function renderAnalysis(mv){
         <div class="details-content">${m.M_partial.perDictionary.map(d=>`<div class="dict-row"><span class="dict-name">${d.name}</span><span><span class="dict-score">${Math.round(d.weight*100)}%</span><span class="mini-bar"><span class="mini-bar-fill" style="width:${d.weight*100}%;"></span></span></span></div>`).join('')}</div>
       </div>
       <div class="metric-card metric-support ${m.M_support.success?'success':'warn'}"><div class="metric-header"><span class="metric-label">③ التأييد الدلالي</span><span class="metric-value">${m.M_support.success?'✅ ':'⚠️ '}${m.M_support.level}</span></div><div class="metric-detail"><strong>${m.M_support.supporterCount} من ${m.M_support.totalCount}</strong> معاجم تدعم الحركة.</div>${m.M_support.success?`<div class="metric-hint highlight">🎯 الخلاصة: الحركة مدعومة لغويًّا.</div>`:''}</div>
-      ${mv.ks?`<div class="card niu-card" style="margin-top:12px;"><div class="card-title"><span class="icon">📖</span> نصّ النيلي الموثّق <span class="tier-badge tier-green">🟢 منصوص</span></div><p>${mv.ks.text}</p>${mv.ks.meaning?`<p style="font-size:.9rem;color:#5A4210;margin-top:6px;">${mv.ks.meaning}</p>`:''}<p style="font-size:.85rem;color:#7A5A1A;margin-top:8px;">— ${mv.ks.source}${mv.ks.page?'، ص '+mv.ks.page:''}</p></div>`:''}
-      <div class="info-box" style="margin-top:12px;">«وقد يخالف المعجم إذا وجده غير جامع للأصل المشترك».</div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="icon">📖</span> شروط الوجود — اللفظ المجرّد</div>
-      <div style="background:var(--bg-soft);padding:12px;border-radius:var(--radius-sm);font-size:.88rem;line-height:1.85;">
-        للتحقق الدقيق، أضف التشكيل:<br>
-        • <strong>الفتحة</strong> = زمكان (معاين)<br>
-        • <strong>الضمة</strong> = مكان<br>
-        • <strong>الكسرة</strong> = زمان
-      </div>
+      ${protectionBadge}
+      ${mv.ks?`<div class="card niu-card" style="margin-top:12px;"><div class="card-title"><span class="icon">📖</span> نصّ النيلي الموثّق</div><p>${mv.ks.text}</p>${mv.ks.meaning?`<p style="font-size:.9rem;color:#5A4210;margin-top:6px;">${mv.ks.meaning}</p>`:''}<p style="font-size:.85rem;color:#7A5A1A;margin-top:8px;">— ${mv.ks.source}${mv.ks.page?'، ص '+mv.ks.page:''}</p></div>`:''}
     </div>
     <div class="card" id="api-section">
       <div class="card-title"><span class="icon">🌐</span> المعاني اللغوية</div>
@@ -1383,7 +1810,7 @@ function renderRoot(word){
       <button class="action-btn" onclick="exportRootCSV()">📊 CSV</button>
       <button class="action-btn" onclick="exportRootJSON()">📥 JSON</button>
     </div>
-    <div class="card"><div class="card-title"><span class="icon">🌳</span> الجذر المستخرج <span class="tier-badge tier-green">🟢 القاعدة 2</span></div><div class="root-letters">${rc}</div><p class="card-sub" style="text-align:center;">الحركة الجذرية: <strong style="color:var(--navy);font-family:var(--font-serif);">${mv.sentence}</strong></p></div>
+    <div class="card"><div class="card-title"><span class="icon">🌳</span> الجذر المستخرج</div><div class="root-letters">${rc}</div><p class="card-sub" style="text-align:center;">الحركة الجذرية: <strong style="color:var(--navy);font-family:var(--font-serif);">${mv.sentence}</strong></p></div>
     <div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل</div><div class="perm-grid">${mv.permutations.slice(0,24).map(p=>{ const pw=p.join(''), io=pw===mv.word; return `<div class="perm-card ${io?'original':''}">${io?'<span class="perm-badge">★</span>':''}<div class="perm-word">${pw}</div><div class="perm-movement">${p.map(ch=>CORE[ch].movement).join(' ← ')}</div></div>`; }).join('')}</div></div>
     <div class="card"><div class="card-title"><span class="icon">📚</span> الاشتقاق (${ds.length} وزنًا)</div><div class="deriv-tabs"><span class="deriv-tab active" data-filter="all">الكل</span><span class="deriv-tab" data-filter="mujarrad">🟢 مجرد</span><span class="deriv-tab" data-filter="mazid">🟡 مزيد</span><span class="deriv-tab" data-filter="mazid2">🟣 ثلاثي</span></div><div class="deriv-grid">${dc}</div></div>`;
   out.querySelectorAll('.deriv-tab').forEach(t=>t.addEventListener('click',()=>{ out.querySelectorAll('.deriv-tab').forEach(x=>x.classList.remove('active')); t.classList.add('active'); out.querySelectorAll('.deriv-card').forEach(card=>{ card.style.display=(t.dataset.filter==='all'||card.dataset.kind===t.dataset.filter)?'':'none'; }); }));
@@ -1403,7 +1830,7 @@ function exportPDF(){ showToast('🖨️ جاري التحضير...'); setTimeou
 function downloadFile(content,filename,mime){ const b=new Blob([content],{type:mime}), u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u); }
 function exportJSON(){
   if(!currentAnalysis){ showToast('⚠️ لا تحليل'); return; }
-  const d={word:currentAnalysis.word,letters:currentAnalysis.letters,sentence:currentAnalysis.sentence,concept:currentAnalysis.concept,speed:currentAnalysis.speed,baseSpeed:currentAnalysis.baseSpeed,finalFactor:currentAnalysis.finalFactor,axes:currentAnalysis.axes,duplicates:currentAnalysis.duplicates,uniquePermutations:currentAnalysis.uniquePermutations,contributions:currentAnalysis.contributions.map(c=>({letter:c.ch,movement:c.core.movement,role:c.role.label,tier:c.core.tier,speed:c.core.speed,weight:c.weight})),ks:currentAnalysis.ks,permutations:currentAnalysis.permutations.map(p=>p.join('')),exportedAt:new Date().toISOString(),version:'v2.7.3'};
+  const d={word:currentAnalysis.word,letters:currentAnalysis.letters,sentence:currentAnalysis.sentence,concept:currentAnalysis.concept,speed:currentAnalysis.speed,baseSpeed:currentAnalysis.baseSpeed,finalFactor:currentAnalysis.finalFactor,axes:currentAnalysis.axes,duplicates:currentAnalysis.duplicates,uniquePermutations:currentAnalysis.uniquePermutations,contributions:currentAnalysis.contributions.map(c=>({letter:c.ch,movement:c.core.movement,role:c.role.label,tier:c.core.tier,speed:c.core.speed,weight:c.weight})),ks:currentAnalysis.ks,permutations:currentAnalysis.permutations.map(p=>p.join('')),exportedAt:new Date().toISOString(),version:'v3.0.0'};
   downloadFile(JSON.stringify(d,null,2),`${currentAnalysis.word}-analysis.json`,'application/json;charset=utf-8');
   showToast('✅ تم');
 }
@@ -1447,6 +1874,12 @@ function showScreen(name){
   if(name==='history') renderHistory();
   if(name==='stats'){ renderPersonalStats(); renderHeatmap(); renderCalendar(); renderRecommendations(); initSphereOnce(); }
   if(name==='compare') renderMultiSelect();
+  if(name==='manifestations'){ renderManifestations(); renderMarkers(); }
+  if(name==='doors') renderDoors();
+  if(name==='groups'){ renderGroups(); renderNumbers(); renderApparatus(); }
+  if(name==='translation') renderTranslation();
+  if(name==='protection') renderProtection();
+  if(name==='particles') renderParticles();
 }
 document.getElementById('analyze-btn').addEventListener('click',async()=>{ const w=document.getElementById('word-input').value.trim(); if(w) await analyze(w); });
 document.getElementById('word-input').addEventListener('keydown',async e=>{ if(e.key==='Enter'){ e.preventDefault(); const w=e.target.value.trim(); if(w) await analyze(w); } });
@@ -1513,7 +1946,7 @@ function renderRules(){
 }
 function renderVerifiedExamples(){
   const el=document.getElementById('verified-examples'); if(!el) return;
-  const list=Object.entries(KS).slice(0,6);
+  const list=Object.entries(KS).slice(0,8);
   el.innerHTML=list.map(([word,data])=>{
     const mv=extractMovement(word);
     return `<div class="card" style="margin-bottom:10px;padding:14px;">
@@ -1569,6 +2002,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     renderLetters();
     renderRules();
     renderVerifiedExamples();
+    renderManifestations();
+    renderMarkers();
+    renderDoors();
+    renderGroups();
+    renderNumbers();
+    renderApparatus();
+    renderTranslation();
+    renderProtection();
+    renderParticles();
     updateHistoryBadge();
     renderMultiSelect();
     renderPersonalStats();
@@ -1579,7 +2021,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const hasWord=handleURLParams();
     if(!hasWord){ const h=(location.hash||'#home').replace('#','')||'home'; showScreen(h); }
     window.addEventListener('hashchange',()=>{ const s=(location.hash||'#home').replace('#','')||'home'; showScreen(s); });
-    console.log('✅ v2.7.3 جاهز — مع Service Worker');
+    console.log('✅ v3.0.0 جاهز — 14 حرفًا منصوصًا · 28 صوتًا · 9 قواعد');
   }catch(e){ console.error('init',e); }
 });
 </script>
