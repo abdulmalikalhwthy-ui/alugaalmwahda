@@ -8,9 +8,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="الحركة العامة">
 <meta name="description" content="استخراج الحركة العامة لأي تسلسل صوتي وفق منهج عالم سبيط النيلي">
-<title>الحركة العامة — اللغة الموحدة v2.7.2</title>
+<title>الحركة العامة — اللغة الموحدة v2.7.3</title>
 
-<!-- PWA Manifest — ملف حقيقي -->
+<!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjMUUyQTVBIi8+PHRleHQgeD0iOTYiIHk9IjEzMCIgZm9udC1zaXplPSIxMTAiIGZvbnQtZmFtaWx5PSJBbWlyaSxzZXJpZiIgZmlsbD0iI0M5QTk2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K08L3RleHQ+PC9zdmc+">
@@ -412,7 +412,7 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 
 <header class="topbar">
   <div class="topbar-inner">
-    <h1>الحركة العامة <span class="version">v2.7.2</span></h1>
+    <h1>الحركة العامة <span class="version">v2.7.3</span></h1>
     <div class="topbar-actions">
       <button class="icon-btn" id="install-btn" title="تثبيت" style="display:none;">📲</button>
       <button class="icon-btn" id="share-btn" title="مشاركة">🔗</button>
@@ -594,7 +594,7 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 </main>
 
 <footer class="footer">
-  <div>اللغة الموحدة — v2.7.2</div>
+  <div>اللغة الموحدة — v2.7.3</div>
   <div style="margin-top:6px;">منهج المرحوم عالم سبيط النيلي · 28 صوتًا · 9 قواعد · 15 وزنًا صرفيًا</div>
   <div style="margin-top:6px;opacity:.7;">«لا اختراع · لا حذف · الأمانة · الترتيب مولّد المعنى»</div>
 </footer>
@@ -616,6 +616,17 @@ input,textarea,select{font-family:inherit;font-size:1rem}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
+/* ============================================================
+   [v2.7.3] تسجيل Service Worker — يُصلح آخر خطأين في PWABuilder
+   ============================================================ */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+      .catch(err => console.warn('⚠️ SW registration failed:', err));
+  });
+}
+
 /* ============================================================
    Helpers آمنة
    ============================================================ */
@@ -878,9 +889,7 @@ function pct(v){ return Math.round((v+1)*50)+'%'; }
 
 let currentAnalysis=null, currentDerivations=null, currentRootLetters=null;
 
-/* ============================================================
-   PWA Install
-   ============================================================ */
+/* PWA Install */
 let deferredInstallPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstallPrompt=e; document.getElementById('install-btn').style.display='flex'; });
 window.addEventListener('appinstalled',()=>{ deferredInstallPrompt=null; document.getElementById('install-btn').style.display='none'; showToast('✅ تم التثبيت'); });
@@ -981,7 +990,7 @@ function renderHistory(){
 document.getElementById('history-clear-btn')?.addEventListener('click', clearHistory);
 document.getElementById('history-export-btn')?.addEventListener('click',()=>{
   const h=loadHistory(); if(h.length===0){ showToast('⚠️ السجل فارغ'); return; }
-  const data={history:h.map(x=>({word:x.word,sentence:x.sentence,letters:x.letters,speed:x.speed,timestamp:new Date(x.timestamp).toISOString()})),exportedAt:new Date().toISOString(),version:'v2.7.2'};
+  const data={history:h.map(x=>({word:x.word,sentence:x.sentence,letters:x.letters,speed:x.speed,timestamp:new Date(x.timestamp).toISOString()})),exportedAt:new Date().toISOString(),version:'v2.7.3'};
   downloadFile(JSON.stringify(data,null,2),`lum-history-${Date.now()}.json`,'application/json;charset=utf-8');
   showToast('✅ تم التصدير');
 });
@@ -1394,7 +1403,7 @@ function exportPDF(){ showToast('🖨️ جاري التحضير...'); setTimeou
 function downloadFile(content,filename,mime){ const b=new Blob([content],{type:mime}), u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u); }
 function exportJSON(){
   if(!currentAnalysis){ showToast('⚠️ لا تحليل'); return; }
-  const d={word:currentAnalysis.word,letters:currentAnalysis.letters,sentence:currentAnalysis.sentence,concept:currentAnalysis.concept,speed:currentAnalysis.speed,baseSpeed:currentAnalysis.baseSpeed,finalFactor:currentAnalysis.finalFactor,axes:currentAnalysis.axes,duplicates:currentAnalysis.duplicates,uniquePermutations:currentAnalysis.uniquePermutations,contributions:currentAnalysis.contributions.map(c=>({letter:c.ch,movement:c.core.movement,role:c.role.label,tier:c.core.tier,speed:c.core.speed,weight:c.weight})),ks:currentAnalysis.ks,permutations:currentAnalysis.permutations.map(p=>p.join('')),exportedAt:new Date().toISOString(),version:'v2.7.2'};
+  const d={word:currentAnalysis.word,letters:currentAnalysis.letters,sentence:currentAnalysis.sentence,concept:currentAnalysis.concept,speed:currentAnalysis.speed,baseSpeed:currentAnalysis.baseSpeed,finalFactor:currentAnalysis.finalFactor,axes:currentAnalysis.axes,duplicates:currentAnalysis.duplicates,uniquePermutations:currentAnalysis.uniquePermutations,contributions:currentAnalysis.contributions.map(c=>({letter:c.ch,movement:c.core.movement,role:c.role.label,tier:c.core.tier,speed:c.core.speed,weight:c.weight})),ks:currentAnalysis.ks,permutations:currentAnalysis.permutations.map(p=>p.join('')),exportedAt:new Date().toISOString(),version:'v2.7.3'};
   downloadFile(JSON.stringify(d,null,2),`${currentAnalysis.word}-analysis.json`,'application/json;charset=utf-8');
   showToast('✅ تم');
 }
@@ -1570,8 +1579,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const hasWord=handleURLParams();
     if(!hasWord){ const h=(location.hash||'#home').replace('#','')||'home'; showScreen(h); }
     window.addEventListener('hashchange',()=>{ const s=(location.hash||'#home').replace('#','')||'home'; showScreen(s); });
-    console.log('✅ v2.7.2 جاهز');
-    console.log('🔧 manifest.json حقيقي (يعمل مع PWABuilder)');
+    console.log('✅ v2.7.3 جاهز — مع Service Worker');
   }catch(e){ console.error('init',e); }
 });
 </script>
