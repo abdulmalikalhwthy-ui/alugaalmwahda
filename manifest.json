@@ -1,4 +1,5 @@
 {
+  "id": "/",
   "name": "الحركة العامة — اللغة الموحدة",
   "short_name": "الحركة العامة",
   "description": "استخراج الحركة العامة لأي تسلسل صوتي وفق منهج عالم سبيط النيلي",
@@ -13,19 +14,19 @@
   "categories": ["education", "books", "productivity"],
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
+      "src": "/icon-256.png",
+      "sizes": "256x256",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icon-512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icon-512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
