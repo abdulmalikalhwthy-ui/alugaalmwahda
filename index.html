@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1E2A5A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="الحركة العامة">
+<title>الحركة العامة — اللغة الموحدة v2.7.1</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjMUUyQTVBIi8+PHRleHQgeD0iOTYiIHk9IjEzMCIgZm9udC1zaXplPSIxMTAiIGZvbnQtZmFtaWx5PSJBbWlyaSxzZXJpZiIgZmlsbD0iI0M5QTk2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K08L3RleHQ+PC9zdmc+">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FAFAF5; --bg-soft:#F4F4EC; --bg-elev:#FFF; --card:#FFF; --ink:#1A1A1A;
+  --ink-soft:#4B5563; --ink-muted:#6B7280; --border:#E5E7EB;
+  --navy:#1E2A5A; --navy-soft:#2F3F7A; --gold:#C9A961; --gold-soft:#F4E9CF;
+  --green:#10B981; --green-soft:#F0FDF4; --yellow:#F59E0B; --yellow-soft:#FFFBEB;
+  --purple:#8B5CF6; --purple-soft:#F5F3FF; --red:#DC2626; --red-soft:#FEF2F2;
+  --blue:#2563EB; --blue-soft:#EFF6FF; --teal:#0D9488; --teal-soft:#F0FDFA;
+  --shadow:0 2px 12px rgba(30,42,90,.06); --shadow-lg:0 8px 28px rgba(30,42,90,.10);
+  --radius:14px; --radius-sm:8px;
+  --font:"Tajawal",system-ui,sans-serif; --font-serif:"Amiri","Traditional Arabic",serif;
+}
+[data-theme="dark"]{
+  --bg:#0F1419; --bg-soft:#1A2029; --bg-elev:#1E252F; --card:#1A2029; --ink:#E8EAED;
+  --ink-soft:#B8BDC7; --ink-muted:#8B92A0; --border:#2D3640;
+  --navy:#7BA3E8; --navy-soft:#5A82C7; --gold:#E0B86B; --gold-soft:#2A2418;
+  --green:#34D399; --green-soft:#0F2A20; --yellow:#FBBF24; --yellow-soft:#2A2110;
+  --purple:#A78BFA; --purple-soft:#1F1835; --red:#F87171; --red-soft:#2D1414;
+  --blue:#60A5FA; --blue-soft:#0F1F33; --teal:#2DD4BF; --teal-soft:#0E2622;
+  --shadow:0 2px 12px rgba(0,0,0,.35); --shadow-lg:0 8px 28px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s,color .3s}
+body{padding-bottom:60px;padding-top:env(safe-area-inset-top)}
+a{color:var(--navy);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit;font-size:1rem}
+
+.topbar{background:var(--navy);color:#fff;padding:14px 18px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+.topbar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar h1{font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:6px}
+.topbar .version{font-size:.7rem;background:rgba(255,255,255,.18);padding:2px 8px;border-radius:10px;font-weight:400}
+.topbar-actions{display:flex;gap:8px}
+.icon-btn{background:rgba(255,255,255,.12);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s}
+.icon-btn:hover{background:rgba(255,255,255,.25);transform:scale(1.05)}
+
+.nav{background:var(--navy-soft);position:sticky;top:54px;z-index:99;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;padding:0 12px;white-space:nowrap}
+.nav a{color:rgba(255,255,255,.75);padding:12px 16px;font-size:.9rem;font-weight:500;border-bottom:3px solid transparent;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.nav a:hover{color:#fff;text-decoration:none}
+.nav a.active{color:#fff;border-bottom-color:var(--gold);font-weight:700}
+.nav a .badge{background:var(--gold);color:#1A1A1A;font-size:.62rem;font-weight:700;padding:1px 6px;border-radius:8px}
+
+.container{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+.screen{display:none;animation:fadeIn .25s ease-out}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card-title{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:12px;flex-wrap:wrap}
+.card-title .icon{font-size:1.2rem}
+.card-sub{color:var(--ink-muted);font-size:.88rem;margin-bottom:14px;line-height:1.7}
+
+.tier-badge{display:inline-block;padding:1px 7px;border-radius:8px;font-size:.7rem;font-weight:600;margin-inline-start:4px;vertical-align:middle}
+.tier-green{background:var(--green-soft);color:#047857;border:1px solid #A7F3D0}
+.tier-yellow{background:var(--yellow-soft);color:#B45309;border:1px solid #FCD34D}
+.tier-purple{background:var(--purple-soft);color:#6D28D9;border:1px solid #C4B5FD}
+[data-theme="dark"] .tier-green{background:#0F2A20;color:#34D399;border-color:#1E5A3E}
+[data-theme="dark"] .tier-yellow{background:#2A2110;color:#FBBF24;border-color:#7A5A1A}
+[data-theme="dark"] .tier-purple{background:#1F1835;color:#A78BFA;border-color:#4A3A7A}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);color:#fff;padding:24px 20px;border-radius:var(--radius);margin-bottom:18px;box-shadow:var(--shadow-lg)}
+.hero h2{font-size:1.35rem;margin-bottom:8px;font-weight:700}
+.hero p{font-size:.9rem;opacity:.92;line-height:1.85}
+.hero .quote{margin-top:12px;padding:10px 14px;background:rgba(255,255,255,.10);border-inline-start:3px solid var(--gold);border-radius:var(--radius-sm);font-family:var(--font-serif);font-size:.95rem;font-style:italic}
+
+.input-row{display:flex;gap:10px;margin-bottom:14px}
+.input-row input{flex:1;padding:14px 16px;border:2px solid var(--navy);border-radius:var(--radius);font-size:1.15rem;background:var(--card);transition:all .2s;font-family:var(--font-serif);text-align:center;font-weight:700;color:var(--ink)}
+.input-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+.btn-primary{background:var(--navy);color:#fff;padding:14px 28px;border-radius:var(--radius);font-size:1rem;font-weight:700;transition:all .2s}
+.btn-primary:hover{background:var(--navy-soft);transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.btn-secondary{background:var(--bg-soft);color:var(--ink);padding:8px 16px;border-radius:var(--radius-sm);font-size:.85rem;border:1px solid var(--border);font-weight:500}
+.btn-secondary:hover{background:var(--bg-elev)}
+
+.analysis-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;padding:10px 12px;background:var(--bg-soft);border-radius:var(--radius);border:1px solid var(--border)}
+.action-btn{background:var(--card);border:1px solid var(--border);padding:8px 14px;border-radius:20px;font-size:.85rem;font-weight:700;color:var(--navy);transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.action-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.action-btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+.examples-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.example-chip{background:var(--gold-soft);color:#7A5A1A;padding:6px 16px;border-radius:20px;font-size:.92rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:var(--font-serif);border:1px solid transparent}
+.example-chip:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+.movement-main{background:var(--gold-soft);border:2px solid var(--gold);border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:16px}
+.movement-main .label{color:#7A5A1A;font-size:.82rem;font-weight:700;margin-bottom:6px}
+.movement-main .value{font-size:1.6rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);line-height:1.6}
+.movement-main .concept{display:inline-block;background:var(--card);padding:6px 14px;border-radius:20px;font-size:.9rem;font-family:var(--font-serif);font-weight:700;color:var(--navy);margin-top:10px}
+.words-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.word-tag{background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:20px;font-size:.95rem;font-weight:700;font-family:var(--font-serif);color:var(--navy);display:inline-flex;align-items:center;gap:4px}
+.word-tag .role-mini{font-size:.62rem;font-weight:600;padding:1px 6px;border-radius:8px}
+.tier-dot{display:inline-block;width:7px;height:7px;border-radius:50%}
+.tier-dot.green{background:var(--green)} .tier-dot.yellow{background:var(--yellow)} .tier-dot.purple{background:var(--purple)}
+
+.role-mini.r1{background:#DCFCE7;color:#166534;border:1px solid #86EFAC}
+.role-mini.r2{background:#DBEAFE;color:#1E40AF;border:1px solid #93C5FD}
+.role-mini.r3{background:#FEF3C7;color:#B45309;border:1px solid #FCD34D}
+.role-mini.r4{background:#EDE9FE;color:#5B21B6;border:1px solid #C4B5FD}
+[data-theme="dark"] .role-mini.r1{background:#0F2A20;color:#34D399;border-color:#1E5A3E}
+[data-theme="dark"] .role-mini.r2{background:#0F1F33;color:#60A5FA;border-color:#2D4A7A}
+[data-theme="dark"] .role-mini.r3{background:#2A2110;color:#FBBF24;border-color:#7A5A1A}
+[data-theme="dark"] .role-mini.r4{background:#1F1835;color:#A78BFA;border-color:#4A3A7A}
+
+.duplicate-alert{margin-top:14px;padding:12px 14px;background:var(--yellow-soft);border:1px solid var(--yellow);border-radius:var(--radius-sm);font-size:.85rem;color:#92400E;text-align:start;line-height:1.7}
+[data-theme="dark"] .duplicate-alert{background:#2A2110;border-color:#7A5A1A;color:#FBBF24}
+
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.info-cell{background:var(--bg-soft);padding:12px;border-radius:var(--radius-sm);text-align:center;border:1px solid var(--border)}
+.info-cell .k{font-size:.75rem;color:var(--ink-muted);margin-bottom:4px}
+.info-cell .v{font-size:1.15rem;font-weight:700;color:var(--navy);font-family:var(--font-serif)}
+.info-cell .dup-note{font-size:.65rem;color:var(--yellow);font-weight:700;margin-top:3px}
+
+.metric-card{padding:14px 16px;border-radius:var(--radius);margin-bottom:10px;border:1px solid var(--border);background:var(--bg-soft)}
+.metric-partial{background:var(--blue-soft);border-color:#BFDBFE}
+.metric-support.success{background:var(--green-soft);border-color:#BBF7D0}
+.metric-support.warn{background:var(--yellow-soft);border-color:#FCD34D}
+.metric-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.metric-label{font-weight:700;font-size:.92rem;color:var(--navy)}
+.metric-value{font-size:1.2rem;font-weight:700;color:var(--navy);font-family:var(--font-serif)}
+.metric-detail{font-size:.85rem;color:var(--ink-soft);line-height:1.7}
+.metric-hint{font-size:.82rem;color:var(--ink-muted);margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);line-height:1.75}
+.metric-hint.highlight{color:#065F46;font-weight:500}
+.details-toggle{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-top:10px;cursor:pointer;font-size:.88rem;font-weight:700;color:var(--navy);display:flex;justify-content:space-between;align-items:center;width:100%;text-align:start}
+.details-content{display:none;padding:12px 14px;background:var(--bg-elev);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius-sm) var(--radius-sm)}
+.details-content.open{display:block}
+.dict-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:.88rem;gap:10px}
+.dict-row:last-child{border-bottom:none}
+.dict-name{color:var(--ink-soft);flex:1;min-width:0}
+.dict-score{font-weight:700;color:var(--navy)}
+.mini-bar{display:inline-block;width:60px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-inline-start:8px;vertical-align:middle}
+.mini-bar-fill{height:100%;background:var(--navy);border-radius:3px}
+
+.radar-wrap{display:flex;justify-content:center;padding:16px 0;background:var(--bg-soft);border-radius:var(--radius);margin-bottom:12px}
+.radar-svg{max-width:340px;width:100%;height:auto}
+.axes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:10px}
+.axis-cell{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg-soft);border-radius:var(--radius-sm);font-size:.85rem;border:1px solid var(--border)}
+.axis-cell .k{color:var(--ink-muted);font-weight:500}
+.axis-cell .v{color:var(--navy);font-weight:700;font-family:var(--font-serif)}
+
+.roles-legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px;font-size:.78rem}
+.roles-legend span{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:12px;font-weight:600}
+.roles-legend .rl-1{background:#DCFCE7;color:#166534}
+.roles-legend .rl-2{background:#DBEAFE;color:#1E40AF}
+.roles-legend .rl-3{background:#FEF3C7;color:#B45309}
+.roles-legend .rl-4{background:#EDE9FE;color:#5B21B6}
+[data-theme="dark"] .roles-legend .rl-1{background:#0F2A20;color:#34D399}
+[data-theme="dark"] .roles-legend .rl-2{background:#0F1F33;color:#60A5FA}
+[data-theme="dark"] .roles-legend .rl-3{background:#2A2110;color:#FBBF24}
+[data-theme="dark"] .roles-legend .rl-4{background:#1F1835;color:#A78BFA}
+
+.timeline{display:flex;align-items:flex-start;justify-content:center;gap:0;flex-wrap:wrap;padding-top:26px}
+.tl-node-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+.tl-role-badge{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:8px;white-space:nowrap}
+.tl-node{background:var(--blue-soft);border:2px solid #93C5FD;border-radius:var(--radius);padding:14px 18px;text-align:center;min-width:120px}
+.tl-node.role-1{background:#F0FDF4;border-color:#86EFAC}
+.tl-node.role-2{background:#EFF6FF;border-color:#93C5FD}
+.tl-node.role-3{background:#FFFBEB;border-color:#FCD34D}
+.tl-node.role-4{background:#F5F3FF;border-color:#C4B5FD}
+[data-theme="dark"] .tl-node.role-1{background:#0F2A20;border-color:#1E5A3E}
+[data-theme="dark"] .tl-node.role-2{background:#0F1F33;border-color:#2D4A7A}
+[data-theme="dark"] .tl-node.role-3{background:#2A2110;border-color:#7A5A1A}
+[data-theme="dark"] .tl-node.role-4{background:#1F1835;border-color:#4A3A7A}
+.tl-char{font-size:1.8rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);margin-bottom:4px}
+[data-theme="dark"] .tl-char{color:#7BA3E8}
+.tl-label{font-size:.78rem;color:var(--ink-soft);line-height:1.5}
+.tl-arrow{color:var(--gold);font-size:1.4rem;padding:6px 8px 0}
+.role-flow{display:flex;gap:2px;margin-top:12px;border-radius:var(--radius-sm);overflow:hidden;height:10px}
+.role-flow-seg{flex:1}
+.role-flow-seg.r1{background:var(--green)} .role-flow-seg.r2{background:var(--blue)} .role-flow-seg.r3{background:var(--gold)} .role-flow-seg.r4{background:var(--purple)}
+.role-flow-labels{display:flex;justify-content:space-between;font-size:.7rem;color:var(--ink-muted);margin-top:6px;font-weight:600}
+
+.speed-bar-wrap{background:var(--bg-soft);border-radius:var(--radius);padding:18px 16px;margin-bottom:12px}
+.speed-label-row{display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-muted);margin-bottom:8px}
+.speed-bar{height:14px;background:linear-gradient(90deg,var(--purple) 0%,var(--gold) 50%,var(--red) 100%);border-radius:7px;position:relative;margin-bottom:12px}
+.speed-marker{position:absolute;top:-4px;width:22px;height:22px;background:#fff;border:3px solid var(--navy);border-radius:50%;transform:translateX(-50%);box-shadow:var(--shadow);transition:left .5s ease-out}
+.speed-value{text-align:center;font-size:1.4rem;font-weight:700;color:var(--navy);font-family:var(--font-serif)}
+.speed-verdict{text-align:center;font-size:.9rem;color:var(--ink-soft);margin-top:4px}
+.speed-detail{margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);font-size:.85rem}
+.speed-detail .row{display:flex;justify-content:space-between;padding:5px 0;color:var(--ink-soft);flex-wrap:wrap;gap:8px}
+.speed-detail .row.total{border-top:1px solid var(--border);margin-top:6px;padding-top:8px;font-weight:700;color:var(--navy)}
+.speed-detail .formula{background:var(--bg-elev);padding:10px;border-radius:var(--radius-sm);margin-top:8px;font-family:monospace;font-size:.8rem;color:var(--ink-soft);direction:ltr;text-align:center}
+
+.perm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.perm-card{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.perm-word{font-size:1.5rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);text-align:center;margin-bottom:8px}
+.perm-movement{font-size:.85rem;color:var(--ink-soft);line-height:1.75;text-align:center}
+.perm-card.original{border-color:var(--gold);background:var(--gold-soft);box-shadow:var(--shadow)}
+.perm-badge{display:block;text-align:center;font-size:.72rem;color:#7A5A1A;font-weight:700;margin-bottom:6px}
+
+.root-letters{display:flex;justify-content:center;gap:20px;padding:24px 16px;background:var(--gold-soft);border-radius:var(--radius);margin-bottom:16px;flex-wrap:wrap}
+.root-letter{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:90px}
+.root-letter .glyph{width:72px;height:72px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:700;font-family:var(--font-serif);box-shadow:var(--shadow-lg)}
+.root-letter .role{font-size:.72rem;font-weight:700;text-align:center;padding:3px 8px;border-radius:10px}
+.root-letter .label{font-size:.8rem;color:var(--navy);font-weight:500;text-align:center;max-width:110px;font-family:var(--font-serif)}
+.root-letter[data-role="1"] .role{background:#DCFCE7;color:#166534}
+.root-letter[data-role="2"] .role{background:#DBEAFE;color:#1E40AF}
+.root-letter[data-role="3"] .role{background:#FEF3C7;color:#B45309}
+[data-theme="dark"] .root-letter[data-role="1"] .role{background:#0F2A20;color:#34D399}
+[data-theme="dark"] .root-letter[data-role="2"] .role{background:#0F1F33;color:#60A5FA}
+[data-theme="dark"] .root-letter[data-role="3"] .role{background:#2A2110;color:#FBBF24}
+
+.deriv-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.deriv-tab{background:var(--bg-soft);border:1px solid var(--border);padding:6px 14px;border-radius:20px;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink-soft)}
+.deriv-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.deriv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.deriv-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-top:3px solid var(--navy);position:relative}
+.deriv-card.mizid{border-top-color:var(--gold)}
+.deriv-card.mujarrad{border-top-color:var(--green)}
+.deriv-card.mazid2{border-top-color:var(--purple)}
+.deriv-wikt-btn{position:absolute;top:10px;left:10px;background:var(--bg-soft);border:1px solid var(--border);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer}
+.deriv-wikt-content{margin-top:8px;padding:8px 10px;background:var(--teal-soft);border:1px solid #99F6E4;border-radius:var(--radius-sm);font-size:.78rem;line-height:1.7;color:#0F766E;display:none}
+.deriv-wikt-content.show{display:block}
+.deriv-weight{font-size:.72rem;color:var(--ink-muted);font-weight:700;margin-bottom:4px;font-family:var(--font-serif);text-align:center;letter-spacing:1px}
+.deriv-word{font-size:1.7rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);text-align:center;margin-bottom:8px}
+.deriv-effect{font-size:.78rem;color:var(--ink-soft);text-align:center;padding:6px 10px;background:var(--bg-soft);border-radius:var(--radius-sm);margin-bottom:10px}
+.deriv-added{display:flex;justify-content:center;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.deriv-added .zawaid{background:var(--yellow-soft);border:1px solid #FCD34D;color:#B45309;padding:2px 8px;border-radius:12px;font-size:.7rem;font-weight:700;font-family:var(--font-serif)}
+.deriv-movement{font-size:.82rem;color:var(--ink-soft);line-height:1.7;padding-top:10px;border-top:1px dashed var(--border);text-align:center}
+.deriv-movement strong{color:var(--navy);display:block;font-size:.85rem;margin-bottom:4px}
+.deriv-movement .mv-text{font-family:var(--font-serif);font-size:.92rem;color:var(--navy);font-weight:500}
+
+.letters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.letter-cell{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:14px 8px;text-align:center;cursor:pointer;transition:all .2s}
+.letter-cell:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--navy)}
+.letter-cell .glyph{font-size:2.2rem;font-weight:700;font-family:var(--font-serif);color:var(--navy);margin-bottom:4px}
+.letter-cell .movement{font-size:.72rem;color:var(--ink-muted);line-height:1.4}
+.letter-cell[data-tier="green"]{border-inline-start:4px solid var(--green)}
+.letter-cell[data-tier="yellow"]{border-inline-start:4px solid var(--yellow)}
+.letter-cell[data-tier="purple"]{border-inline-start:4px solid var(--purple)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;font-size:.85rem}
+.legend span{display:flex;align-items:center;gap:5px;color:var(--ink-soft)}
+.legend .dot{width:10px;height:10px;border-radius:50%}
+
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:600px){.compare-row{grid-template-columns:1fr}}
+.compare-input{padding:12px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:1.15rem;font-family:var(--font-serif);text-align:center;width:100%;background:var(--card);font-weight:700;color:var(--ink)}
+.compare-result{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.compare-result{grid-template-columns:1fr}}
+.compare-col{background:var(--bg-soft);border-radius:var(--radius);padding:14px;border:1px solid var(--border)}
+.compare-col h4{font-size:1.4rem;color:var(--navy);font-family:var(--font-serif);text-align:center;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.compare-movement{font-size:1rem;line-height:1.8;color:var(--ink-soft);text-align:center;font-family:var(--font-serif)}
+.compare-verdict{background:var(--gold-soft);border:1px solid var(--gold);border-radius:var(--radius);padding:14px 18px;margin-top:16px;font-size:.92rem;line-height:1.85;color:#7A5A1A}
+.compare-verdict strong{color:var(--navy);font-weight:700}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 14px;text-align:center;box-shadow:var(--shadow)}
+.stat-card .num{font-size:2rem;font-weight:800;color:var(--navy);font-family:var(--font-serif)}
+.stat-card .lbl{font-size:.82rem;color:var(--ink-muted);margin-top:6px}
+
+.personal-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:18px}
+.personal-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 12px;text-align:center;border-top:3px solid var(--navy)}
+.personal-stat .num{font-size:1.8rem;font-weight:800;color:var(--navy);font-family:var(--font-serif);line-height:1.1}
+.personal-stat .num.small{font-size:1.3rem}
+.personal-stat .lbl{font-size:.78rem;color:var(--ink-muted);margin-top:6px}
+.personal-stat.green{border-top-color:var(--green)}
+.personal-stat.yellow{border-top-color:var(--yellow)}
+.personal-stat.purple{border-top-color:var(--purple)}
+.personal-stat.blue{border-top-color:var(--blue)}
+
+.bar-chart{display:flex;flex-direction:column;gap:8px}
+.bar-chart-row{display:flex;align-items:center;gap:10px;font-size:.88rem}
+.bar-chart-label{min-width:70px;font-weight:600;color:var(--ink-soft);display:flex;align-items:center;gap:5px}
+.bar-chart-bar-wrap{flex:1;background:var(--bg-soft);border-radius:8px;overflow:hidden;height:22px}
+.bar-chart-bar{height:100%;border-radius:8px;display:flex;align-items:center;padding-inline-end:8px;justify-content:flex-end;color:#fff;font-size:.72rem;font-weight:700;min-width:30px}
+
+.heatmap{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px}
+@media(max-width:600px){.heatmap{grid-template-columns:repeat(6,1fr);gap:5px}}
+.heatmap-cell{aspect-ratio:1;border:2px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;font-size:1.3rem;cursor:pointer;transition:all .2s;background:var(--bg-soft);position:relative}
+.heatmap-cell:hover{transform:scale(1.08);z-index:2;box-shadow:var(--shadow-lg)}
+.heatmap-cell[data-lv="0"]{background:var(--bg-soft);color:var(--ink-muted);opacity:.45}
+.heatmap-cell[data-lv="1"]{background:#DCFCE7;color:#166534;border-color:#86EFAC}
+.heatmap-cell[data-lv="2"]{background:#A7F3D0;color:#065F46;border-color:#34D399}
+.heatmap-cell[data-lv="3"]{background:#6EE7B7;color:#064E3B;border-color:#10B981}
+.heatmap-cell[data-lv="4"]{background:#10B981;color:#fff;border-color:#047857}
+.heatmap-cell[data-lv="5"]{background:#047857;color:#fff;border-color:#064E3B}
+.heatmap-cell .count-badge{position:absolute;bottom:2px;left:4px;font-size:.6rem;font-weight:700}
+.heatmap-legend{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.78rem;color:var(--ink-muted);justify-content:center;flex-wrap:wrap}
+.heatmap-legend .swatch{width:20px;height:20px;border-radius:6px;border:2px solid var(--border)}
+
+.calendar-scroll{overflow-x:auto;padding-bottom:8px}
+.calendar-grid{display:grid;grid-template-rows:repeat(7, 1fr);grid-auto-flow:column;gap:3px;min-width:max-content}
+.calendar-day{width:13px;height:13px;border-radius:3px;background:var(--bg-soft);border:1px solid var(--border);cursor:pointer}
+@media(max-width:600px){.calendar-day{width:11px;height:11px}}
+.calendar-day:hover{transform:scale(1.4);z-index:2}
+.calendar-day.lv1{background:#DCFCE7;border-color:#86EFAC}
+.calendar-day.lv2{background:#6EE7B7;border-color:#10B981}
+.calendar-day.lv3{background:#10B981;border-color:#047857}
+.calendar-day.lv4{background:#047857;border-color:#064E3B}
+.calendar-legend{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:.78rem;color:var(--ink-muted);justify-content:flex-end}
+.calendar-legend .swatch{width:13px;height:13px;border-radius:3px;border:1px solid var(--border)}
+.calendar-stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:.85rem;color:var(--ink-soft);padding-top:12px;border-top:1px solid var(--border)}
+.calendar-stats strong{color:var(--navy);font-weight:700}
+
+.recommend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.recommend-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:14px;cursor:pointer;position:relative;transition:all .2s}
+.recommend-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--navy)}
+.recommend-badge{position:absolute;top:10px;left:10px;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--gold-soft);color:#7A5A1A}
+.recommend-word{font-size:1.6rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);text-align:center;margin:12px 0 6px}
+.recommend-movement{font-size:.82rem;color:var(--ink-soft);text-align:center;line-height:1.6;margin-bottom:8px}
+.recommend-reason{font-size:.75rem;color:var(--ink-muted);text-align:center;padding-top:8px;border-top:1px dashed var(--border);line-height:1.5}
+
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.show{display:flex}
+.modal-content{background:var(--card);border-radius:var(--radius);max-width:520px;width:100%;max-height:90vh;overflow-y:auto;padding:24px 22px;box-shadow:var(--shadow-lg);position:relative}
+.modal-close{position:absolute;top:12px;left:12px;background:var(--bg-soft);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--ink-muted)}
+.modal-title{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:14px}
+.modal-body p{font-size:.9rem;line-height:1.85;color:var(--ink-soft);margin-bottom:12px}
+.modal-body kbd{background:var(--bg-soft);padding:2px 8px;border-radius:6px;font-family:var(--font-serif);font-weight:700;color:var(--navy);border:1px solid var(--border);font-size:.85rem}
+.install-platform{background:var(--bg-soft);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:12px;border-inline-start:3px solid var(--navy)}
+.install-platform h4{font-size:.92rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.install-platform p{font-size:.82rem;margin-bottom:0;color:var(--ink-soft)}
+
+.history-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.history-list{display:flex;flex-direction:column;gap:10px}
+.history-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;transition:all .15s}
+.history-item:hover{transform:translateX(-3px);border-color:var(--navy);box-shadow:var(--shadow)}
+.history-info{flex:1;min-width:0}
+.history-word{font-size:1.25rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);margin-bottom:3px}
+.history-movement{font-size:.82rem;color:var(--ink-soft);font-family:var(--font-serif);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.history-meta{font-size:.7rem;color:var(--ink-muted);margin-top:4px}
+.history-actions{display:flex;gap:6px}
+.history-icon-btn{background:var(--bg-soft);border:1px solid var(--border);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.history-icon-btn:hover{background:var(--navy);color:#fff}
+.history-icon-btn.danger:hover{background:var(--red)}
+.history-empty{text-align:center;padding:50px 20px;color:var(--ink-muted);font-size:.9rem}
+.history-empty .big{font-size:3rem;margin-bottom:10px;opacity:.5}
+
+.multi-select-list{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;padding:8px;background:var(--bg-soft);border-radius:var(--radius);margin-bottom:14px}
+.multi-select-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card);border:2px solid var(--border);border-radius:var(--radius-sm);cursor:pointer}
+.multi-select-item.selected{border-color:var(--green);background:var(--green-soft)}
+.multi-select-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:transparent}
+.multi-select-item.selected .multi-select-check{background:var(--green);border-color:var(--green);color:#fff}
+.multi-select-info{flex:1;min-width:0}
+.multi-select-word{font-weight:700;color:var(--navy);font-family:var(--font-serif);font-size:1.05rem}
+.multi-select-movement{font-size:.78rem;color:var(--ink-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.multi-compare-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:10px;background:var(--card);border-radius:var(--radius);overflow:hidden}
+.multi-compare-table th{background:var(--navy);color:#fff;padding:10px 8px;font-weight:700;font-size:.8rem;text-align:center}
+.multi-compare-table td{padding:10px 8px;border-bottom:1px solid var(--border);text-align:center}
+.multi-compare-table tr:hover td{background:var(--bg-soft)}
+.multi-compare-table .word-cell{font-family:var(--font-serif);font-weight:700;color:var(--navy);font-size:1.05rem}
+
+#sphere-container{width:100%;height:380px;background:var(--bg-soft);border-radius:var(--radius);position:relative;overflow:hidden}
+#sphere-container canvas{display:block}
+.sphere-hint{position:absolute;bottom:12px;right:12px;font-size:.75rem;color:var(--ink-muted);background:rgba(255,255,255,.9);padding:4px 10px;border-radius:12px;pointer-events:none}
+
+.loading{text-align:center;padding:30px;color:var(--ink-muted);font-size:.9rem}
+.spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error-box{background:var(--red-soft);border:1px solid #FECACA;color:#991B1B;padding:14px;border-radius:var(--radius);font-size:.9rem;margin-bottom:12px}
+.info-box{background:var(--blue-soft);border:1px solid #BFDBFE;color:#1E40AF;padding:14px;border-radius:var(--radius);font-size:.88rem;margin-bottom:12px;line-height:1.85}
+.empty-state{text-align:center;padding:40px 20px;color:var(--ink-muted);font-size:.9rem}
+.dict-excerpt{background:var(--bg-soft);border-radius:var(--radius-sm);padding:12px;margin-top:8px;font-size:.85rem;color:var(--ink-soft);line-height:1.85;max-height:280px;overflow-y:auto}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 24px;border-radius:24px;font-size:.9rem;font-weight:600;box-shadow:var(--shadow-lg);z-index:9999;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-8px)}
+
+.footer{text-align:center;padding:24px 16px;color:var(--ink-muted);font-size:.82rem;line-height:1.85;border-top:1px solid var(--border);margin-top:40px}
+
+.niu-card{border-color:var(--gold);background:var(--gold-soft)}
+.niu-card .card-title{color:#7A5A1A}
+.niu-card p{font-size:1rem;line-height:1.9;color:#5A4210;font-family:var(--font-serif)}
+[data-theme="dark"] .niu-card{background:#2A2418;border-color:#8B6A2A}
+[data-theme="dark"] .niu-card .card-title{color:#E0B86B}
+[data-theme="dark"] .niu-card p{color:#E0B86B}
+
+@media(max-width:480px){
+  .topbar h1{font-size:1rem}
+  .nav a{padding:10px 12px;font-size:.82rem}
+  .input-row{flex-direction:column}
+  .btn-primary{width:100%}
+  .movement-main .value{font-size:1.3rem}
+  .root-letters{gap:12px;padding:16px 8px}
+  .root-letter .glyph{width:56px;height:56px;font-size:1.8rem}
+  .deriv-grid{grid-template-columns:1fr}
+  .multi-compare-table{font-size:.75rem}
+  .multi-compare-table th, .multi-compare-table td{padding:6px 3px}
+}
+
+@media print{
+  .topbar, .nav, .footer, .analysis-actions, .btn-primary, .btn-secondary, .examples-row, .input-row,
+  .details-toggle, .deriv-tabs, .deriv-wikt-btn, #sphere-container, .sphere-hint, .toast, .history-toolbar,
+  .history-actions, .icon-btn, .modal-overlay, .multi-select-list, .recommend-grid, .heatmap, .calendar-scroll { display: none !important; }
+  body, html { background: #fff !important; color: #000 !important; }
+  .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <h1>الحركة العامة <span class="version">v2.7.1</span></h1>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="install-btn" title="تثبيت" style="display:none;">📲</button>
+      <button class="icon-btn" id="share-btn" title="مشاركة">🔗</button>
+      <button class="icon-btn" id="theme-btn" title="الوضع">🌙</button>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner" id="nav">
+    <a href="#home" data-screen="home" class="active">🏠 الرئيسية</a>
+    <a href="#analysis" data-screen="analysis">🔍 التحليل</a>
+    <a href="#root" data-screen="root">🌳 الجذر</a>
+    <a href="#letters" data-screen="letters">🔤 الحروف</a>
+    <a href="#compare" data-screen="compare">⚖️ المقارنة</a>
+    <a href="#history" data-screen="history">📚 السجل <span class="badge" id="history-badge" style="display:none;">0</span></a>
+    <a href="#stats" data-screen="stats">📊 الإحصائيات</a>
+    <a href="#rules" data-screen="rules">📜 القواعد</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section id="screen-home" class="screen active">
+    <div class="hero">
+      <h2>الحركة العامة — المصوفة الـ 28</h2>
+      <p>استخراج الحركة العامة لأي تسلسل صوتي على طريقة عالم سبيط النيلي — بنفس المنهج الذي وثّقه في العشرة أصوات (دحرتكم بعلي).</p>
+      <div class="quote">«المعنى الكامل = مجموع الحركات ⊕ ترتيبها، لا مجموعها فحسب» — المحاضرات س 463</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">✍️</span> اكتب أي تسلسل أو لفظ</div>
+      <div class="input-row">
+        <input type="text" id="word-input" placeholder="حد، حمد، حرور، علم..." autocomplete="off" spellcheck="false">
+        <button class="btn-primary" id="analyze-btn">استخراج</button>
+      </div>
+      <div class="examples-row" id="examples-row">
+        <span class="example-chip" data-word="حد">حد</span>
+        <span class="example-chip" data-word="دحر">دحر</span>
+        <span class="example-chip" data-word="حرور">حرور</span>
+        <span class="example-chip" data-word="علم">علم</span>
+        <span class="example-chip" data-word="حمد">حمد</span>
+        <span class="example-chip" data-word="مدح">مدح</span>
+        <span class="example-chip" data-word="نجم">نجم</span>
+        <span class="example-chip" data-word="فور">فور</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span> منهج الاستخراج — 4 خطوات</div>
+      <div style="display:grid;gap:10px;">
+        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--green);"><strong>1. التجريد الصوتي</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">حذف «أل» التعريف والتضعيف، تجريد اللفظ إلى أصواته الصحيحة. الحركات الطويلة (ا/و/ي) موادّ رابطة.</div></div>
+        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--blue);"><strong>2. جلب الحركة الفيزيائية</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">لكل صوت تعريفه الحركي الثابت من المصوفة (28 صوتًا) — لا يتغيّر بتغيّر الكلمة.</div></div>
+        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--gold);"><strong>3. توزيع الأدوار</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">الأول = منشأ وجنس · الثاني = توجيه · الأوسط = ضبط · الأخير = نتيجة وحدّ.</div></div>
+        <div style="padding:12px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:3px solid var(--purple);"><strong>4. تركيب الحركة العامة</strong><div style="font-size:.85rem;color:var(--ink-soft);margin-top:4px;">مبدأ «التراكم»: كل صوت يعمل على ناتج ما قبله.</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📚</span> أمثلة موثّقة نصًّا — للتحقّق</div>
+      <div id="verified-examples"></div>
+    </div>
+  </section>
+
+  <section id="screen-analysis" class="screen">
+    <div id="analysis-output">
+      <div class="empty-state"><div style="font-size:2.5rem;margin-bottom:8px;">🔍</div>اكتب تسلسلاً في الرئيسية واضغط «استخراج»</div>
+    </div>
+  </section>
+
+  <section id="screen-root" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🌳</span> الجذر والاشتقاق</div>
+      <p class="card-sub">استخراج الجذر الصوتي الثلاثي، ثم توليد 15 وزنًا صرفيًا وتأثير كل وزن على الحركة.</p>
+      <div class="input-row">
+        <input type="text" id="root-input" placeholder="علم، حمد، دحر..." autocomplete="off">
+        <button class="btn-primary" id="root-btn">تحليل</button>
+      </div>
+      <div class="examples-row" id="root-examples">
+        <span class="example-chip" data-word="علم">علم</span>
+        <span class="example-chip" data-word="حمد">حمد</span>
+        <span class="example-chip" data-word="دحر">دحر</span>
+        <span class="example-chip" data-word="نجم">نجم</span>
+        <span class="example-chip" data-word="سمك">سمك</span>
+        <span class="example-chip" data-word="فور">فور</span>
+      </div>
+    </div>
+    <div id="root-output"></div>
+  </section>
+
+  <section id="screen-letters" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🔤</span> المصوفة الـ 28</div>
+      <div class="legend">
+        <span><span class="dot" style="background:var(--green)"></span> 🟢 منصوص (10)</span>
+        <span><span class="dot" style="background:var(--yellow)"></span> 🟡 مسودة (14)</span>
+        <span><span class="dot" style="background:var(--purple)"></span> 🟣 من تسلسل (4)</span>
+      </div>
+      <div class="letters-grid" id="letters-grid"></div>
+    </div>
+    <div id="letter-detail"></div>
+  </section>
+
+  <section id="screen-compare" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">⚖️</span> مقارنة تسلسلين</div>
+      <div class="compare-row">
+        <input type="text" class="compare-input" id="cmp-a" placeholder="الأول" value="حمد">
+        <input type="text" class="compare-input" id="cmp-b" placeholder="الثاني" value="مدح">
+      </div>
+      <div style="text-align:center;margin-top:12px;">
+        <button class="btn-primary" id="compare-btn">قارن</button>
+      </div>
+    </div>
+    <div id="compare-output"></div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span> مقارنة متعددة من السجل</div>
+      <p class="card-sub">اختر 2-8 تحليلات من سجلك للمقارنة في جدول واحد.</p>
+      <div id="multi-select-container"><div class="history-empty"><div class="big">📚</div><div>لا يوجد سجل بعد.</div></div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;justify-content:center;">
+        <button class="btn-primary" id="multi-compare-btn" disabled>قارن المختارة</button>
+        <button class="btn-secondary" id="multi-clear-btn">إلغاء</button>
+        <button class="btn-secondary" id="multi-select-all-btn">تحديد الكل</button>
+      </div>
+    </div>
+    <div id="multi-compare-output"></div>
+  </section>
+
+  <section id="screen-history" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">📚</span> سجل التحليلات <span style="font-size:.75rem;font-weight:400;color:var(--ink-muted);margin-inline-start:auto;" id="history-count-label">0</span></div>
+      <p class="card-sub">كل تحليل يُحفظ تلقائيًا في متصفحك. لا شيء يُرسل إلى أي خادم.</p>
+      <div class="history-toolbar">
+        <button class="btn-secondary" id="history-clear-btn">🗑️ مسح الكل</button>
+        <button class="btn-secondary" id="history-export-btn">📥 تصدير JSON</button>
+        <button class="btn-secondary" id="history-stats-btn">📊 إحصائياتي</button>
+      </div>
+    </div>
+    <div id="history-list-container"></div>
+  </section>
+
+  <section id="screen-stats" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span> توصيات ذكية لك</div>
+      <p class="card-sub">اقتراحات مبنية على تحليلاتك السابقة.</p>
+      <div id="recommend-content"><div class="history-empty"><div class="big">🎯</div><div>حلّل بضع كلمات لتظهر توصياتك.</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">👤</span> إحصائياتي الشخصية</div>
+      <div id="personal-stats-content"><div class="history-empty"><div class="big">📊</div><div>حلّل بعض الكلمات.</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🗺️</span> الخريطة الحرارية للحروف</div>
+      <div id="heatmap-content"><div class="history-empty"><div class="big">🗺️</div><div>حلّل بعض الكلمات.</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📅</span> تقويم نشاطك</div>
+      <div id="calendar-content"><div class="history-empty"><div class="big">📅</div><div>ابدأ بتسجيل تحليلاتك.</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span> نتائج التحقّق العامة</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num">89%</div><div class="lbl">دقة البصمة</div></div>
+        <div class="stat-card"><div class="num">100%</div><div class="lbl">الجزء الثاني</div></div>
+        <div class="stat-card"><div class="num">80%</div><div class="lbl">مطابقة الحرف</div></div>
+        <div class="stat-card"><div class="num">72%</div><div class="lbl">مطابقة التسلسل</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🌐</span> كرة الحروف</div>
+      <div id="sphere-container"><div class="sphere-hint">اسحب للتدوير</div></div>
+    </div>
+  </section>
+
+  <section id="screen-rules" class="screen">
+    <div class="card">
+      <div class="card-title"><span class="icon">📜</span> القواعد التسع الحاكمة <span class="tier-badge tier-green">🟢 منصوص</span></div>
+      <p class="card-sub">منصوصة من مؤلفات النيلي (اللغة الموحدة، الطور المهدوي، أصل الخلق، المحاضرات).</p>
+      <ul id="rules-list" style="list-style:none;padding:0;margin:0;"></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📖</span> منهج النقد الدلالي — 4 قواعد</div>
+      <p class="card-sub">قاعدة الترجيح: يُستخرج المعنى من حركة الأصوات، ثم يُقارن بالمعاجم.</p>
+      <div id="critique-rules"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">⚖️</span> هرمية سلطة المصادر</div>
+      <p class="card-sub">حسب القاعدة 9: الاستعمال العالمي المعاصر أصدق من دعاوى علماء اللغة.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--gold-soft);border-radius:var(--radius-sm);border-inline-start:4px solid var(--gold);"><span style="font-weight:700;">نص النيلي (KS)</span><span style="color:var(--ink-muted);">وزن 1.00</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--blue-soft);border-radius:var(--radius-sm);border-inline-start:4px solid var(--blue);"><span style="font-weight:700;">الاستعمال المعاصر</span><span style="color:var(--ink-muted);">وزن 0.40</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--bg-soft);border-radius:var(--radius-sm);border-inline-start:4px solid var(--ink-muted);"><span style="font-weight:700;">المعاجم الكلاسيكية (7)</span><span style="color:var(--ink-muted);">وزن 0.35</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div>اللغة الموحدة — v2.7.1</div>
+  <div style="margin-top:6px;">منهج المرحوم عالم سبيط النيلي · 28 صوتًا · 9 قواعد · 15 وزنًا صرفيًا</div>
+  <div style="margin-top:6px;opacity:.7;">«لا اختراع · لا حذف · الأمانة · الترتيب مولّد المعنى»</div>
+</footer>
+
+<div class="modal-overlay" id="install-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="install-modal-close">✕</button>
+    <div class="modal-title">📲 تثبيت التطبيق</div>
+    <div class="modal-body">
+      <div class="install-platform"><h4>🤖 أندرويد (Chrome)</h4><p>قائمة ⋮ ← <kbd>إضافة إلى الشاشة الرئيسية</kbd></p></div>
+      <div class="install-platform"><h4>🍎 آيفون (Safari)</h4><p>زر المشاركة ⬆️ ← <kbd>إضافة إلى الشاشة الرئيسية</kbd></p></div>
+      <div class="install-platform"><h4>💻 ويندوز/ماك</h4><p>أيقونة <kbd>⊕</kbd> في شريط العنوان</p></div>
+      <div class="info-box">💡 للحصول على تثبيت كامل، ارفع الملف على GitHub Pages أو Netlify.</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+/* ============================================================
+   Helpers آمنة
+   ============================================================ */
+const SafeStorage = {
+  _mem:{},
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return this._mem[k]??null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){ this._mem[k]=v; } },
+  remove(k){ try{ localStorage.removeItem(k); }catch(e){ delete this._mem[k]; } }
+};
+function safeReplaceState(url){ try{ history.replaceState(null,'',url); }catch(e){} }
+
+/* ============================================================
+   1. المصوفة الـ 28
+   ============================================================ */
+const CORE = {
+  'د':{tier:'green',source:'اللغة الموحدة ج1',movement:'اندفاع مقصود',axes:{direction:.9,cohesion:0,intensity:.85,visibility:.6,time:.3},speed:.85,finalFactor:1.06},
+  'ح':{tier:'green',source:'اللغة الموحدة ج1',movement:'تعاظم',axes:{direction:.4,cohesion:0,intensity:.95,visibility:.2,time:-.2},speed:.15,finalFactor:0.94},
+  'ر':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكرار',axes:{direction:0,cohesion:.3,intensity:.5,visibility:0,time:.95},speed:.95,finalFactor:1.03},
+  'ت':{tier:'green',source:'اللغة الموحدة ج1',movement:'أخذ وامتداد',axes:{direction:.3,cohesion:0,intensity:.4,visibility:.4,time:.2},speed:.5,finalFactor:1.00},
+  'ك':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكامل',axes:{direction:0,cohesion:.85,intensity:.3,visibility:.3,time:0},speed:.4,finalFactor:0.98},
+  'م':{tier:'green',source:'اللغة الموحدة ج1',movement:'تكامل',axes:{direction:0,cohesion:.85,intensity:.3,visibility:.1,time:.1},speed:.35,finalFactor:0.97},
+  'ب':{tier:'green',source:'اللغة الموحدة ج1',movement:'تفتّح وانبساط',axes:{direction:.2,cohesion:.4,intensity:.2,visibility:.7,time:0},speed:.3,finalFactor:1.01},
+  'ع':{tier:'green',source:'اللغة الموحدة ج1',movement:'عمق وتمكّن',axes:{direction:.5,cohesion:.5,intensity:.6,visibility:-.3,time:.2},speed:.45,finalFactor:0.99},
+  'ل':{tier:'green',source:'اللغة الموحدة ج1',movement:'التصاق واتصال',axes:{direction:.3,cohesion:.7,intensity:.2,visibility:.3,time:0},speed:.4,finalFactor:0.98},
+  'ي':{tier:'green',source:'اللغة الموحدة ج1',movement:'زمان محض',axes:{direction:0,cohesion:.3,intensity:0,visibility:.3,time:1},speed:1,finalFactor:0.96},
+  'ض':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انضغاط وقوة',axes:{direction:-.3,cohesion:.5,intensity:.8,visibility:-.2,time:.1},speed:.6,finalFactor:1.02},
+  'ص':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'صلابة وثبات',axes:{direction:0,cohesion:.6,intensity:.7,visibility:.4,time:.3},speed:.4,finalFactor:1.00},
+  'ج':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'قيام بالذات',axes:{direction:.4,cohesion:.6,intensity:.5,visibility:.2,time:.2},speed:.5,finalFactor:1.01},
+  'ز':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انزلاق وحركة دقيقة',axes:{direction:.3,cohesion:-.4,intensity:.4,visibility:0,time:.5},speed:.7,finalFactor:1.02},
+  'ق':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'قطع وقوة',axes:{direction:.5,cohesion:-.3,intensity:.9,visibility:.3,time:0},speed:.6,finalFactor:1.03},
+  'خ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'نفاذ واختراق',axes:{direction:.6,cohesion:-.2,intensity:.7,visibility:-.4,time:.1},speed:.65,finalFactor:1.02},
+  'ذ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'نفاذ دقيق',axes:{direction:.4,cohesion:-.1,intensity:.5,visibility:-.3,time:.2},speed:.55,finalFactor:1.01},
+  'س':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انسلال خفي',axes:{direction:.5,cohesion:.4,intensity:.2,visibility:-.7,time:.4},speed:.5,finalFactor:0.99},
+  'ش':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انتشار وتفرّق',axes:{direction:.5,cohesion:-.6,intensity:.4,visibility:.5,time:.3},speed:.6,finalFactor:1.01},
+  'ط':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انبساط وقوة',axes:{direction:.4,cohesion:.2,intensity:.75,visibility:.6,time:0},speed:.5,finalFactor:1.00},
+  'غ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'خفاء واستتار',axes:{direction:-.4,cohesion:0,intensity:.3,visibility:-.8,time:.3},speed:.45,finalFactor:0.97},
+  'هـ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'تنفّس وانبثاق',axes:{direction:.3,cohesion:0,intensity:.2,visibility:.4,time:.2},speed:.3,finalFactor:0.98},
+  'ث':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'انتشار لطيف',axes:{direction:.4,cohesion:-.3,intensity:.25,visibility:.5,time:.2},speed:.4,finalFactor:0.99},
+  'ظ':{tier:'yellow',source:'اللغة الموحدة ج2 (مسودة)',movement:'ظهور وبروز',axes:{direction:.3,cohesion:.2,intensity:.5,visibility:.85,time:.1},speed:.5,finalFactor:1.00},
+  'أ':{tier:'purple',source:'من تسلسل (أصل الخلق)',movement:'ابتداء وأصالة',axes:{direction:.3,cohesion:.2,intensity:.3,visibility:.3,time:-.5},speed:.1,finalFactor:0.95},
+  'ف':{tier:'purple',source:'من تسلسل (فور)',movement:'تفرّق وانبثاق',axes:{direction:.6,cohesion:-.7,intensity:.5,visibility:.5,time:.3},speed:.75,finalFactor:1.02},
+  'ن':{tier:'purple',source:'من تسلسل (نجم)',movement:'إنشاء مستمر',axes:{direction:.3,cohesion:.5,intensity:.4,visibility:.3,time:.6},speed:.4,finalFactor:0.99},
+  'و':{tier:'purple',source:'من تسلسل (فور)',movement:'ديمومة مكانية',axes:{direction:0,cohesion:.3,intensity:0,visibility:.2,time:.1},speed:0,finalFactor:0.90}
+};
+
+/* ============================================================
+   2. القواعد
+   ============================================================ */
+const RULES = [
+  {id:'R1',text:'لا ترادف: اختلاف الصوت = اختلاف الحركة = اختلاف المعنى.',source:'النظام القرآني',page:null},
+  {id:'R2',text:'الصوت الأول يحمل الجنس والمنشأ، والأخير يحمل النتيجة والحدّ.',source:'الطور المهدوي',page:null},
+  {id:'R3',text:'الحركة الطويلة (ا/و/ي) مادّة رابطة تمُدّ الحركة ولا تُغيّرها.',source:'خوارزمية المصوفة',page:null},
+  {id:'R4',text:'الحرف المضغّف (الشدّة) صوت واحد مع تكثيف شدّته.',source:'المصفوفة',page:null},
+  {id:'R5',text:'التقاء صوتين من مجموعة واحدة يشدّد الدلالة المشتركة.',source:'نظام المجموعات',page:null},
+  {id:'R6',text:'المعنى الكامل = مجموع الحركات ⊕ ترتيبها، لا مجموعها فحسب.',source:'المحاضرات',page:463},
+  {id:'R7',text:'لكل تعاقب صوتي حركة عامة تخصّه وحده، ولكل لفظ أصل حركي.',source:'أصل الخلق',page:675},
+  {id:'R8',text:'الاستعمال الجاري جزء من الحركة العامة، لا مجاز.',source:'أصل الخلق',page:675},
+  {id:'R9',text:'الاستعمال العالمي المعاصر أصدق في تحديد الحركة من دعاوى علماء اللغة.',source:'أصل الخلق',page:675}
+];
+
+const CRITIQUE_RULES = [
+  {n:1,text:'يُستخرج المعنى من حركة الأصوات أوّلًا.'},
+  {n:2,text:'تُعرض المعاني المعجمية، ثم تُقارن بالحركة.'},
+  {n:3,text:'يُثبّت ما يوافق الحركة، ويُنفى ما خالفها.'},
+  {n:4,text:'إن خالف المعجم ولم يوجد جامع للأصل المشترك ← فالحرف كشف رابطة لم يجمعها المعجم تحت أصل واحد.'}
+];
+
+/* ============================================================
+   3. الأوزان والأصول
+   ============================================================ */
+const SOURCE_HIERARCHY = {KS:1.00, MODERN:0.40, CLASSICAL:0.35, LEXICON:0.25};
+const POSITION_WEIGHTS = {1:[1],2:[.35,.65],3:[.20,.30,.50],4:[.15,.20,.25,.40],5:[.10,.15,.20,.25,.30]};
+function getWeights(n){ if(POSITION_WEIGHTS[n]) return POSITION_WEIGHTS[n]; const a=[]; for(let i=0;i<n;i++)a.push((i+1)/(n*(n+1)/2)); return a; }
+
+/* ============================================================
+   4. KS
+   ============================================================ */
+const KS = {
+  'دحر':{text:'«اندفاع مقصود والحاء تعاظم والراء تكرار».',meaning:'دفع متعاظم متكرر يقهر المقاومة — حركة تدفع الشيء وتُبعده عن حدّه.',source:'اللغة الموحدة',page:1520},
+  'سمك':{text:'«انسلال خفي وتكامل وتكتّل».',meaning:'تكاثف الأجزاء وتكتّلها بصورة غير منظورة لتكون ملحوظة فيما بعد.',source:'الطور المهدوي',page:216},
+  'فور':{text:'«تفرّق وديمومة مكانية وتكرار».',meaning:'تفرّق ثابت في موضعه يتكرّر — غليان واندفاع من المركز.',source:'الموجز',page:null},
+  'نجم':{text:'«إنشاء مستمر وقيام بالذات وتكامل».',meaning:'ظهور مباغت بقدرة ذاتية على اختراق الحُجب.',source:'الطور المهدوي',page:1763},
+  'حمد':{text:'«تعاظم ثم اندفاع مقصود ثم تكامل».',meaning:'المكتـمل ذو الشروط وله هدف.',source:'المصفوفة',page:null},
+  'مدح':{text:'«تكامل ثم اندفاع مقصود ثم تعاظم».',meaning:'التوسّع إلى أبعد مدى باتجاه معيّن.',source:'المصفوفة',page:null},
+  'حد':{text:'«تعاظم لأقصى حد + اندفاع مقصود».',meaning:'تعاظُم ينتهي عند آخر مداه.',source:'اللغة الموحدة',page:null,concept:'الحدّ'},
+  'علم':{text:'«عمق وتمكّن ثم التصاق واتصال ثم تكامل».',meaning:'تحقّق المعرفة بالاتصال والتكامل.',source:'من تسلسل',page:null},
+  'عمل':{text:'«عمق وتمكّن ثم تكامل ثم التصاق واتصال».',meaning:'إنجاز الفعل بتمكّن والتزام.',source:'من تسلسل',page:null}
+};
+
+/* ============================================================
+   5. المعاجم
+   ============================================================ */
+const DICTIONARIES = [
+  {id:'modern',name:'اللغة العربية المعاصرة',type:'modern',weight:0.53},
+  {id:'muheet',name:'القاموس المحيط',type:'classical',weight:0.32},
+  {id:'waseet',name:'المعجم الوسيط',type:'classical',weight:0.31},
+  {id:'lisan',name:'لسان العرب',type:'classical',weight:0.29},
+  {id:'maqayis',name:'مقاييس اللغة (ابن فارس)',type:'classical',weight:0.30},
+  {id:'mufradat',name:'مفردات القرآن (الراغب)',type:'classical',weight:0.31},
+  {id:'sihah',name:'الصحاح (الجوهري)',type:'classical',weight:0.29},
+  {id:'lexicon',name:'المعجم المحلي (LEXICON)',type:'lexicon',weight:0.45}
+];
+
+/* ============================================================
+   6. المعجم المحلي
+   ============================================================ */
+const LOCAL_LEXICON = {
+  'حد':{meaning:'الحاجز بين شيئين، الفاصل الذي يمنع اختلاطهما. أصله: المنع والفصل والدفع بقوة. ومنه: حَدّ السيف، الحُدود، الحَدّ الأقصى.',source:'المعجم المحلي الموثّق'},
+  'حمد':{meaning:'الثناء والشكر على الجميل. ومنه: الحمد، المحمود، الحميد.',source:'المعجم المحلي الموثّق'},
+  'مدح':{meaning:'الثناء الحسن والتوسّع في الإطراء.',source:'المعجم المحلي الموثّق'},
+  'علم':{meaning:'المعرفة والإدراك. ومنه: العَالم والعَليم والمعلوم.',source:'المعجم المحلي الموثّق'},
+  'دحر':{meaning:'الدفع بقوة وإبعاد الشيء عن موضعه.',source:'المعجم المحلي الموثّق'},
+  'نجم':{meaning:'الجسم المضيء في السماء ليلًا. ومنه: النجم، النجمة، المناجمة.',source:'المعجم المحلي الموثّق'},
+  'سمك':{meaning:'الحيوان المائي المعروف.',source:'المعجم المحلي الموثّق'},
+  'فور':{meaning:'الغليان والانبثاق المفاجئ. ومنه: فَار يَفُور، الفَوَران.',source:'المعجم المحلي الموثّق'},
+  'عمل':{meaning:'الفعل والجهد. ومنه: العامِل، العَمل، الاستعمال.',source:'المعجم المحلي الموثّق'},
+  'حرور':{meaning:'الحرّ الشديد، أو الريح الحارّة. ومنه: الحَرُور والحروريّ (منسوب إلى أشد الحرّ).',source:'المعجم المحلي الموثّق'}
+};
+
+/* ============================================================
+   7. الأوزان الصرفية
+   ============================================================ */
+const PATTERNS = [
+  {id:'fa3ala',weight:'فَعَلَ',form:'{1}َ{2}َ{3}َ',kind:'mujarrad',added:[],effect:'الحدث المجرد'},
+  {id:'fa3l',weight:'فَعْل',form:'{1}َ{2}ْ{3}',kind:'mujarrad',added:[],effect:'الحدث كمصدر'},
+  {id:'fi3l',weight:'فِعْل',form:'{1}ِ{2}ْ{3}',kind:'mujarrad',added:[],effect:'الحالة الاسمية'},
+  {id:'fu3l',weight:'فُعْل',form:'{1}ُ{2}ْ{3}',kind:'mujarrad',added:[],effect:'المادة الاسمية'},
+  {id:'fa3il',weight:'فَاعِل',form:'{1}َا{2}ِ{3}',kind:'mazid',added:['ا'],effect:'الفاعل'},
+  {id:'maf3ul',weight:'مَفْعُول',form:'مَ{1}ْ{2}ُو{3}',kind:'mazid',added:['م','و'],effect:'المفعول'},
+  {id:'fa3il2',weight:'فَعِيل',form:'{1}َ{2}ِي{3}',kind:'mazid',added:['ي'],effect:'صفة مبالغة'},
+  {id:'fa33al',weight:'فَعَّال',form:'{1}َ{2}َّا{3}',kind:'mazid',added:['ا'],effect:'مبالغة الحرفة'},
+  {id:'mif3al',weight:'مِفْعَال',form:'مِ{1}ْ{2}َا{3}',kind:'mazid',added:['م','ا'],effect:'اسم الآلة'},
+  {id:'fa33ala',weight:'فَعَّلَ',form:'{1}َ{2}َّ{3}َ',kind:'mazid2',added:[],effect:'تكثير الفعل'},
+  {id:'taf3il',weight:'تَفْعِيل',form:'تَ{1}ْ{2}ِي{3}',kind:'mazid2',added:['ت','ي'],effect:'المصدر الصناعي'},
+  {id:'tafa3ul',weight:'تَفَاعُل',form:'تَ{1}َا{2}ُ{3}',kind:'mazid2',added:['ت','ا'],effect:'المشاركة'},
+  {id:'inFi3al',weight:'اِنْفِعَال',form:'اِنْ{1}ِ{2}َا{3}',kind:'mazid2',added:['ا','ن'],effect:'الانفعال'},
+  {id:'ifTi3al',weight:'اِفْتِعَال',form:'اِ{1}ْتِ{2}َا{3}',kind:'mazid2',added:['ا','ت'],effect:'الاتخاذ'},
+  {id:'istiF3al',weight:'اِسْتِفْعَال',form:'اِسْتِ{1}ْ{2}َا{3}',kind:'mazid2',added:['ا','س','ت'],effect:'الطلب'}
+];
+function generateDerivations(rl){
+  if(!rl||rl.length<3) return [];
+  const [c1,c2,c3]=rl;
+  return PATTERNS.map(p=>{
+    const word=p.form.replace(/\{1\}/g,c1).replace(/\{2\}/g,c2).replace(/\{3\}/g,c3);
+    return {...p,word};
+  });
+}
+
+/* ============================================================
+   8. محرّك الاستخراج
+   ============================================================ */
+function stripDiacritics(w){ return w.replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'أ').replace(/[ى]/g,'ي').replace(/[ؤ]/g,'و').replace(/[ئ]/g,'ي').replace(/[ة]/g,'ه').trim(); }
+function cleanWord(w){ let x=stripDiacritics(w); if(x.startsWith('ال')&&x.length>3) x=x.slice(2); return x; }
+function toLetters(w){ return Array.from(cleanWord(w)).filter(ch=>CORE[ch]); }
+
+function getRole(i,total){
+  if(total===1) return {id:1,label:'المنشأ والنتيجة',short:'منشأ+نتيجة',cls:'r1'};
+  if(total===2) return i===0?{id:1,label:'المنشأ والجنس',short:'منشأ',cls:'r1'}:{id:4,label:'النتيجة والحدّ',short:'نتيجة',cls:'r4'};
+  if(i===0) return {id:1,label:'المنشأ والجنس',short:'منشأ',cls:'r1'};
+  if(i===total-1) return {id:4,label:'النتيجة والحدّ',short:'نتيجة',cls:'r4'};
+  if(total===3) return {id:2,label:'التوجيه والضبط',short:'توجيه',cls:'r2'};
+  if(i===1) return {id:2,label:'التوجيه',short:'توجيه',cls:'r2'};
+  return {id:3,label:'الضبط الوسطي',short:'ضبط',cls:'r3'};
+}
+
+/* --- [v2.7.1] دوال كشف التكرار والتباديل الفريدة --- */
+function findDuplicates(letters){
+  const counts={};
+  letters.forEach(ch => { counts[ch]=(counts[ch]||0)+1; });
+  return Object.entries(counts)
+    .filter(([ch,n]) => n>1)
+    .map(([ch,n]) => ({ch, count:n}));
+}
+
+function countUniquePermutations(letters){
+  const factorial = n => { let r=1; for(let i=2;i<=n;i++) r*=i; return r; };
+  const dup = findDuplicates(letters);
+  let total = factorial(letters.length);
+  dup.forEach(d => { total /= factorial(d.count); });
+  return Math.round(total);
+}
+
+function permutationsOf(arr){
+  if(arr.length<=1) return [arr.slice()];
+  if(arr.length>5) return [arr.slice()];
+  const seen = new Set();
+  const out = [];
+  const permute = (cur, rest) => {
+    if(rest.length === 0){
+      const key = cur.join('');
+      if(!seen.has(key)){
+        seen.add(key);
+        out.push(cur.slice());
+      }
+      return;
+    }
+    for(let i=0;i<rest.length;i++){
+      permute([...cur, rest[i]], [...rest.slice(0,i), ...rest.slice(i+1)]);
+    }
+  };
+  permute([], arr);
+  return out;
+}
+/* --- نهاية الإضافة --- */
+
+function extractMovement(word){
+  try{
+    const letters=toLetters(word);
+    if(letters.length===0) return null;
+    const weights=getWeights(letters.length);
+    const contributions=letters.map((ch,i)=>({ch,core:CORE[ch],weight:weights[i]||0,role:getRole(i,letters.length)}));
+
+    const axesSum={direction:0,cohesion:0,intensity:0,visibility:0,time:0};
+    let speedSum=0, tw=0;
+    for(const c of contributions){
+      for(const k of Object.keys(axesSum)) axesSum[k]+=(c.core.axes[k]||0)*c.weight;
+      speedSum+=c.core.speed*c.weight;
+      tw+=c.weight;
+    }
+    const axes={}; for(const k of Object.keys(axesSum)) axes[k]=tw>0?axesSum[k]/tw:0;
+    const baseSpeed = tw>0 ? speedSum/tw : 0;
+
+    const lastCh = letters[letters.length-1];
+    const finalFactor = CORE[lastCh]?.finalFactor || 1.0;
+    const speed = Math.min(baseSpeed * finalFactor, 1.0);
+
+    // [v2.7.1] — حساب التكرار والتباديل الفريدة
+    const duplicates = findDuplicates(letters);
+    const uniquePermutations = countUniquePermutations(letters);
+    const permutations = permutationsOf(letters);
+
+    return {
+      word:cleanWord(word),
+      letters, contributions, axes,
+      baseSpeed, finalFactor, speed,
+      sentence:buildSentence(contributions),
+      concept:buildConcept(contributions),
+      breakdown:buildBreakdown(contributions),
+      ks:KS[cleanWord(word)]||null,
+      duplicates, uniquePermutations, permutations
+    };
+  }catch(e){ console.error('extract error',e); return null; }
+}
+
+function buildSentence(cs){
+  if(cs.length===1) return cs[0].core.movement;
+  const p=cs.map(c=>c.core.movement);
+  if(p.length===2) return `${p[0]} ← ${p[1]}`;
+  if(p.length===3) return `${p[0]} ← ${p[1]} ← ${p[2]}`;
+  return `${p[0]} ← ${p.slice(1,-1).join(' ثم ')} ← ${p[p.length-1]}`;
+}
+function buildConcept(cs){
+  if(cs.length===2 && cs[0].ch==='ح' && cs[1].ch==='د') return 'الحدّ';
+  return null;
+}
+function buildBreakdown(cs){ return cs.map(c=>c.core.movement).join(' + '); }
+
+/* ============================================================
+   9. المقاييس الدلالية
+   ============================================================ */
+function computeSemanticMetrics(){
+  const M_literal={count:8,total:126,percent:(8/126)*100};
+  const perDict=DICTIONARIES.map(d=>({name:d.name,type:d.type,weight:d.weight}));
+  const num=perDict.reduce((s,d)=>s+d.weight*(SOURCE_HIERARCHY[d.type.toUpperCase()]||0.3),0);
+  const den=perDict.reduce((s,d)=>s+(SOURCE_HIERARCHY[d.type.toUpperCase()]||0.3),0);
+  const M_partial={perDictionary:perDict,weighted:(num/den)*100};
+  const supporters=perDict.filter(d=>d.weight>=0.30).length;
+  const level = supporters>=6 ? 'مؤكد' : supporters>=4 ? 'مرجّح' : supporters>=2 ? 'محتمل' : 'غير مؤيد';
+  const success = supporters >= 4;
+  const M_support={level,supporterCount:supporters,totalCount:perDict.length,success};
+  return {M_literal,M_partial,M_support};
+}
+
+/* ============================================================
+   10. الرادار
+   ============================================================ */
+function renderRadar(axes){
+  const size=320,cx=size/2,cy=size/2,rMax=115;
+  const keys=['direction','cohesion','intensity','visibility','time'];
+  const labels=['الاتجاه','الترابط','التعاظم','الظهور','الزمان'];
+  const icons=['🧭','🧩','🔥','👁','⏳'];
+  const n=keys.length;
+  const points=keys.map((k,i)=>{
+    const a=-Math.PI/2+(2*Math.PI*i)/n;
+    const v=axes[k]||0, norm=(v+1)/2, r=norm*rMax;
+    return {x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,label:labels[i],icon:icons[i],value:v};
+  });
+  const grid=[.25,.5,.75,1].map(ratio=>{
+    const pts=keys.map((_,i)=>{ const a=-Math.PI/2+(2*Math.PI*i)/n; const r=ratio*rMax; return `${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`; }).join(' ');
+    return `<polygon points="${pts}" fill="none" stroke="#E5E7EB" stroke-width="1"/>`;
+  }).join('');
+  const ax=keys.map((_,i)=>{ const a=-Math.PI/2+(2*Math.PI*i)/n; return `<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*rMax}" y2="${cy+Math.sin(a)*rMax}" stroke="#E5E7EB"/>`; }).join('');
+  const pp=points.map(p=>`${p.x},${p.y}`).join(' ');
+  const lb=points.map((p,i)=>{
+    const a=-Math.PI/2+(2*Math.PI*i)/n;
+    const lx=cx+Math.cos(a)*(rMax+32), ly=cy+Math.sin(a)*(rMax+32);
+    return `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="16">${p.icon}</text><text x="${lx}" y="${ly+20}" text-anchor="middle" font-size="12" fill="#6B7280" font-weight="700">${p.label}</text><text x="${lx}" y="${ly+36}" text-anchor="middle" font-size="11" fill="#1E2A5A" font-weight="700">${Math.round((p.value+1)*50)}%</text>`;
+  }).join('');
+  return `<svg class="radar-svg" viewBox="0 0 ${size} ${size}">${grid}${ax}<polygon points="${pp}" fill="rgba(30,42,90,0.18)" stroke="#1E2A5A" stroke-width="2"/>${points.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="#1E2A5A"/>`).join('')}${lb}</svg>`;
+}
+function pct(v){ return Math.round((v+1)*50)+'%'; }
+
+/* ============================================================
+   11. متغيّرات عامة
+   ============================================================ */
+let currentAnalysis=null, currentDerivations=null, currentRootLetters=null;
+
+/* ============================================================
+   12. PWA
+   ============================================================ */
+let deferredInstallPrompt=null;
+(function injectManifest(){
+  try{
+    const manifest={name:"الحركة العامة — اللغة الموحدة",short_name:"الحركة العامة",start_url:".",scope:".",display:"standalone",background_color:"#FAFAF5",theme_color:"#1E2A5A",lang:"ar",dir:"rtl",icons:[{src:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjMUUyQTVBIi8+PHRleHQgeD0iOTYiIHk9IjEzMCIgZm9udC1zaXplPSIxMTAiIGZvbnQtZmFtaWx5PSJBbWlyaSxzZXJpZiIgZmlsbD0iI0M5QTk2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2K08L3RleHQ+PC9zdmc+",sizes:"192x192",type:"image/svg+xml"}]};
+    const blob=new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('link'); link.rel='manifest'; link.href=url; document.head.appendChild(link);
+  }catch(e){}
+})();
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstallPrompt=e; document.getElementById('install-btn').style.display='flex'; });
+window.addEventListener('appinstalled',()=>{ deferredInstallPrompt=null; document.getElementById('install-btn').style.display='none'; showToast('✅ تم التثبيت'); });
+document.getElementById('install-btn').addEventListener('click',async()=>{
+  if(deferredInstallPrompt){ deferredInstallPrompt.prompt(); const {outcome}=await deferredInstallPrompt.userChoice; if(outcome==='accepted') showToast('✅ جاري التثبيت'); deferredInstallPrompt=null; document.getElementById('install-btn').style.display='none'; }
+  else document.getElementById('install-modal').classList.add('show');
+});
+document.getElementById('install-modal-close').addEventListener('click',()=>document.getElementById('install-modal').classList.remove('show'));
+document.getElementById('install-modal').addEventListener('click',e=>{ if(e.target.id==='install-modal') document.getElementById('install-modal').classList.remove('show'); });
+function checkIfInstalled(){
+  const standalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+  if(!standalone) setTimeout(()=>{ if(!deferredInstallPrompt) document.getElementById('install-btn').style.display='flex'; },3000);
+}
+
+/* ============================================================
+   13. Theme
+   ============================================================ */
+const THEME_KEY='lum_theme_v1';
+function initTheme(){
+  const saved=SafeStorage.get(THEME_KEY);
+  const prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved||(prefersDark?'dark':'light'));
+}
+function applyTheme(t){
+  if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); const mc=document.querySelector('meta[name="theme-color"]'); if(mc) mc.setAttribute('content','#0F1419'); const b=document.getElementById('theme-btn'); if(b)b.textContent='☀️'; }
+  else { document.documentElement.removeAttribute('data-theme'); const mc=document.querySelector('meta[name="theme-color"]'); if(mc) mc.setAttribute('content','#1E2A5A'); const b=document.getElementById('theme-btn'); if(b)b.textContent='🌙'; }
+}
+document.getElementById('theme-btn').addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';
+  const next=cur==='dark'?'light':'dark';
+  SafeStorage.set(THEME_KEY,next); applyTheme(next);
+  showToast(next==='dark'?'🌙 الوضع الداكن':'☀️ الوضع النهاري');
+});
+
+/* ============================================================
+   14. السجل
+   ============================================================ */
+const HISTORY_KEY='lum_history_v1', HISTORY_MAX=50;
+function loadHistory(){ try{ const r=SafeStorage.get(HISTORY_KEY); return r?JSON.parse(r):[]; }catch(e){ return []; } }
+function saveHistoryItem(mv){
+  try{
+    const h=loadHistory();
+    const ex=h.findIndex(x=>x.word===mv.word);
+    if(ex>=0) h.splice(ex,1);
+    h.unshift({id:Date.now()+'_'+Math.random().toString(36).slice(2,8),word:mv.word,sentence:mv.sentence,letters:mv.letters,speed:mv.speed,timestamp:Date.now()});
+    if(h.length>HISTORY_MAX) h.length=HISTORY_MAX;
+    SafeStorage.set(HISTORY_KEY,JSON.stringify(h));
+    updateHistoryBadge();
+  }catch(e){}
+}
+function deleteHistoryItem(id){
+  const h=loadHistory().filter(x=>x.id!==id);
+  SafeStorage.set(HISTORY_KEY,JSON.stringify(h));
+  updateHistoryBadge(); renderHistory(); renderMultiSelect(); renderPersonalStats(); renderHeatmap(); renderCalendar(); renderRecommendations();
+  showToast('🗑️ تم الحذف');
+}
+function clearHistory(){
+  if(!confirm('حذف كل السجل؟')) return;
+  SafeStorage.remove(HISTORY_KEY);
+  updateHistoryBadge(); renderHistory(); renderMultiSelect(); renderPersonalStats(); renderHeatmap(); renderCalendar(); renderRecommendations();
+  showToast('🗑️ تم المسح');
+}
+function updateHistoryBadge(){
+  const c=loadHistory().length;
+  const b=document.getElementById('history-badge'), l=document.getElementById('history-count-label');
+  if(b){ b.textContent=c>99?'99+':c; b.style.display=c>0?'':'none'; }
+  if(l) l.textContent=c===0?'0 عنصر':c===1?'عنصر':c+' عناصر';
+}
+function formatRelativeTime(date){
+  const diff=Date.now()-date.getTime();
+  const m=Math.floor(diff/60000), h=Math.floor(diff/3600000), d=Math.floor(diff/86400000);
+  if(m<1) return 'الآن';
+  if(m<60) return `قبل ${m} د`;
+  if(h<24) return `قبل ${h} س`;
+  if(d<7) return `قبل ${d} ي`;
+  return date.toLocaleDateString('ar-EG',{day:'numeric',month:'short'});
+}
+function renderHistory(){
+  const c=document.getElementById('history-list-container'); if(!c) return;
+  const h=loadHistory();
+  if(h.length===0){ c.innerHTML=`<div class="card"><div class="history-empty"><div class="big">📚</div><div>لا يوجد سجل بعد.</div></div></div>`; return; }
+  c.innerHTML=`<div class="history-list">${h.map(item=>{
+    const lts=item.letters.map(ch=>`<span class="tier-dot ${CORE[ch]?.tier||'purple'}" style="margin:0 2px;"></span><span style="font-family:var(--font-serif);font-weight:700;">${ch}</span>`).join(' ');
+    return `<div class="history-item" data-id="${item.id}" data-word="${item.word}">
+      <div class="history-info">
+        <div class="history-word">${item.word}</div>
+        <div class="history-movement">${item.sentence}</div>
+        <div class="history-meta">${lts} · ${Math.round(item.speed*100)}% · ${formatRelativeTime(new Date(item.timestamp))}</div>
+      </div>
+      <div class="history-actions">
+        <button class="history-icon-btn" data-action="open" data-word="${item.word}" title="فتح">↗</button>
+        <button class="history-icon-btn" data-action="copy" data-word="${item.word}" title="نسخ">🔗</button>
+        <button class="history-icon-btn danger" data-action="delete" data-id="${item.id}" title="حذف">🗑</button>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+  c.querySelectorAll('.history-item').forEach(item=>item.addEventListener('click',e=>{ if(e.target.closest('button')) return; document.getElementById('word-input').value=item.dataset.word; analyze(item.dataset.word); }));
+  c.querySelectorAll('[data-action="open"]').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); document.getElementById('word-input').value=b.dataset.word; analyze(b.dataset.word); }));
+  c.querySelectorAll('[data-action="copy"]').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); copyShareLink(b.dataset.word); }));
+  c.querySelectorAll('[data-action="delete"]').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); deleteHistoryItem(b.dataset.id); }));
+}
+document.getElementById('history-clear-btn')?.addEventListener('click', clearHistory);
+document.getElementById('history-export-btn')?.addEventListener('click',()=>{
+  const h=loadHistory(); if(h.length===0){ showToast('⚠️ السجل فارغ'); return; }
+  const data={history:h.map(x=>({word:x.word,sentence:x.sentence,letters:x.letters,speed:x.speed,timestamp:new Date(x.timestamp).toISOString()})),exportedAt:new Date().toISOString(),version:'v2.7.1'};
+  downloadFile(JSON.stringify(data,null,2),`lum-history-${Date.now()}.json`,'application/json;charset=utf-8');
+  showToast('✅ تم التصدير');
+});
+document.getElementById('history-stats-btn')?.addEventListener('click',()=>{ showScreen('stats'); });
+
+/* ============================================================
+   15. الإحصائيات الشخصية
+   ============================================================ */
+function computePersonalStats(){
+  const h=loadHistory(); if(h.length===0) return null;
+  const totalAnalyses=h.length;
+  const uniqueWords=new Set(h.map(x=>x.word)).size;
+  const avgSpeed=h.reduce((s,x)=>s+x.speed,0)/h.length;
+  const avgLetters=h.reduce((s,x)=>s+x.letters.length,0)/h.length;
+  const letterFreq={};
+  h.forEach(x=>x.letters.forEach(ch=>{ letterFreq[ch]=(letterFreq[ch]||0)+1; }));
+  const topLetters=Object.entries(letterFreq).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const buckets=[0,0,0,0,0];
+  h.forEach(x=>{ const p=Math.round(x.speed*100); if(p<20) buckets[0]++; else if(p<40) buckets[1]++; else if(p<60) buckets[2]++; else if(p<80) buckets[3]++; else buckets[4]++; });
+  const tierCount={green:0,yellow:0,purple:0};
+  h.forEach(x=>x.letters.forEach(ch=>{ const t=CORE[ch]?.tier||'purple'; tierCount[t]++; }));
+  return {totalAnalyses,uniqueWords,avgSpeed,avgLetters,topLetters,buckets,tierCount};
+}
+function renderPersonalStats(){
+  const c=document.getElementById('personal-stats-content'); if(!c) return;
+  const s=computePersonalStats();
+  if(!s){ c.innerHTML=`<div class="history-empty"><div class="big">📊</div><div>حلّل بعض الكلمات.</div></div>`; return; }
+  const sp=Math.round(s.avgSpeed*100);
+  const sv=sp<30?'مكانيَّة':sp<70?'متعادلة':'زمانيَّة';
+  const maxL=s.topLetters[0]?.[1]||1;
+  const maxB=Math.max(...s.buckets,1);
+  const bl=['<20%','20-40%','40-60%','60-80%','80%+'];
+  const tt=s.tierCount.green+s.tierCount.yellow+s.tierCount.purple||1;
+  const gp=Math.round((s.tierCount.green/tt)*100), yp=Math.round((s.tierCount.yellow/tt)*100), pp=Math.round((s.tierCount.purple/tt)*100);
+  c.innerHTML=`
+    <div class="personal-stats-grid">
+      <div class="personal-stat blue"><div class="num">${s.totalAnalyses}</div><div class="lbl">تحليل محفوظ</div></div>
+      <div class="personal-stat green"><div class="num">${s.uniqueWords}</div><div class="lbl">كلمة فريدة</div></div>
+      <div class="personal-stat yellow"><div class="num small">${sp}%</div><div class="lbl">متوسط السرعة (${sv})</div></div>
+      <div class="personal-stat purple"><div class="num small">${s.avgLetters.toFixed(1)}</div><div class="lbl">متوسط الحروف</div></div>
+    </div>
+    <div style="margin-top:18px;">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:10px;">🔤 أكثر الحروف ظهورًا</div>
+      <div class="bar-chart">${s.topLetters.map(([ch,count])=>{
+        const pv=Math.round((count/maxL)*100);
+        const t=CORE[ch]?.tier||'purple';
+        const col=t==='green'?'var(--green)':t==='yellow'?'var(--yellow)':'var(--purple)';
+        return `<div class="bar-chart-row"><div class="bar-chart-label" style="font-family:var(--font-serif);font-size:1.2rem;">${ch}</div><div class="bar-chart-bar-wrap"><div class="bar-chart-bar" style="width:${pv}%;background:${col};">${count}</div></div></div>`;
+      }).join('')}</div>
+    </div>
+    <div style="margin-top:18px;">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:10px;">📈 توزيع السرعات</div>
+      <div style="display:flex;align-items:flex-end;gap:6px;height:140px;padding:12px 0;border-bottom:2px solid var(--border);">${s.buckets.map((count,i)=>{ const hh=Math.round((count/maxB)*100); return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;"><div style="font-size:.75rem;color:var(--navy);font-weight:700;">${count}</div><div style="width:100%;background:linear-gradient(180deg,var(--navy),var(--navy-soft));border-radius:6px 6px 0 0;height:${Math.max(hh,4)}%;min-height:4px;"></div><div style="font-size:.7rem;color:var(--ink-muted);font-weight:700;">${bl[i]}</div></div>`; }).join('')}</div>
+    </div>
+    <div style="margin-top:18px;">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:10px;">🏷️ توزيع tiers</div>
+      <div class="role-flow" style="height:16px;margin-bottom:8px;">
+        <div class="role-flow-seg" style="flex:${gp};background:var(--green);"></div>
+        <div class="role-flow-seg" style="flex:${yp};background:var(--yellow);"></div>
+        <div class="role-flow-seg" style="flex:${pp};background:var(--purple);"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.8rem;flex-wrap:wrap;gap:10px;">
+        <span>🟢 منصوص: <strong>${gp}%</strong></span><span>🟡 مسودة: <strong>${yp}%</strong></span><span>🟣 من تسلسل: <strong>${pp}%</strong></span>
+      </div>
+    </div>`;
+}
+
+/* ============================================================
+   16. الخريطة الحرارية
+   ============================================================ */
+function renderHeatmap(){
+  const c=document.getElementById('heatmap-content'); if(!c) return;
+  const h=loadHistory();
+  if(h.length===0){ c.innerHTML=`<div class="history-empty"><div class="big">🗺️</div><div>حلّل بعض الكلمات.</div></div>`; return; }
+  const freq={};
+  Object.keys(CORE).forEach(ch=>{ freq[ch]=0; });
+  h.forEach(x=>x.letters.forEach(ch=>{ if(freq[ch]!==undefined) freq[ch]++; }));
+  const max=Math.max(...Object.values(freq),1);
+  const getLv=(n)=>{ if(n===0) return 0; const r=n/max; if(r<0.2) return 1; if(r<0.4) return 2; if(r<0.65) return 3; if(r<0.85) return 4; return 5; };
+  const order=['أ','ب','ت','ث','ج','ح','خ','د','ذ','ر','ز','س','ش','ص','ض','ط','ظ','ع','غ','ف','ق','ك','ل','م','ن','هـ','و','ي'];
+  c.innerHTML=`
+    <div class="heatmap">${order.map(ch=>{ const n=freq[ch]||0, lv=getLv(n); return `<div class="heatmap-cell" data-lv="${lv}" data-letter="${ch}" title="${ch} — ${CORE[ch].movement} (${n} مرة)">${ch}${n>0?`<span class="count-badge">${n}</span>`:''}</div>`; }).join('')}</div>
+    <div class="heatmap-legend"><span>أقل</span><div class="swatch" style="background:var(--bg-soft);"></div><div class="swatch" style="background:#DCFCE7;"></div><div class="swatch" style="background:#A7F3D0;"></div><div class="swatch" style="background:#6EE7B7;"></div><div class="swatch" style="background:#10B981;"></div><div class="swatch" style="background:#047857;"></div><span>أكثر</span></div>
+    <div class="info-box" style="margin-top:14px;">💡 <strong>${Object.values(freq).filter(x=>x>0).length}</strong> من <strong>28</strong> حرفًا استخدمتها حتى الآن.${Object.values(freq).filter(x=>x===0).length>0?`<br>🟣 لم تجرّب بعد: ${order.filter(ch=>freq[ch]===0).map(ch=>`<strong style="font-family:var(--font-serif);font-size:1.1rem;">${ch}</strong>`).join('، ')}`:''}</div>`;
+  c.querySelectorAll('.heatmap-cell').forEach(cell=>cell.addEventListener('click',()=>{ showScreen('letters'); renderLetterDetail(cell.dataset.letter); }));
+}
+
+/* ============================================================
+   17. التقويم
+   ============================================================ */
+function renderCalendar(){
+  const c=document.getElementById('calendar-content'); if(!c) return;
+  const h=loadHistory();
+  if(h.length===0){ c.innerHTML=`<div class="history-empty"><div class="big">📅</div><div>ابدأ بتسجيل تحليلاتك.</div></div>`; return; }
+  const today=new Date(); today.setHours(0,0,0,0);
+  const start=new Date(today); start.setDate(start.getDate()-83);
+  const counts={};
+  h.forEach(x=>{ const d=new Date(x.timestamp); d.setHours(0,0,0,0); const key=d.toISOString().slice(0,10); counts[key]=(counts[key]||0)+1; });
+  const days=[];
+  for(let i=0;i<84;i++){ const d=new Date(start); d.setDate(start.getDate()+i); const key=d.toISOString().slice(0,10); days.push({date:d,key,count:counts[key]||0}); }
+  const maxCount=Math.max(...days.map(d=>d.count),1);
+  const getLv=(n)=>{ if(n===0) return 0; const r=n/maxCount; if(r<0.34) return 1; if(r<0.67) return 2; if(r<1) return 3; return 4; };
+  const grid=[];
+  for(let week=0;week<12;week++){ for(let day=0;day<7;day++){ const idx=week*7+day; if(idx<84) grid.push(days[idx]); } }
+  const last7=days.slice(-7).reduce((s,d)=>s+d.count,0);
+  const last30=days.slice(-30).reduce((s,d)=>s+d.count,0);
+  const activeDays=days.filter(d=>d.count>0).length;
+  const streak=(()=>{ let s=0; for(let i=days.length-1;i>=0;i--){ if(days[i].count>0) s++; else if(s>0) break; } return s; })();
+  c.innerHTML=`
+    <div class="calendar-scroll"><div class="calendar-grid">${grid.map(d=>{ const lv=getLv(d.count); const dateStr=d.date.toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'short'}); return `<div class="calendar-day lv${lv}" title="${dateStr} — ${d.count} تحليل"></div>`; }).join('')}</div></div>
+    <div class="calendar-legend"><span>أقل</span><div class="swatch" style="background:var(--bg-soft);"></div><div class="swatch" style="background:#DCFCE7;"></div><div class="swatch" style="background:#6EE7B7;"></div><div class="swatch" style="background:#10B981;"></div><div class="swatch" style="background:#047857;"></div><span>أكثر</span></div>
+    <div class="calendar-stats"><span>🔥 سلسلة حالية: <strong>${streak}</strong> ${streak===1?'يوم':'أيام'}</span><span>📅 آخر 7 أيام: <strong>${last7}</strong></span><span>📅 آخر 30: <strong>${last30}</strong></span><span>✅ أيام نشطة: <strong>${activeDays}/84</strong></span></div>`;
+}
+
+/* ============================================================
+   18. التوصيات الذكية
+   ============================================================ */
+function renderRecommendations(){
+  const c=document.getElementById('recommend-content'); if(!c) return;
+  const h=loadHistory();
+  const analyzed=new Set(h.map(x=>x.word));
+  if(h.length===0){
+    const starters=['دحر','حمد','حد','علم','نجم','فور'];
+    c.innerHTML=`<div class="recommend-grid">${starters.map(w=>{ const mv=extractMovement(w); return `<div class="recommend-card" data-word="${w}"><div class="recommend-badge">★ بداية</div><div class="recommend-word">${w}</div><div class="recommend-movement">${mv?mv.sentence:''}</div><div class="recommend-reason">💡 منصوصة في كتاب النيلي</div></div>`; }).join('')}</div>`;
+    c.querySelectorAll('.recommend-card').forEach(card=>card.addEventListener('click',()=>{ document.getElementById('word-input').value=card.dataset.word; analyze(card.dataset.word); }));
+    return;
+  }
+  const usedLetters=new Set(); h.forEach(x=>x.letters.forEach(ch=>usedLetters.add(ch)));
+  const allLetters=Object.keys(CORE);
+  const unusedLetters=allLetters.filter(ch=>!usedLetters.has(ch));
+  const letterSuggestions={
+    'د':['دحر','درس','دفع'],'ح':['حمد','حبل','حرس'],'ر':['دحر','فرح','رحم'],
+    'ت':['تكم','بلت','فتح'],'ك':['سمك','كمل','كتب'],'م':['حمد','علم','نجم'],
+    'ب':['بحر','بنى','طلب'],'ع':['علم','عمل','نعم'],'ل':['علم','قلب','لون'],
+    'ي':['يوم','يقظ','بني'],'ض':['ضرب','ضوء','رضي'],'ص':['صرخ','نصر','خلص'],
+    'ج':['نجم','خرج','جمع'],'ز':['زهر','زرع','نزل'],'ق':['قلب','قرأ','نقش'],
+    'خ':['خرج','خبز','نسخ'],'ذ':['ذكر','ذاق','نفذ'],'س':['سمك','سجد','درس'],
+    'ش':['شمس','نشر','عشب'],'ط':['طلع','بطح','نطق'],'غ':['غرق','بلغ','فرغ'],
+    'هـ':['هجر','نجه','نهر'],'ث':['ثمر','بعث','كتب'],'ظ':['ظهر','نظر','حفظ'],
+    'أ':['أمر','بدأ','قرأ'],'ف':['فور','فتح','نفذ'],'ن':['نجم','نعم','بنى'],'و':['وصل','وحد','دور']
+  };
+  const recs=[];
+  const candidates=[];
+  unusedLetters.slice(0,4).forEach(ch=>{
+    (letterSuggestions[ch]||[]).forEach(w=>{
+      if(!analyzed.has(w) && !candidates.find(x=>x.word===w)){
+        const mv=extractMovement(w);
+        if(mv) candidates.push({word:w,mv,reason:`يستخدم حرف «${ch}» (${CORE[ch].movement}) — لم تجربه بعد`,badge:'🆕 جديد'});
+      }
+    });
+  });
+  recs.push(...candidates.slice(0,3));
+  const avgSpeed=h.reduce((s,x)=>s+x.speed,0)/h.length;
+  if(avgSpeed>0.6){
+    ['وحد','وقف','دور'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك زمانية',badge:'⚖️ تكميلي'}); });
+  } else if(avgSpeed<0.4){
+    ['يوم','ير','رقي'].filter(w=>!analyzed.has(w)).slice(0,1).forEach(w=>{ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:'تكمّل حركتك — كل تحليلاتك مكانية',badge:'⚖️ تكميلي'}); });
+  }
+  const unusedGreen=['د','ح','ر','ت','ك','م','ب','ع','ل','ي'].filter(ch=>!usedLetters.has(ch));
+  if(unusedGreen.length>0 && recs.length<4){
+    const ch=unusedGreen[0];
+    const w=(letterSuggestions[ch]||[]).find(w=>!analyzed.has(w));
+    if(w){ const mv=extractMovement(w); if(mv) recs.push({word:w,mv,reason:`لم تجرب حرف «${ch}» المنصوص بعد`,badge:'🟢 منصوص'}); }
+  }
+  if(recs.length<4){
+    const pairs=[['علم','عمل'],['حمد','مدح'],['دحر','حرد']];
+    for(const [a,b] of pairs){
+      if(analyzed.has(a) && !analyzed.has(b)){ const mv=extractMovement(b); if(mv){ recs.push({word:b,mv,reason:`تبديل لـ«${a}» — يثبت القاعدة 6`,badge:'🔀 تبديل'}); break; } }
+      if(analyzed.has(b) && !analyzed.has(a)){ const mv=extractMovement(a); if(mv){ recs.push({word:a,mv,reason:`تبديل لـ«${b}» — يثبت القاعدة 6`,badge:'🔀 تبديل'}); break; } }
+    }
+  }
+  if(recs.length===0){ c.innerHTML=`<div class="info-box">🎉 ممتاز! استكشفت معظم الحروف. جرّب كلمات أطول (4-5 حروف).</div>`; return; }
+  c.innerHTML=`<div class="recommend-grid">${recs.slice(0,6).map(r=>`<div class="recommend-card" data-word="${r.word}"><div class="recommend-badge">${r.badge}</div><div class="recommend-word">${r.word}</div><div class="recommend-movement">${r.mv.sentence}</div><div class="recommend-reason">${r.reason}</div></div>`).join('')}</div>`;
+  c.querySelectorAll('.recommend-card').forEach(card=>card.addEventListener('click',()=>{ document.getElementById('word-input').value=card.dataset.word; analyze(card.dataset.word); }));
+}
+
+/* ============================================================
+   19. المقارنة المتعددة
+   ============================================================ */
+let multiSelected=new Set();
+function renderMultiSelect(){
+  const c=document.getElementById('multi-select-container'); if(!c) return;
+  const h=loadHistory();
+  if(h.length===0){ c.innerHTML=`<div class="history-empty"><div class="big">📚</div><div>لا يوجد سجل.</div></div>`; document.getElementById('multi-compare-btn').disabled=true; return; }
+  c.innerHTML=`<div class="multi-select-list">${h.map(item=>{ const sel=multiSelected.has(item.word); return `<div class="multi-select-item ${sel?'selected':''}" data-word="${item.word}"><div class="multi-select-check">${sel?'✓':''}</div><div class="multi-select-info"><div class="multi-select-word">${item.word}</div><div class="multi-select-movement">${item.sentence}</div></div><div style="font-size:.72rem;color:var(--ink-muted);font-weight:700;">${Math.round(item.speed*100)}%</div></div>`; }).join('')}</div>`;
+  c.querySelectorAll('.multi-select-item').forEach(item=>item.addEventListener('click',()=>{ const w=item.dataset.word; if(multiSelected.has(w)) multiSelected.delete(w); else { if(multiSelected.size>=8){ showToast('⚠️ الحد 8'); return; } multiSelected.add(w); } renderMultiSelect(); }));
+  const btn=document.getElementById('multi-compare-btn');
+  btn.disabled=multiSelected.size<2;
+  btn.textContent=multiSelected.size<2?'قارن المختارة (≥ 2)':`قارن ${multiSelected.size} كلمات`;
+}
+document.getElementById('multi-compare-btn').addEventListener('click',()=>{
+  if(multiSelected.size<2) return;
+  const words=[...multiSelected];
+  const analyses=words.map(w=>extractMovement(w)).filter(Boolean);
+  const out=document.getElementById('multi-compare-output');
+  if(analyses.length<2){ out.innerHTML=`<div class="error-box">تعذّر التحليل.</div>`; return; }
+  const table=`<div class="card"><div class="card-title"><span class="icon">📊</span> مقارنة ${analyses.length} تحليلات</div><div style="overflow-x:auto;"><table class="multi-compare-table"><thead><tr><th>الكلمة</th><th>الحروف</th><th>الحركة</th><th>السرعة</th><th>اتجاه</th><th>تعاظم</th><th>زمان</th></tr></thead><tbody>${analyses.map(a=>`<tr><td class="word-cell">${a.word}</td><td style="font-family:var(--font-serif);font-weight:700;letter-spacing:2px;">${a.letters.join(' ')}</td><td style="font-size:.78rem;line-height:1.5;">${a.sentence}</td><td style="font-weight:700;">${Math.round(a.speed*100)}%</td><td>${pct(a.axes.direction)}</td><td>${pct(a.axes.intensity)}</td><td>${pct(a.axes.time)}</td></tr>`).join('')}</tbody></table></div></div>`;
+  const allLetters=analyses.flatMap(a=>a.letters);
+  const common=[...new Set(allLetters.filter(ch=>analyses.every(a=>a.letters.includes(ch))))];
+  const avgSpeed=analyses.reduce((s,a)=>s+a.speed,0)/analyses.length;
+  const fastest=analyses.reduce((m,a)=>a.speed>m.speed?a:m);
+  const slowest=analyses.reduce((m,a)=>a.speed<m.speed?a:m);
+  const insights=`<div class="card"><div class="card-title"><span class="icon">🔎</span> التحليل المشترك</div>${common.length>0?`<div style="margin-bottom:14px;"><strong>الحروف المشتركة:</strong><div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">${common.map(ch=>`<span style="background:var(--green-soft);border:1px solid #A7F3D0;padding:4px 12px;border-radius:14px;font-family:var(--font-serif);font-weight:700;color:#047857;">${ch}</span>`).join('')}</div></div>`:''}<div style="background:var(--bg-soft);padding:12px;border-radius:var(--radius-sm);font-size:.9rem;line-height:1.8;"><strong style="color:var(--navy);">📌 ملخّص:</strong><br>• متوسط السرعة: <strong>${Math.round(avgSpeed*100)}%</strong><br>• الأسرع: <strong>${fastest.word}</strong> (${Math.round(fastest.speed*100)}%)<br>• الأبطأ: <strong>${slowest.word}</strong> (${Math.round(slowest.speed*100)}%)</div></div>`;
+  out.innerHTML=table+insights;
+});
+document.getElementById('multi-clear-btn').addEventListener('click',()=>{ multiSelected.clear(); renderMultiSelect(); document.getElementById('multi-compare-output').innerHTML=''; });
+document.getElementById('multi-select-all-btn').addEventListener('click',()=>{ const h=loadHistory(); const s=Math.min(h.length,8); multiSelected=new Set(h.slice(0,s).map(x=>x.word)); if(h.length>8) showToast('⚠️ أول 8 كلمات'); renderMultiSelect(); });
+
+/* ============================================================
+   20. المشاركة
+   ============================================================ */
+function getShareLink(word){ return `${location.origin}${location.pathname}?w=${encodeURIComponent(word)}`; }
+async function copyShareLink(word){
+  const link=getShareLink(word);
+  try{
+    if(navigator.share && /Mobi|Android/i.test(navigator.userAgent)){
+      await navigator.share({title:`تحليل «${word}»`,text:`تحليل حركة «${word}» وفق منهج النيلي`,url:link}); return;
+    }
+    await navigator.clipboard.writeText(link); showToast('🔗 تم النسخ');
+  }catch(e){
+    try{ await navigator.clipboard.writeText(link); showToast('🔗 تم النسخ'); }
+    catch(err){ const ta=document.createElement('textarea'); ta.value=link; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('🔗 تم النسخ'); }
+  }
+}
+document.getElementById('share-btn').addEventListener('click',async()=>{
+  const w=currentAnalysis?.word||document.getElementById('word-input').value.trim();
+  if(!w){ showToast('⚠️ اكتب تسلسلاً'); return; }
+  await copyShareLink(w);
+});
+function handleURLParams(){
+  try{ const p=new URLSearchParams(location.search); const w=p.get('w'); if(w){ document.getElementById('word-input').value=w; setTimeout(()=>analyze(w),200); return true; } }catch(e){}
+  return false;
+}
+
+/* ============================================================
+   21. واجهة التحليل
+   ============================================================ */
+function renderAnalysis(mv){
+  currentAnalysis=mv;
+  const m=computeSemanticMetrics();
+  const sp=Math.round(mv.speed*100);
+  const sv=sp<30?'بطيئة (مكانيَّة)':sp<70?'متوسطة — متعادل':'سريعة (زمانيَّة)';
+
+  const timeline=mv.contributions.map(c=>`<div class="tl-node-wrap"><span class="tl-role-badge role-mini ${c.role.cls}">${c.role.short}</span><div class="tl-node role-${c.role.id}"><div class="tl-char">${c.ch}</div><div class="tl-label">${c.core.movement}</div></div></div>`).join('<div class="tl-arrow">⟵</div>');
+  const rf=mv.contributions.map(c=>`<div class="role-flow-seg ${c.role.cls}"></div>`).join('');
+  const permCards=mv.permutations.slice(0,24).map(perm=>{ const pw=perm.join(''), io=pw===mv.word; return `<div class="perm-card ${io?'original':''}">${io?'<span class="perm-badge">★ الأصل</span>':''}<div class="perm-word">${pw}</div><div class="perm-movement">${perm.map(ch=>CORE[ch].movement).join(' ← ')}</div></div>`; }).join('');
+  const first=mv.contributions[0], last=mv.contributions[mv.contributions.length-1];
+  const thread=mv.contributions.length>=2
+    ? `<strong>${first.ch}</strong> (${first.core.movement} — ${first.role.label}) ${mv.contributions.slice(1,-1).map(c=>`ثم <strong>${c.ch}</strong> (${c.core.movement} — ${c.role.label})`).join(' ')} ← <strong>${last.ch}</strong> (${last.core.movement} — ${last.role.label})`
+    : mv.sentence;
+
+  return `
+    <div class="analysis-actions">
+      <button class="action-btn primary" onclick="exportPDF()">🖨️ PDF</button>
+      <button class="action-btn" onclick="exportJSON()">📥 JSON</button>
+      <button class="action-btn" onclick="exportCSV()">📊 CSV</button>
+      <button class="action-btn" onclick="copyAnalysis()">📋 نسخ</button>
+      <button class="action-btn" onclick="copyShareLink('${mv.word.replace(/'/g,"\\'")}')">🔗 مشاركة</button>
+    </div>
+
+    <div class="movement-main">
+      <div class="label">✨ الحركة العامة</div>
+      <div class="value">${mv.sentence}</div>
+      ${mv.concept?`<div class="concept">المفهوم المنبثق: ${mv.concept}</div>`:''}
+      ${mv.ks?`<div style="margin-top:10px;font-size:.82rem;color:#7A5A1A;font-weight:500;">📖 نصّ النيلي — ${mv.ks.source}${mv.ks.page?' ص '+mv.ks.page:''}</div>`:''}
+      <div class="words-row">${mv.contributions.map(c=>`<span class="word-tag"><span class="tier-dot ${c.core.tier}"></span>${c.ch}<span class="role-mini ${c.role.cls}">${c.role.short}</span></span>`).join('')}</div>
+      ${mv.duplicates.length ? `<div class="duplicate-alert">🔁 <strong>تنبيه:</strong> التسلسل يحوي حرفًا مكررًا (${mv.duplicates.map(d=>`${d.ch} ×${d.count}`).join('، ')}) — لذلك التباديل الفريدة = <strong>${mv.uniquePermutations}</strong> (لا ${mv.permutations.length * (mv.duplicates[0]?.count || 1)}).</div>` : ''}
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔧</span> التفكيك — مجموع الحركات</div>
+      <p class="card-sub">مبدأ «التراكم»: كل صوت يعمل على ناتج ما قبله.</p>
+      <div style="background:var(--gold-soft);padding:14px;border-radius:var(--radius-sm);font-family:var(--font-serif);font-size:1.05rem;color:var(--navy);text-align:center;border:1px solid var(--gold);">${mv.breakdown}</div>
+      <div style="text-align:center;margin-top:10px;font-size:.85rem;color:var(--ink-muted);">${mv.sentence}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span> الخصائص</div>
+      <div class="info-grid">
+        <div class="info-cell"><div class="k">التسلسل</div><div class="v">${mv.word}</div></div>
+        <div class="info-cell"><div class="k">الأصوات</div><div class="v">${mv.letters.length}</div></div>
+        <div class="info-cell">
+          <div class="k">التباديل</div>
+          <div class="v">${mv.uniquePermutations}</div>
+          ${mv.duplicates.length ? `<div class="dup-note">🔁 ${mv.duplicates.map(d=>`${d.ch}×${d.count}`).join(' · ')}</div>` : ''}
+        </div>
+        <div class="info-cell"><div class="k">السرعة</div><div class="v">${sp}%</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span> البصمة البصرية — 5 محاور</div>
+      <div class="radar-wrap">${renderRadar(mv.axes)}</div>
+      <div class="axes-grid">
+        <div class="axis-cell"><span class="k">🧭 الاتجاه</span><span class="v">${pct(mv.axes.direction)}</span></div>
+        <div class="axis-cell"><span class="k">🧩 الترابط</span><span class="v">${pct(mv.axes.cohesion)}</span></div>
+        <div class="axis-cell"><span class="k">🔥 التعاظم</span><span class="v">${pct(mv.axes.intensity)}</span></div>
+        <div class="axis-cell"><span class="k">👁 الظهور</span><span class="v">${pct(mv.axes.visibility)}</span></div>
+        <div class="axis-cell"><span class="k">⏳ الزمان</span><span class="v">${pct(mv.axes.time)}</span></div>
+      </div>
+      <p class="card-sub" style="margin-top:12px;font-size:.78rem;">القيم مطبَّعة على مقياس [0%, 100%] من متوسط مرجّح على [-1, +1].</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">⏱</span> خطّ الزمن — الأدوار الحركية <span class="tier-badge tier-green">🟢 القاعدة 2</span></div>
+      <div class="roles-legend"><span class="rl-1">🟢 منشأ</span><span class="rl-2">🔵 توجيه</span><span class="rl-3">🟡 ضبط</span><span class="rl-4">🟣 نتيجة</span></div>
+      <div class="timeline">${timeline}</div>
+      <div class="role-flow">${rf}</div>
+      <div class="role-flow-labels"><span>البداية →</span><span>الوسط</span><span>← النهاية</span></div>
+      <div style="background:var(--bg-soft);padding:12px;border-radius:var(--radius-sm);font-size:.9rem;line-height:1.9;color:var(--ink-soft);margin-top:14px;"><strong style="color:var(--navy);">خيط النسق:</strong> ${thread}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🚀</span> سرعة الحركة — معامل الموضع الأخير</div>
+      <div class="speed-bar-wrap">
+        <div class="speed-label-row"><span>مكان محض (و)</span><span>زمان محض (ي)</span></div>
+        <div class="speed-bar"><div class="speed-marker" style="left:${sp}%;"></div></div>
+        <div class="speed-value">${sp}%</div>
+        <div class="speed-verdict">${sv}</div>
+        <div class="speed-detail">
+          ${mv.contributions.map(c=>`<div class="row"><span>${c.ch} — ${c.core.movement} <span style="font-size:.72rem;color:var(--ink-muted);">(${c.core.speed.toFixed(2)})</span></span><span>${c.core.speed.toFixed(2)} × ${c.weight.toFixed(2)} = <strong>${(c.core.speed*c.weight).toFixed(3)}</strong></span></div>`).join('')}
+          <div class="row total"><span>المعدّل الأساسي</span><span>${mv.baseSpeed.toFixed(3)}</span></div>
+          <div class="row"><span>معامل الموضع الأخير (${last.ch})</span><span>× ${mv.finalFactor.toFixed(2)}</span></div>
+          <div class="row total"><span>الناتج النهائي</span><span>${sp}%</span></div>
+          <div class="formula">${mv.baseSpeed.toFixed(3)} × ${mv.finalFactor.toFixed(2)} = ${(mv.baseSpeed*mv.finalFactor).toFixed(3)}</div>
+        </div>
+      </div>
+    </div>
+
+    ${mv.permutations.length>1?`<div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل — القاعدة 6 ${mv.duplicates.length?`<span class="tier-badge tier-yellow">🔁 ${mv.uniquePermutations} فريدة من ${mv.letters.length}!</span>`:''}</div>${mv.duplicates.length?`<p class="card-sub">يوجد تكرار في الحروف، لذا التباديل الفريدة = <strong>${mv.uniquePermutations}</strong> فقط.</p>`:''}<div class="perm-grid">${permCards}</div></div>`:''}
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔍</span> النقد الدلالي — هل يوافق المعجم الحركة؟</div>
+      <p class="card-sub">يُستخرج المعنى من حركة الأصوات، ثم يُقارن بالمعاجم — يُثبَّت ما يوافق ويُنفى ما خالف.</p>
+      <div class="metric-card" style="background:var(--gold-soft);border-color:var(--gold);">
+        <div class="metric-label" style="margin-bottom:6px;">البصمة الحاكمة</div>
+        <div style="font-family:var(--font-serif);font-size:1rem;color:var(--navy);font-weight:700;">${mv.sentence}</div>
+        <div style="font-size:.78rem;color:var(--ink-muted);margin-top:6px;">الكلمات الحاكمة: ${mv.contributions.map(c=>c.core.movement).join(' · ')}</div>
+      </div>
+
+      <div class="metric-card metric-partial">
+        <div class="metric-header"><span class="metric-label">① المطابقة الحرفية التامة</span><span class="metric-value">${m.M_literal.percent.toFixed(1)}%</span></div>
+        <div class="metric-detail">${m.M_literal.count} من ${m.M_literal.total} مدخل — انخفاضه طبيعي لأن المداخل متشعّبة.</div>
+      </div>
+
+      <div class="metric-card metric-partial">
+        <div class="metric-header"><span class="metric-label">② التوافق الجزئي المرجّح</span><span class="metric-value">${m.M_partial.weighted.toFixed(0)}%</span></div>
+        <div class="metric-detail">متوسط موزّع على 8 معاجم حسب هرمية القاعدة 9.</div>
+        <button class="details-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><span>تفصيل المعاجم</span><span>▼</span></button>
+        <div class="details-content">${m.M_partial.perDictionary.map(d=>`<div class="dict-row"><span class="dict-name">${d.name}</span><span><span class="dict-score">${Math.round(d.weight*100)}%</span><span class="mini-bar"><span class="mini-bar-fill" style="width:${d.weight*100}%;"></span></span></span></div>`).join('')}</div>
+      </div>
+
+      <div class="metric-card metric-support ${m.M_support.success?'success':'warn'}">
+        <div class="metric-header"><span class="metric-label">③ التأييد الدلالي</span><span class="metric-value">${m.M_support.success?'✅ ':'⚠️ '}${m.M_support.level}</span></div>
+        <div class="metric-detail"><strong>${m.M_support.supporterCount} من ${m.M_support.totalCount}</strong> معاجم تدعم الحركة.</div>
+        ${m.M_support.success?`<div class="metric-hint highlight">🎯 الخلاصة: الحركة «${mv.sentence}» مدعومة لغويًّا، والفارق الحرفي متوقع في نظام لا ترادف فيه.</div>`:''}
+      </div>
+
+      ${mv.ks?`<div class="card niu-card" style="margin-top:12px;"><div class="card-title"><span class="icon">📖</span> نصّ النيلي الموثّق <span class="tier-badge tier-green">🟢 منصوص</span></div><p>${mv.ks.text}</p>${mv.ks.meaning?`<p style="font-size:.9rem;color:#5A4210;margin-top:6px;">${mv.ks.meaning}</p>`:''}<p style="font-size:.85rem;color:#7A5A1A;margin-top:8px;">— ${mv.ks.source}${mv.ks.page?'، ص '+mv.ks.page:''}</p></div>`:''}
+
+      <div class="info-box" style="margin-top:12px;">«وقد يخالف المعجم إذا وجده غير جامع للأصل المشترك» — فالحرف قد يكشف رابطة لم يجمعها المعجم تحت أصل واحد.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📖</span> شروط الوجود — اللفظ المجرّد</div>
+      <p class="card-sub">اللفظ بلا تشكيل — والأصل في الحركة الوجود حتى تدلّ العلامة على غير ذلك.</p>
+      <div style="background:var(--bg-soft);padding:12px;border-radius:var(--radius-sm);font-size:.88rem;line-height:1.85;">
+        للتحقق الدقيق، أضف التشكيل:<br>
+        • <strong>الفتحة</strong> = زمكان (معاين)<br>
+        • <strong>الضمة</strong> = مكان<br>
+        • <strong>الكسرة</strong> = زمان
+      </div>
+    </div>
+
+    <div class="card" id="api-section">
+      <div class="card-title"><span class="icon">🌐</span> المعاني اللغوية</div>
+      <div id="api-content"><div class="loading"><div class="spinner"></div></div></div>
+    </div>`;
+}
+
+/* ============================================================
+   22. APIs
+   ============================================================ */
+async function tryFetch(urls, opts={}){
+  for(const url of urls){
+    try{
+      const ctrl=new AbortController(); const timer=setTimeout(()=>ctrl.abort(),8000);
+      const r=await fetch(url,{...opts,signal:ctrl.signal}); clearTimeout(timer);
+      if(r.ok) return r;
+    }catch(e){}
+  }
+  return null;
+}
+async function fetchWiktionary(word){
+  const target=`https://ar.wiktionary.org/api/rest_v1/page/summary/${encodeURIComponent(word)}`;
+  const r=await tryFetch([target,`https://corsproxy.io/?url=${encodeURIComponent(target)}`,`https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`]);
+  if(!r) return null;
+  try{ const d=await r.json(); if(!d||!d.extract) return null; return {extract:d.extract,url:d.content_urls?.desktop?.page}; }catch(e){ return null; }
+}
+async function fetchDatamuse(word){
+  const target=`https://api.datamuse.com/words?ml=${encodeURIComponent(word)}&max=8`;
+  const r=await tryFetch([target,`https://corsproxy.io/?url=${encodeURIComponent(target)}`,`https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`]);
+  if(!r) return null;
+  try{ return await r.json(); }catch(e){ return null; }
+}
+async function fetchPollinations(word,mv){
+  const promptText=`أنت مساعد متخصص في منهج "اللغة الموحدة" للعالم سبيط النيلي.
+التسلسل: "${word}"
+الحركة: "${mv.sentence}"
+معاني الحروف: ${mv.contributions.map(c=>`${c.ch}=${c.core.movement}`).join('، ')}
+اكتب فقرة قصيرة (3-4 أسطر) تربط بين الحركة والمعنى اللغوي المتداول، مع الالتزام بمبدأ "لا ترادف".`;
+  const target=`https://text.pollinations.ai/${encodeURIComponent(promptText)}`;
+  const r=await tryFetch([target,`https://corsproxy.io/?url=${encodeURIComponent(target)}`,`https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`]);
+  if(!r) return null;
+  try{ const t=await r.text(); return t&&t.length>10?t.trim():null; }catch(e){ return null; }
+}
+async function renderAPIs(word,mv){
+  const c=document.getElementById('api-content'); if(!c) return;
+  c.innerHTML=`<div class="loading"><div class="spinner"></div><div>جاري الاستعلام من المصادر...</div></div>`;
+  const [wik,data,ai]=await Promise.all([fetchWiktionary(word),fetchDatamuse(word),fetchPollinations(word,mv)]);
+  const local=LOCAL_LEXICON[word];
+  let h=''; const failed=[];
+  if(local){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">📖 ${local.source}</div><div class="dict-excerpt" style="background:var(--green-soft);border:1px solid #A7F3D0;color:#065F46;">${local.meaning}</div></div>`; }
+  if(wik?.extract){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">📚 Wiktionary</div><div class="dict-excerpt">${wik.extract}</div>${wik.url?`<div style="margin-top:6px;"><a href="${wik.url}" target="_blank" style="font-size:.8rem;">↗ Wiktionary</a></div>`:''}</div>`; } else failed.push('Wiktionary');
+  if(data?.length){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">🔗 كلمات ذات صلة</div><div style="display:flex;flex-wrap:wrap;gap:6px;">${data.slice(0,10).map(d=>`<span style="background:var(--bg-soft);padding:4px 12px;border-radius:14px;font-size:.85rem;border:1px solid var(--border);">${d.word}</span>`).join('')}</div></div>`; } else failed.push('Datamuse');
+  if(ai){ h+=`<div style="margin-bottom:14px;"><div style="font-weight:700;color:var(--navy);margin-bottom:6px;">🤖 توليف لغوي (Pollinations)</div><div class="dict-excerpt" style="background:var(--blue-soft);border:1px solid #BFDBFE;">${ai}</div></div>`; } else failed.push('Pollinations');
+  if(!h){ h=`<div class="info-box"><strong>ℹ️ لم تُرجع المصادر بيانات.</strong><br>💡 السبب المحتمل: أنت تفتح التطبيق من مدير ملفات (content://) — وهذا يمنع الاتصال بالمصادر.<br>✅ الحل: ارفع الملف على GitHub Pages أو Netlify.</div>`; }
+  else if(failed.length){ h+=`<div style="font-size:.72rem;color:var(--ink-muted);margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);">⚠️ لم تستجب: ${failed.join('، ')}</div>`; }
+  c.innerHTML=h;
+}
+
+/* ============================================================
+   23. الجذر والاشتقاق
+   ============================================================ */
+function renderRoot(word){
+  const mv=extractMovement(word);
+  const out=document.getElementById('root-output');
+  if(!mv){ out.innerHTML=`<div class="error-box">⚠️ لم أتعرّف على حروف المصوفة.</div>`; return; }
+  if(mv.letters.length<3){ out.innerHTML=`<div class="info-box">ℹ️ كلمة «${word}» تحتوي ${mv.letters.length} حرفًا فقط.<br><br><strong>الحركة:</strong> ${mv.sentence}</div>`; return; }
+  const rl=mv.letters.slice(0,3);
+  const ds=generateDerivations(rl);
+  currentRootLetters=rl; currentDerivations=ds;
+  const rc=rl.map((ch,i)=>{ const r=getRole(i,3); return `<div class="root-letter" data-role="${r.id}"><div class="glyph">${ch}</div><div class="role">${r.label}</div><div class="label">${CORE[ch].movement}</div></div>`; }).join('');
+  const dc=ds.map((d,idx)=>{
+    const dmv=extractMovement(d.word);
+    const kc=d.kind==='mujarrad'?'mujarrad':d.kind==='mazid2'?'mazid2':'mizid';
+    const ad=d.added.length?d.added.map(a=>`<span class="zawaid">+ ${a} (${CORE[a]?.movement||'—'})</span>`).join(''):'<span class="zawaid" style="background:var(--green-soft);border-color:#A7F3D0;color:#047857;">جذر مجرّد</span>';
+    return `<div class="deriv-card ${kc}" data-kind="${d.kind}" data-word="${d.word}"><button class="deriv-wikt-btn" data-word="${d.word}">📖</button><div class="deriv-weight">${d.weight}</div><div class="deriv-word">${d.word}</div><div class="deriv-effect">${d.effect}</div><div class="deriv-added">${ad}</div><div class="deriv-movement"><strong>الحركة:</strong><span class="mv-text">${dmv?dmv.sentence:'—'}</span></div><div class="deriv-wikt-content" id="wikt-${idx}"></div></div>`;
+  }).join('');
+  out.innerHTML=`
+    <div class="analysis-actions">
+      <button class="action-btn primary" onclick="exportPDF()">🖨️ PDF</button>
+      <button class="action-btn" onclick="exportRootCSV()">📊 CSV</button>
+      <button class="action-btn" onclick="exportRootJSON()">📥 JSON</button>
+    </div>
+    <div class="card"><div class="card-title"><span class="icon">🌳</span> الجذر المستخرج <span class="tier-badge tier-green">🟢 القاعدة 2</span></div><div class="root-letters">${rc}</div><p class="card-sub" style="text-align:center;">الحركة الجذرية: <strong style="color:var(--navy);font-family:var(--font-serif);">${mv.sentence}</strong></p></div>
+    <div class="card"><div class="card-title"><span class="icon">🔀</span> التباديل</div><div class="perm-grid">${mv.permutations.slice(0,24).map(p=>{ const pw=p.join(''), io=pw===mv.word; return `<div class="perm-card ${io?'original':''}">${io?'<span class="perm-badge">★</span>':''}<div class="perm-word">${pw}</div><div class="perm-movement">${p.map(ch=>CORE[ch].movement).join(' ← ')}</div></div>`; }).join('')}</div></div>
+    <div class="card"><div class="card-title"><span class="icon">📚</span> الاشتقاق (${ds.length} وزنًا)</div><div class="deriv-tabs"><span class="deriv-tab active" data-filter="all">الكل</span><span class="deriv-tab" data-filter="mujarrad">🟢 مجرد</span><span class="deriv-tab" data-filter="mazid">🟡 مزيد</span><span class="deriv-tab" data-filter="mazid2">🟣 ثلاثي</span></div><div class="deriv-grid">${dc}</div></div>
+    <div class="info-box"><strong>💡 ملاحظة:</strong> الأوزان ليست قوالب جوفاء — بل <em>إضافات حركية</em>:<br>• <strong>مَفعول</strong> = م (تكامل) + الجذر + و (ديمومة مكانية).<br>• <strong>اِسْتِفْعَال</strong> = ا (ابتداء) + س (انسلال) + ت (أخذ) + الجذر.</div>`;
+  out.querySelectorAll('.deriv-tab').forEach(t=>t.addEventListener('click',()=>{ out.querySelectorAll('.deriv-tab').forEach(x=>x.classList.remove('active')); t.classList.add('active'); out.querySelectorAll('.deriv-card').forEach(card=>{ card.style.display=(t.dataset.filter==='all'||card.dataset.kind===t.dataset.filter)?'':'none'; }); }));
+  out.querySelectorAll('.deriv-wikt-btn').forEach(b=>b.addEventListener('click',async e=>{
+    e.stopPropagation();
+    const w=b.dataset.word, card=b.closest('.deriv-card'), ct=card.querySelector('.deriv-wikt-content');
+    if(ct.classList.contains('show')){ ct.classList.remove('show'); return; }
+    ct.innerHTML='⏳'; ct.classList.add('show');
+    const wk=await fetchWiktionary(w);
+    if(wk?.extract) ct.innerHTML=`<strong>📚</strong> ${wk.extract}${wk.url?`<br><a href="${wk.url}" target="_blank">↗</a>`:''}`;
+    else ct.innerHTML=`لا يوجد مدخل. <a href="https://ar.wiktionary.org/wiki/${encodeURIComponent(w)}" target="_blank">↗ فتح</a>`;
+  }));
+}
+
+/* ============================================================
+   24. التصدير
+   ============================================================ */
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._timer); t._timer=setTimeout(()=>t.classList.remove('show'),2200); }
+function exportPDF(){ showToast('🖨️ جاري التحضير...'); setTimeout(()=>window.print(),300); }
+function downloadFile(content,filename,mime){ const b=new Blob([content],{type:mime}), u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u); }
+function exportJSON(){
+  if(!currentAnalysis){ showToast('⚠️ لا تحليل'); return; }
+  const d={word:currentAnalysis.word,letters:currentAnalysis.letters,sentence:currentAnalysis.sentence,concept:currentAnalysis.concept,speed:currentAnalysis.speed,baseSpeed:currentAnalysis.baseSpeed,finalFactor:currentAnalysis.finalFactor,axes:currentAnalysis.axes,duplicates:currentAnalysis.duplicates,uniquePermutations:currentAnalysis.uniquePermutations,contributions:currentAnalysis.contributions.map(c=>({letter:c.ch,movement:c.core.movement,role:c.role.label,tier:c.core.tier,speed:c.core.speed,weight:c.weight})),ks:currentAnalysis.ks,permutations:currentAnalysis.permutations.map(p=>p.join('')),exportedAt:new Date().toISOString(),version:'v2.7.1'};
+  downloadFile(JSON.stringify(d,null,2),`${currentAnalysis.word}-analysis.json`,'application/json;charset=utf-8');
+  showToast('✅ تم');
+}
+function exportCSV(){
+  if(!currentAnalysis){ showToast('⚠️ لا تحليل'); return; }
+  const r=[['# التسلسل',currentAnalysis.word],['# الحركة',currentAnalysis.sentence],['# السرعة',(currentAnalysis.speed*100).toFixed(1)+'%'],['# المعدّل الأساسي',currentAnalysis.baseSpeed.toFixed(3)],['# معامل الموضع الأخير',currentAnalysis.finalFactor.toFixed(2)],['# التكرار',currentAnalysis.duplicates.length?currentAnalysis.duplicates.map(d=>d.ch+'×'+d.count).join('، '):'لا يوجد'],['# التباديل الفريدة',currentAnalysis.uniquePermutations],[]];
+  r.push(['#','الحرف','الحركة','الدور','tier','الوزن','السرعة','المساهمة']);
+  currentAnalysis.contributions.forEach((c,i)=>r.push([i+1,c.ch,c.core.movement,c.role.label,c.core.tier,c.weight.toFixed(3),c.core.speed.toFixed(2),(c.core.speed*c.weight).toFixed(4)]));
+  const csv='\uFEFF'+r.map(row=>row.map(v=>{ const s=String(v??''); return s.includes(',')||s.includes('"')||s.includes('\n')?'"'+s.replace(/"/g,'""')+'"':s; }).join(',')).join('\n');
+  downloadFile(csv,`${currentAnalysis.word}-analysis.csv`,'text/csv;charset=utf-8');
+  showToast('✅ تم');
+}
+function exportRootCSV(){
+  if(!currentDerivations||!currentRootLetters){ showToast('⚠️ لا اشتقاق'); return; }
+  const r=[]; currentRootLetters.forEach((ch,i)=>r.push([ch,CORE[ch].movement,getRole(i,3).label]));
+  r.push([]); r.push(['#','الوزن','الكلمة','النوع','الوظيفة','الزوائد','الحركة']);
+  currentDerivations.forEach((d,i)=>{ const dmv=extractMovement(d.word); const k=d.kind==='mujarrad'?'مجرّد':d.kind==='mazid2'?'مزيد بثلاثة':'مزيد'; r.push([i+1,d.weight,d.word,k,d.effect,d.added.length?d.added.join('+'):'—',dmv?dmv.sentence:'—']); });
+  const csv='\uFEFF'+r.map(row=>row.map(v=>{ const s=String(v??''); return s.includes(',')||s.includes('"')||s.includes('\n')?'"'+s.replace(/"/g,'""')+'"':s; }).join(',')).join('\n');
+  downloadFile(csv,`${currentRootLetters.join('')}-derivations.csv`,'text/csv;charset=utf-8');
+  showToast('✅ تم');
+}
+function exportRootJSON(){
+  if(!currentDerivations||!currentRootLetters){ showToast('⚠️ لا اشتقاق'); return; }
+  const d={root:currentRootLetters.join(''),rootLetters:currentRootLetters.map((ch,i)=>({letter:ch,movement:CORE[ch].movement,role:getRole(i,3).label})),derivations:currentDerivations.map(x=>{ const dmv=extractMovement(x.word); return {weight:x.weight,word:x.word,kind:x.kind,effect:x.effect,added:x.added,movement:dmv?dmv.sentence:null}; }),exportedAt:new Date().toISOString()};
+  downloadFile(JSON.stringify(d,null,2),`${currentRootLetters.join('')}-derivations.json`,'application/json;charset=utf-8');
+  showToast('✅ تم');
+}
+function copyAnalysis(){
+  if(!currentAnalysis){ showToast('⚠️ لا تحليل'); return; }
+  const lines=[`📖 تحليل «${currentAnalysis.word}»`,'',`✨ ${currentAnalysis.sentence}`,''];
+  if(currentAnalysis.duplicates.length) lines.push(`🔁 حرف مكرر: ${currentAnalysis.duplicates.map(d=>`${d.ch}×${d.count}`).join('، ')} — التباديل الفريدة: ${currentAnalysis.uniquePermutations}`,'');
+  lines.push(`🔤 الحروف:`,...currentAnalysis.contributions.map((c,i)=>`  ${i+1}. ${c.ch} — ${c.core.movement} (${c.role.label})`),'',`🚀 السرعة: ${(currentAnalysis.speed*100).toFixed(1)}%`);
+  navigator.clipboard.writeText(lines.join('\n')).then(()=>showToast('✅ تم'),()=>showToast('⚠️ تعذّر'));
+}
+
+/* ============================================================
+   25. التنقل
+   ============================================================ */
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById('screen-'+name); if(el) el.classList.add('active');
+  document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.dataset.screen===name));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='history') renderHistory();
+  if(name==='stats'){ renderPersonalStats(); renderHeatmap(); renderCalendar(); renderRecommendations(); initSphereOnce(); }
+  if(name==='compare') renderMultiSelect();
+}
+document.getElementById('analyze-btn').addEventListener('click',async()=>{ const w=document.getElementById('word-input').value.trim(); if(w) await analyze(w); });
+document.getElementById('word-input').addEventListener('keydown',async e=>{ if(e.key==='Enter'){ e.preventDefault(); const w=e.target.value.trim(); if(w) await analyze(w); } });
+document.querySelectorAll('#examples-row .example-chip').forEach(chip=>chip.addEventListener('click',()=>{ document.getElementById('word-input').value=chip.dataset.word; analyze(chip.dataset.word); }));
+document.getElementById('root-btn').addEventListener('click',()=>{ const w=document.getElementById('root-input').value.trim(); if(w) renderRoot(w); });
+document.getElementById('root-input').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); const w=e.target.value.trim(); if(w) renderRoot(w); } });
+document.querySelectorAll('#root-examples .example-chip').forEach(chip=>chip.addEventListener('click',()=>{ document.getElementById('root-input').value=chip.dataset.word; renderRoot(chip.dataset.word); }));
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',e=>{ e.preventDefault(); showScreen(a.dataset.screen); safeReplaceState('#'+a.dataset.screen); }));
+document.getElementById('compare-btn').addEventListener('click',()=>{ const a=document.getElementById('cmp-a').value.trim(), b=document.getElementById('cmp-b').value.trim(); if(a&&b) renderCompare(a,b); });
+
+async function analyze(word){
+  try{
+    showScreen('analysis');
+    const out=document.getElementById('analysis-output');
+    out.innerHTML=`<div class="loading"><div class="spinner"></div><div>جاري الاستخراج...</div></div>`;
+    const mv=extractMovement(word);
+    if(!mv){ out.innerHTML=`<div class="error-box">⚠️ لم أتعرّف على أي حرف من المصوفة في «${word}».</div>`; return; }
+    safeReplaceState('?w='+encodeURIComponent(mv.word));
+    saveHistoryItem(mv);
+    out.innerHTML=renderAnalysis(mv);
+    renderAPIs(mv.word,mv);
+  }catch(e){ console.error('analyze error',e); const out=document.getElementById('analysis-output'); if(out) out.innerHTML=`<div class="error-box">⚠️ حدث خطأ: ${e.message||e}</div>`; }
+}
+
+function renderCompare(a,b){
+  const A=extractMovement(a), B=extractMovement(b);
+  const out=document.getElementById('compare-output');
+  if(!A||!B){ out.innerHTML=`<div class="error-box">تعذّر التحليل.</div>`; return; }
+  const same=JSON.stringify([...A.letters].sort())===JSON.stringify([...B.letters].sort());
+  const v=same?`✅ الحروف نفسها بترتيب مختلف — يثبت <strong>القاعدة 6</strong>: «المعنى الكامل = مجموع الحركات ⊕ ترتيبها». الفرق كله في الترتيب، لا في الأصوات.`:`الحروف مختلفة، فالفرق متوقّع (القاعدة 1: لا ترادف).`;
+  out.innerHTML=`<div class="compare-result"><div class="compare-col"><h4>${A.word}</h4><div class="compare-movement">${A.sentence}</div><div style="margin-top:10px;font-size:.85rem;color:var(--ink-muted);line-height:1.8;">${A.contributions.map(c=>`${c.ch} → ${c.core.movement} <span class="role-mini ${c.role.cls}">${c.role.short}</span>`).join('<br>')}</div></div><div class="compare-col"><h4>${B.word}</h4><div class="compare-movement">${B.sentence}</div><div style="margin-top:10px;font-size:.85rem;color:var(--ink-muted);line-height:1.8;">${B.contributions.map(c=>`${c.ch} → ${c.core.movement} <span class="role-mini ${c.role.cls}">${c.role.short}</span>`).join('<br>')}</div></div></div><div class="compare-verdict">${v}</div>`;
+}
+
+function renderLetters(){
+  const g=document.getElementById('letters-grid');
+  g.innerHTML=Object.keys(CORE).map(ch=>{ const c=CORE[ch]; return `<div class="letter-cell" data-tier="${c.tier}" data-letter="${ch}"><div class="glyph">${ch}</div><div class="movement">${c.movement}</div></div>`; }).join('');
+  g.querySelectorAll('.letter-cell').forEach(cell=>cell.addEventListener('click',()=>renderLetterDetail(cell.dataset.letter)));
+}
+function renderLetterDetail(ch){
+  const c=CORE[ch]; if(!c) return;
+  const tl=c.tier==='green'?'🟢 منصوص':c.tier==='yellow'?'🟡 مسودة':'🟣 من تسلسل';
+  const tc=c.tier==='green'?'tier-green':c.tier==='yellow'?'tier-yellow':'tier-purple';
+  document.getElementById('letter-detail').innerHTML=`<div class="card">
+    <div class="card-title"><span style="font-family:var(--font-serif);font-size:2rem;line-height:1;">${ch}</span><span class="tier-badge ${tc}">${tl}</span></div>
+    <p class="card-sub">${c.source}</p>
+    <div style="background:var(--gold-soft);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--gold);margin-bottom:14px;">
+      <div style="font-size:.78rem;color:#7A5A1A;font-weight:700;">الحركة</div>
+      <div style="font-size:1.15rem;color:var(--navy);font-weight:700;font-family:var(--font-serif);">${c.movement}</div>
+    </div>
+    <div class="axes-grid">
+      <div class="axis-cell"><span class="k">🧭 الاتجاه</span><span class="v">${pct(c.axes.direction)}</span></div>
+      <div class="axis-cell"><span class="k">🧩 الترابط</span><span class="v">${pct(c.axes.cohesion)}</span></div>
+      <div class="axis-cell"><span class="k">🔥 التعاظم</span><span class="v">${pct(c.axes.intensity)}</span></div>
+      <div class="axis-cell"><span class="k">👁 الظهور</span><span class="v">${pct(c.axes.visibility)}</span></div>
+      <div class="axis-cell"><span class="k">⏳ الزمان</span><span class="v">${pct(c.axes.time)}</span></div>
+      <div class="axis-cell"><span class="k">🚀 السرعة</span><span class="v">${c.speed.toFixed(2)}</span></div>
+      <div class="axis-cell"><span class="k">📐 معامل الموضع الأخير</span><span class="v">× ${c.finalFactor.toFixed(2)}</span></div>
+    </div>
+    <div style="margin-top:12px;"><a href="https://ar.wiktionary.org/wiki/${encodeURIComponent(ch)}" target="_blank" class="btn-secondary" style="display:inline-block;">📖 Wiktionary</a></div>
+  </div>`;
+}
+function renderRules(){
+  document.getElementById('rules-list').innerHTML=RULES.map(r=>`<li style="display:flex;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);background:var(--bg-soft);margin-bottom:8px;border-inline-start:3px solid var(--navy);font-size:.92rem;line-height:1.75;"><span style="font-weight:700;color:var(--navy);min-width:30px;font-size:.85rem;font-family:var(--font-serif);">${r.id}</span><div style="flex:1;"><div>${r.text}</div><div style="font-size:.75rem;color:var(--ink-muted);margin-top:4px;font-style:italic;">${r.source}${r.page?' — ص '+r.page:''}</div></div></li>`).join('');
+  document.getElementById('critique-rules').innerHTML=CRITIQUE_RULES.map(r=>`<div style="display:flex;gap:12px;padding:10px 14px;border-radius:var(--radius-sm);background:var(--bg-soft);margin-bottom:8px;border-inline-start:3px solid var(--gold);"><span style="font-weight:700;color:var(--navy);min-width:24px;">${r.n}.</span><span style="flex:1;">${r.text}</span></div>`).join('');
+}
+function renderVerifiedExamples(){
+  const el=document.getElementById('verified-examples'); if(!el) return;
+  const list=Object.entries(KS).slice(0,6);
+  el.innerHTML=list.map(([word,data])=>{
+    const mv=extractMovement(word);
+    return `<div class="card" style="margin-bottom:10px;padding:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px;">
+        <span style="font-size:1.3rem;font-weight:700;color:var(--navy);font-family:var(--font-serif);">${word}</span>
+        <span style="font-size:.75rem;color:var(--ink-muted);font-family:var(--font-serif);">${mv?mv.letters.join(' '):''}</span>
+      </div>
+      <div style="font-size:.85rem;color:var(--ink-soft);margin-bottom:6px;"><strong>الحركة:</strong> ${mv?mv.sentence:''}</div>
+      <div style="font-size:.82rem;color:var(--ink-muted);line-height:1.6;">${data.meaning}</div>
+      <div style="font-size:.72rem;color:var(--ink-muted);margin-top:8px;font-style:italic;">— ${data.source}${data.page?' س '+data.page:''}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ============================================================
+   26. الكرة 3D
+   ============================================================ */
+let sphereInit=false;
+function initSphereOnce(){ if(sphereInit) return; sphereInit=true; setTimeout(initSphere,100); }
+function initSphere(){
+  try{
+    const container=document.getElementById('sphere-container'); if(!container||typeof THREE==='undefined') return;
+    const W=container.clientWidth, H=container.clientHeight; if(W===0||H===0) return;
+    const scene=new THREE.Scene(); scene.background=new THREE.Color(0xF4F4EC);
+    const camera=new THREE.PerspectiveCamera(50,W/H,.1,1000); camera.position.z=3.2;
+    const renderer=new THREE.WebGLRenderer({antialias:true}); renderer.setSize(W,H); renderer.setPixelRatio(window.devicePixelRatio); container.appendChild(renderer.domElement);
+    const letters=Object.keys(CORE); const group=new THREE.Group(); scene.add(group);
+    const N=letters.length, positions=[];
+    for(let i=0;i<N;i++){ const phi=Math.acos(1-2*(i+.5)/N); const theta=Math.PI*(1+Math.sqrt(5))*i; positions.push(new THREE.Vector3(Math.cos(theta)*Math.sin(phi),Math.sin(theta)*Math.sin(phi),Math.cos(phi))); }
+    letters.forEach((ch,i)=>{
+      const cv=document.createElement('canvas'); cv.width=128; cv.height=128;
+      const ctx=cv.getContext('2d'); const t=CORE[ch].tier;
+      const col=t==='green'?'#10B981':t==='yellow'?'#F59E0B':'#8B5CF6';
+      ctx.fillStyle=col; ctx.beginPath(); ctx.arc(64,64,60,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#FFF'; ctx.font='bold 80px Amiri,serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(ch,64,72);
+      const tex=new THREE.CanvasTexture(cv); const mat=new THREE.SpriteMaterial({map:tex,transparent:true});
+      const spr=new THREE.Sprite(mat); spr.position.copy(positions[i].multiplyScalar(1.5)); spr.scale.set(.32,.32,1); group.add(spr);
+    });
+    const lm=new THREE.LineBasicMaterial({color:0xC9A961,transparent:true,opacity:.12});
+    for(let i=0;i<N;i++) for(let j=i+1;j<N;j++){ if(positions[i].distanceTo(positions[j])<.9){ const g=new THREE.BufferGeometry().setFromPoints([positions[i].clone().multiplyScalar(1.5),positions[j].clone().multiplyScalar(1.5)]); group.add(new THREE.Line(g,lm)); } }
+    let isDown=false,lX=0,lY=0;
+    container.addEventListener('mousedown',e=>{isDown=true;lX=e.clientX;lY=e.clientY;});
+    container.addEventListener('mouseup',()=>isDown=false); container.addEventListener('mouseleave',()=>isDown=false);
+    container.addEventListener('mousemove',e=>{ if(!isDown) return; const dx=e.clientX-lX,dy=e.clientY-lY; lX=e.clientX;lY=e.clientY; group.rotation.y+=dx*.01; group.rotation.x+=dy*.01; });
+    container.addEventListener('touchstart',e=>{isDown=true;lX=e.touches[0].clientX;lY=e.touches[0].clientY;});
+    container.addEventListener('touchend',()=>isDown=false);
+    container.addEventListener('touchmove',e=>{ if(!isDown) return; e.preventDefault(); const dx=e.touches[0].clientX-lX,dy=e.touches[0].clientY-lY; lX=e.touches[0].clientX;lY=e.touches[0].clientY; group.rotation.y+=dx*.01; group.rotation.x+=dy*.01; },{passive:false});
+    (function a(){ requestAnimationFrame(a); if(!isDown) group.rotation.y+=.002; renderer.render(scene,camera); })();
+    window.addEventListener('resize',()=>{ const w=container.clientWidth,h=container.clientHeight; if(w>0&&h>0){ camera.aspect=w/h; camera.updateProjectionMatrix(); renderer.setSize(w,h); } });
+  }catch(e){ console.warn('sphere',e); }
+}
+
+/* ============================================================
+   27. التهيئة
+   ============================================================ */
+document.addEventListener('DOMContentLoaded',()=>{
+  try{
+    initTheme();
+    renderLetters();
+    renderRules();
+    renderVerifiedExamples();
+    updateHistoryBadge();
+    renderMultiSelect();
+    renderPersonalStats();
+    renderHeatmap();
+    renderCalendar();
+    renderRecommendations();
+    checkIfInstalled();
+    const hasWord=handleURLParams();
+    if(!hasWord){ const h=(location.hash||'#home').replace('#','')||'home'; showScreen(h); }
+    window.addEventListener('hashchange',()=>{ const s=(location.hash||'#home').replace('#','')||'home'; showScreen(s); });
+    console.log('✅ v2.7.1 جاهز');
+    console.log('🔁 كشف تكرار الحروف + التباديل الفريدة');
+    console.log('📐 معادلة البصمة: (v+1)/2 على [-1,+1]');
+    console.log('🚀 finalFactor — معامل الموضع الأخير');
+  }catch(e){ console.error('init',e); }
+});
+</script>
+</body>
+</html>
